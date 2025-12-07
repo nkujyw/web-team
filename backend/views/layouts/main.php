@@ -29,15 +29,31 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => '抗战80周年后台', // 这里我顺便帮你把左上角的标题改得像样点
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    
+
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => '首页', 'url' => ['/site/index']],
+        ['label' => '人物', 'url' => ['/characters/index']],
+        ['label' => '势力', 'url' => ['/forces/index']],
+        ['label' => '队伍', 'url' => ['/teams/index']],
+        ['label' => '战役', 'url' => ['/battle-events/index']],
+        ['label' => '地点', 'url' => ['/locations/index']],
+        ['label' => '事件', 'url' => ['/events/index']],
+        ['label' => '会议', 'url' => ['/meeting-events/index']],
+        ['label' => '外交', 'url' => ['/diplomatic-events/index']],
+        ['label' => '活动', 'url' => ['/mem-activities/index']],
+        ['label' => '作品', 'url' => ['/mem-works/index']],
+        ['label' => '题目', 'url' => ['/question/index']],
+        ['label' => '留言', 'url' => ['/messages/index']],
     ];
+
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
