@@ -351,21 +351,9 @@ ALTER TABLE `user`
 --
 
 --
--- 使用表AUTO_INCREMENT `battle_events`
---
-ALTER TABLE `battle_events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- 使用表AUTO_INCREMENT `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- 使用表AUTO_INCREMENT `diplomatic_events`
---
-ALTER TABLE `diplomatic_events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -384,12 +372,6 @@ ALTER TABLE `forces`
 -- 使用表AUTO_INCREMENT `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- 使用表AUTO_INCREMENT `meeting_events`
---
-ALTER TABLE `meeting_events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -427,6 +409,102 @@ ALTER TABLE `teams`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+
+-- ===========================================
+-- 3. 事件父子表结构改进
+-- ===========================================
+
+-- 3.1 添加事件类型字段
+ALTER TABLE `events`
+ADD COLUMN `event_type` ENUM('battle','diplomatic','meeting') NOT NULL COMMENT '事件类型';
+
+-- 3.2 battle_events 删除重复字段
+ALTER TABLE `battle_events`
+DROP COLUMN `name`,
+DROP COLUMN `start_date`,
+DROP COLUMN `end_date`,
+DROP COLUMN `location_id`,
+DROP COLUMN `description`,
+DROP COLUMN `result`;
+
+ALTER TABLE `battle_events`
+MODIFY `id` INT NOT NULL COMMENT '与events表共享主键';
+
+-- 3.3 diplomatic_events 删除重复字段
+ALTER TABLE `diplomatic_events`
+DROP COLUMN `name`,
+DROP COLUMN `event_date`,
+DROP COLUMN `location_id`,
+DROP COLUMN `description`,
+DROP COLUMN `outcome`;
+
+ALTER TABLE `diplomatic_events`
+MODIFY `id` INT NOT NULL COMMENT '与events表共享主键';
+
+-- 3.4 meeting_events 删除重复字段
+ALTER TABLE `meeting_events`
+DROP COLUMN `name`,
+DROP COLUMN `location_id`,
+DROP COLUMN `description`,
+DROP COLUMN `outcome`;
+
+ALTER TABLE `meeting_events`
+MODIFY `id` INT NOT NULL COMMENT '与events表共享主键';
+
+-- ===========================================
+-- 4. 外键
+-- ===========================================
+
+-- 4.1 事件父子表关系
+ALTER TABLE `battle_events`
+ADD CONSTRAINT fk_battle_event FOREIGN KEY (`id`) REFERENCES `events`(`id`) ON DELETE CASCADE;
+
+ALTER TABLE `diplomatic_events`
+ADD CONSTRAINT fk_diplomatic_event FOREIGN KEY (`id`) REFERENCES `events`(`id`) ON DELETE CASCADE;
+
+ALTER TABLE `meeting_events`
+ADD CONSTRAINT fk_meeting_event FOREIGN KEY (`id`) REFERENCES `events`(`id`) ON DELETE CASCADE;
+
+ALTER TABLE `battle_events`
+ADD CONSTRAINT fk_battle_force1 FOREIGN KEY (`force1_id`) REFERENCES `forces`(`id`) ON DELETE SET NULL;
+
+ALTER TABLE `battle_events`
+ADD CONSTRAINT fk_battle_force2 FOREIGN KEY (`force2_id`) REFERENCES `forces`(`id`) ON DELETE SET NULL;
+
+-- 4.2 人物、势力、地点
+ALTER TABLE `characters`
+ADD CONSTRAINT fk_character_force FOREIGN KEY (`force_id`) REFERENCES `forces`(`id`) ON DELETE SET NULL;
+
+ALTER TABLE `events`
+ADD CONSTRAINT fk_event_location FOREIGN KEY (`location_id`) REFERENCES `locations`(`id`) ON DELETE SET NULL;
+
+-- 4.3 队伍
+ALTER TABLE `teams`
+ADD CONSTRAINT fk_team_force FOREIGN KEY (`force_id`) REFERENCES `forces`(`id`) ON DELETE SET NULL;
+
+ALTER TABLE `teams`
+ADD CONSTRAINT fk_team_leader FOREIGN KEY (`leader_id`) REFERENCES `characters`(`id`) ON DELETE SET NULL;
+
+-- 4.4 作品
+ALTER TABLE `mem_works`
+ADD CONSTRAINT fk_work_event FOREIGN KEY (`related_event_id`) REFERENCES `events`(`id`) ON DELETE SET NULL;
+
+ALTER TABLE `mem_works`
+ADD CONSTRAINT fk_work_character FOREIGN KEY (`related_character_id`) REFERENCES `characters`(`id`) ON DELETE SET NULL;
+
+-- 4.5 问答题
+ALTER TABLE `question`
+ADD CONSTRAINT fk_question_event FOREIGN KEY (`related_event_id`) REFERENCES `events`(`id`) ON DELETE SET NULL;
+
+ALTER TABLE `question`
+ADD CONSTRAINT fk_question_character FOREIGN KEY (`related_character_id`) REFERENCES `characters`(`id`) ON DELETE SET NULL;
+
+-- 4.6 纪念活动
+ALTER TABLE `mem_activities`
+ADD CONSTRAINT fk_activity_location FOREIGN KEY (`location_id`) REFERENCES `locations`(`id`) ON DELETE SET NULL;
+
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
