@@ -17,8 +17,8 @@ class CharactersSearch extends Characters
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'force_id'], 'integer'],
+            [['name', 'biography', 'achievements', 'rank', 'url'], 'safe'],
         ];
     }
 
@@ -59,9 +59,14 @@ class CharactersSearch extends Characters
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'force_id' => $this->force_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'biography', $this->biography])
+            ->andFilterWhere(['like', 'achievements', $this->achievements])
+            ->andFilterWhere(['like', 'rank', $this->rank])
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }

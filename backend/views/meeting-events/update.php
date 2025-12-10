@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\MeetingEvents */
 
-$this->title = 'Update Meeting Events: ' . $model->name;
+$this->title = 'Update Meeting Events: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Meeting Events', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="meeting-events-update">

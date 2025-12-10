@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "messages".
  *
  * @property int $id
- * @property string $message
+ * @property string $message 留言信息
  */
 class Messages extends \yii\db\ActiveRecord
 {

@@ -17,8 +17,8 @@ class MemWorksSearch extends MemWorks
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'related_event_id', 'related_character_id'], 'integer'],
+            [['name', 'type', 'author', 'create_date', 'description', 'url'], 'safe'],
         ];
     }
 
@@ -59,9 +59,16 @@ class MemWorksSearch extends MemWorks
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'create_date' => $this->create_date,
+            'related_event_id' => $this->related_event_id,
+            'related_character_id' => $this->related_character_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'author', $this->author])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }

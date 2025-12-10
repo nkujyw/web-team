@@ -18,7 +18,7 @@ class MeetingEventsSearch extends MeetingEvents
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['meeting_date', 'attendees', 'agenda'], 'safe'],
         ];
     }
 
@@ -59,9 +59,11 @@ class MeetingEventsSearch extends MeetingEvents
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'meeting_date' => $this->meeting_date,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'attendees', $this->attendees])
+            ->andFilterWhere(['like', 'agenda', $this->agenda]);
 
         return $dataProvider;
     }

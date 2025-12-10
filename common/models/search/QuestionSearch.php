@@ -17,8 +17,8 @@ class QuestionSearch extends Question
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['content'], 'safe'],
+            [['id', 'related_event_id', 'related_character_id'], 'integer'],
+            [['content', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_answer'], 'safe'],
         ];
     }
 
@@ -59,9 +59,16 @@ class QuestionSearch extends Question
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'related_event_id' => $this->related_event_id,
+            'related_character_id' => $this->related_character_id,
         ]);
 
-        $query->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['like', 'option_a', $this->option_a])
+            ->andFilterWhere(['like', 'option_b', $this->option_b])
+            ->andFilterWhere(['like', 'option_c', $this->option_c])
+            ->andFilterWhere(['like', 'option_d', $this->option_d])
+            ->andFilterWhere(['like', 'correct_answer', $this->correct_answer]);
 
         return $dataProvider;
     }

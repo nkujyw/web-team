@@ -9,6 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property string|null $founded_date 成立时间
+ * @property string|null $description 队伍描述
+ * @property int|null $force_id 所属势力id
+ * @property int|null $leader_id 领导人id
+ *
+ * @property Forces $force
+ * @property Characters $leader
  */
 class Teams extends \yii\db\ActiveRecord
 {
@@ -27,7 +34,12 @@ class Teams extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['founded_date'], 'safe'],
+            [['description'], 'string'],
+            [['force_id', 'leader_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
+            [['force_id'], 'exist', 'skipOnError' => true, 'targetClass' => Forces::className(), 'targetAttribute' => ['force_id' => 'id']],
+            [['leader_id'], 'exist', 'skipOnError' => true, 'targetClass' => Characters::className(), 'targetAttribute' => ['leader_id' => 'id']],
         ];
     }
 
@@ -39,6 +51,30 @@ class Teams extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'founded_date' => 'Founded Date',
+            'description' => 'Description',
+            'force_id' => 'Force ID',
+            'leader_id' => 'Leader ID',
         ];
+    }
+
+    /**
+     * Gets query for [[Force]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getForce()
+    {
+        return $this->hasOne(Forces::className(), ['id' => 'force_id']);
+    }
+
+    /**
+     * Gets query for [[Leader]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLeader()
+    {
+        return $this->hasOne(Characters::className(), ['id' => 'leader_id']);
     }
 }

@@ -19,6 +19,18 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name') ?>
 
+    <?= $form->field($model, 'start_date') ?>
+
+    <?= $form->field($model, 'end_date') ?>
+
+    <?= $form->field($model, 'location_id') ?>
+
+    <?php // echo $form->field($model, 'description') ?>
+
+    <?php // echo $form->field($model, 'outcome') ?>
+
+    <?php // echo $form->field($model, 'event_type') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>

@@ -31,6 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
+            'biography:ntext',
+            'force_id',
+            'achievements:ntext',
+            'rank',
+            'url:url',
         ],
     ]) ?>
 

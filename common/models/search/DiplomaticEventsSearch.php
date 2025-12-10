@@ -18,7 +18,7 @@ class DiplomaticEventsSearch extends DiplomaticEvents
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['related_force_ids'], 'safe'],
         ];
     }
 
@@ -61,7 +61,7 @@ class DiplomaticEventsSearch extends DiplomaticEvents
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'related_force_ids', $this->related_force_ids]);
 
         return $dataProvider;
     }

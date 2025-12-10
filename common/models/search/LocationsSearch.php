@@ -18,7 +18,7 @@ class LocationsSearch extends Locations
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'type', 'description'], 'safe'],
         ];
     }
 
@@ -61,7 +61,9 @@ class LocationsSearch extends Locations
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

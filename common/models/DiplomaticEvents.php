@@ -7,8 +7,10 @@ use Yii;
 /**
  * This is the model class for table "diplomatic_events".
  *
- * @property int $id
- * @property string $name
+ * @property int $id 与events表共享主键
+ * @property string|null $related_force_ids 	 相关势力ID
+ *
+ * @property Events $id0
  */
 class DiplomaticEvents extends \yii\db\ActiveRecord
 {
@@ -26,8 +28,11 @@ class DiplomaticEvents extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 255],
+            [['id'], 'required'],
+            [['id'], 'integer'],
+            [['related_force_ids'], 'string', 'max' => 500],
+            [['id'], 'unique'],
+            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Events::className(), 'targetAttribute' => ['id' => 'id']],
         ];
     }
 
@@ -38,7 +43,17 @@ class DiplomaticEvents extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'related_force_ids' => 'Related Force Ids',
         ];
+    }
+
+    /**
+     * Gets query for [[Id0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getId0()
+    {
+        return $this->hasOne(Events::className(), ['id' => 'id']);
     }
 }

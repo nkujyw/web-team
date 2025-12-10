@@ -17,8 +17,8 @@ class EventsSearch extends Events
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'location_id'], 'integer'],
+            [['name', 'start_date', 'end_date', 'description', 'outcome', 'event_type'], 'safe'],
         ];
     }
 
@@ -59,9 +59,15 @@ class EventsSearch extends Events
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'location_id' => $this->location_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'outcome', $this->outcome])
+            ->andFilterWhere(['like', 'event_type', $this->event_type]);
 
         return $dataProvider;
     }

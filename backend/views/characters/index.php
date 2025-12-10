@@ -28,6 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
+            'biography:ntext',
+            'force_id',
+            'achievements:ntext',
+            //'rank',
+            //'url:url',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

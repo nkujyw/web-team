@@ -19,6 +19,20 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content') ?>
 
+    <?= $form->field($model, 'option_a') ?>
+
+    <?= $form->field($model, 'option_b') ?>
+
+    <?= $form->field($model, 'option_c') ?>
+
+    <?php // echo $form->field($model, 'option_d') ?>
+
+    <?php // echo $form->field($model, 'correct_answer') ?>
+
+    <?php // echo $form->field($model, 'related_event_id') ?>
+
+    <?php // echo $form->field($model, 'related_character_id') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>

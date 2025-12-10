@@ -9,6 +9,16 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property string|null $biography 人物简介
+ * @property int|null $force_id 势力id
+ * @property string|null $achievements 主要事迹
+ * @property string|null $rank 职务
+ * @property string|null $url 照片链接
+ *
+ * @property Forces $force
+ * @property MemWorks[] $memWorks
+ * @property Question[] $questions
+ * @property Teams[] $teams
  */
 class Characters extends \yii\db\ActiveRecord
 {
@@ -27,7 +37,12 @@ class Characters extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            [['biography', 'achievements'], 'string'],
+            [['force_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
+            [['rank'], 'string', 'max' => 100],
+            [['url'], 'string', 'max' => 500],
+            [['force_id'], 'exist', 'skipOnError' => true, 'targetClass' => Forces::className(), 'targetAttribute' => ['force_id' => 'id']],
         ];
     }
 
@@ -39,6 +54,51 @@ class Characters extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'biography' => 'Biography',
+            'force_id' => 'Force ID',
+            'achievements' => 'Achievements',
+            'rank' => 'Rank',
+            'url' => 'Url',
         ];
+    }
+
+    /**
+     * Gets query for [[Force]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getForce()
+    {
+        return $this->hasOne(Forces::className(), ['id' => 'force_id']);
+    }
+
+    /**
+     * Gets query for [[MemWorks]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMemWorks()
+    {
+        return $this->hasMany(MemWorks::className(), ['related_character_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Questions]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestions()
+    {
+        return $this->hasMany(Question::className(), ['related_character_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Teams]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTeams()
+    {
+        return $this->hasMany(Teams::className(), ['leader_id' => 'id']);
     }
 }

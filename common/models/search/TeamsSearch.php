@@ -17,8 +17,8 @@ class TeamsSearch extends Teams
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'force_id', 'leader_id'], 'integer'],
+            [['name', 'founded_date', 'description'], 'safe'],
         ];
     }
 
@@ -59,9 +59,13 @@ class TeamsSearch extends Teams
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'founded_date' => $this->founded_date,
+            'force_id' => $this->force_id,
+            'leader_id' => $this->leader_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

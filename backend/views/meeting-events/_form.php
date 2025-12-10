@@ -12,7 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'id')->textInput() ?>
+
+    <?= $form->field($model, 'meeting_date')->textInput() ?>
+
+    <?= $form->field($model, 'attendees')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'agenda')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

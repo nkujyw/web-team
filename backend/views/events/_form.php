@@ -14,6 +14,18 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'start_date')->textInput() ?>
+
+    <?= $form->field($model, 'end_date')->textInput() ?>
+
+    <?= $form->field($model, 'location_id')->textInput() ?>
+
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'outcome')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'event_type')->dropDownList([ 'battle' => 'Battle', 'diplomatic' => 'Diplomatic', 'meeting' => 'Meeting', ], ['prompt' => '']) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

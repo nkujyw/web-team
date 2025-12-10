@@ -17,8 +17,8 @@ class BattleEventsSearch extends BattleEvents
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'force1_id', 'force2_id'], 'integer'],
+            [['casualties'], 'safe'],
         ];
     }
 
@@ -59,9 +59,11 @@ class BattleEventsSearch extends BattleEvents
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'force1_id' => $this->force1_id,
+            'force2_id' => $this->force2_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'casualties', $this->casualties]);
 
         return $dataProvider;
     }

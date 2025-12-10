@@ -17,7 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'meeting_date') ?>
+
+    <?= $form->field($model, 'attendees') ?>
+
+    <?= $form->field($model, 'agenda') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

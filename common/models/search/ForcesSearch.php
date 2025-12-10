@@ -17,8 +17,8 @@ class ForcesSearch extends Forces
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'type'], 'integer'],
+            [['name', 'description'], 'safe'],
         ];
     }
 
@@ -59,9 +59,11 @@ class ForcesSearch extends Forces
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'type' => $this->type,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

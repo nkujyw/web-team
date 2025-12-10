@@ -17,8 +17,8 @@ class MemActivitiesSearch extends MemActivities
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'location_id'], 'integer'],
+            [['name', 'activity_date', 'organizer', 'description', 'photo_url'], 'safe'],
         ];
     }
 
@@ -59,9 +59,14 @@ class MemActivitiesSearch extends MemActivities
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'activity_date' => $this->activity_date,
+            'location_id' => $this->location_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'organizer', $this->organizer])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'photo_url', $this->photo_url]);
 
         return $dataProvider;
     }
