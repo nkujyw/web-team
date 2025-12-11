@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'option_a',
             'option_b',
             'option_c',
-            //'option_d',
+            'option_d',
             //'correct_answer',
             //'related_event_id',
             //'related_character_id',
