@@ -26,9 +26,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'force1_id',
-            'force2_id',
+            //'force1_id',
+            //'force2_id',
+
+            [
+                'attribute' => 'force1_id',
+                'label' => '势力一',
+                'value' => function ($model) {
+                    return $model->force1 ? $model->force1->name : '(未设置)';
+                },
+            ],
+            [
+                'attribute' => 'force2_id',
+                'label' => '势力二',
+                'value' => function ($model) {
+                    return $model->force2 ? $model->force2->name : '(未设置)';
+                },
+            ],
             'casualties',
 
             ['class' => 'yii\grid\ActionColumn'],

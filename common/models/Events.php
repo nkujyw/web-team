@@ -55,13 +55,13 @@ class Events extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'start_date' => 'Start Date',
-            'end_date' => 'End Date',
-            'location_id' => 'Location ID',
-            'description' => 'Description',
-            'outcome' => 'Outcome',
-            'event_type' => 'Event Type',
+            'name' => '名称',
+            'start_date' => '开始时间',
+            'end_date' => '结束时间',
+            'location_id' => '地点',
+            'description' => '介绍',
+            'outcome' => '结果',
+            'event_type' => '事件类型',
         ];
     }
 

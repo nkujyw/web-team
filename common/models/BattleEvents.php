@@ -49,9 +49,9 @@ class BattleEvents extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'force1_id' => 'Force1 ID',
-            'force2_id' => 'Force2 ID',
-            'casualties' => 'Casualties',
+            'force1_id' => '势力1',
+            'force2_id' => '势力2',
+            'casualties' => '伤亡情况',
         ];
     }
 

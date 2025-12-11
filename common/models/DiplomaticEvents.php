@@ -8,7 +8,8 @@ use Yii;
  * This is the model class for table "diplomatic_events".
  *
  * @property int $id 与events表共享主键
- * @property string|null $related_force_ids 	 相关势力ID
+ * @property string|null $related_force_ids 	
+ 相关势力ID
  *
  * @property Events $id0
  */
@@ -43,7 +44,7 @@ class DiplomaticEvents extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'related_force_ids' => 'Related Force Ids',
+            'related_force_ids' => '相关国家',
         ];
     }
 

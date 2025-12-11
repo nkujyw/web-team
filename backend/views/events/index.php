@@ -26,14 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'name',
             'start_date',
             'end_date',
-            'location_id',
+            //'location_id',
             //'description:ntext',
             //'outcome:ntext',
             //'event_type',
+            [
+                'attribute' => 'location_id',
+                'label' => '地点',
+                'value' => function ($model) {
+                    return $model->location ? $model->location->name : '(未设置)';
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

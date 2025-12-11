@@ -8,9 +8,12 @@ use Yii;
  * This is the model class for table "meeting_events".
  *
  * @property int $id 与events表共享主键
- * @property string|null $meeting_date 	 会议日期
- * @property string|null $attendees 	 参会人员
- * @property string|null $agenda 	 会议议程
+ * @property string|null $meeting_date 	
+ 会议日期
+ * @property string|null $attendees 	
+ 参会人员
+ * @property string|null $agenda 	
+ 会议议程
  *
  * @property Events $id0
  */
@@ -46,9 +49,9 @@ class MeetingEvents extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'meeting_date' => 'Meeting Date',
-            'attendees' => 'Attendees',
-            'agenda' => 'Agenda',
+            'meeting_date' => '会议日期',
+            'attendees' => '参会人员',
+            'agenda' => '会议议程',
         ];
     }
 
