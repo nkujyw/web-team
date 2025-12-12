@@ -42,7 +42,13 @@ class Characters extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 255],
             [['rank'], 'string', 'max' => 100],
             [['url'], 'string', 'max' => 500],
-            [['force_id'], 'exist', 'skipOnError' => true, 'targetClass' => Forces::className(), 'targetAttribute' => ['force_id' => 'id']],
+            [
+                ['force_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Forces::className(),
+                'targetAttribute' => ['force_id' => 'id']
+            ],
         ];
     }
 
@@ -53,23 +59,31 @@ class Characters extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'biography' => 'Biography',
-            'force_id' => 'Force ID',
-            'achievements' => 'Achievements',
-            'rank' => 'Rank',
-            'url' => 'Url',
+            'name' => '姓名',
+            'biography' => '人物简介',
+            'force_id' => '所属势力',
+            'achievements' => '主要事迹',
+            'rank' => '职务',
+            'url' => '照片链接',
         ];
     }
 
     /**
-     * Gets query for [[Force]].
+     * 关联势力
      *
      * @return \yii\db\ActiveQuery
      */
     public function getForce()
     {
         return $this->hasOne(Forces::className(), ['id' => 'force_id']);
+    }
+
+    /**
+     * 势力名称（用于展示，替代 force_id）
+     */
+    public function getForceName()
+    {
+        return $this->force ? $this->force->name : '';
     }
 
     /**
