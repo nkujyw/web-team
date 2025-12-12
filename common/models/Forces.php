@@ -47,11 +47,31 @@ class Forces extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'type' => 'Type',
-            'description' => 'Description',
+            'name' => '势力名称',
+            'type' => '势力类型',
+            'description' => '势力简介',
         ];
     }
+
+    /**
+     * 势力类型文字映射
+     */
+    public function getTypeText()
+{
+    switch ($this->type) {
+        case 1:
+            return 'National army（国民政府正规军）';
+        case 2:
+            return 'Communist army（共产党武装）';
+        case 3:
+            return 'Invading army（侵略军）';
+        case 4:
+            return 'Puppet regime（傀儡政权）';
+        default:
+            return '未知';
+    }
+}
+
 
     /**
      * Gets query for [[BattleEvents]].
