@@ -46,7 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'value' => function($model) {
                     if (!empty($model->photo_url)) {
-                        $imageUrl = '/image' . $model->photo_url;
+                        $baseUrl = 'http://localhost:8080/web-team/frontend/web';
+                        $imageUrl = $baseUrl . $model->photo_url;
                         
                         return Html::img($imageUrl, [
                             'style' => 'max-width: 100px; max-height: 100px; object-fit: cover;',

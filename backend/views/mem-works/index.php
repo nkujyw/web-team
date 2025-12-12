@@ -39,8 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'value' => function($model) {
                     if (!empty($model->url)) {
-                        // 使用完整的URL路径
-                        $imageUrl = '/image' . $model->url;
+                        $baseUrl = 'http://localhost:8080/web-team/frontend/web';
+                        $imageUrl = $baseUrl . $model->url;
                         
                         return Html::img($imageUrl, [
                             'style' => 'max-width: 100px; max-height: 100px; object-fit: cover;',
