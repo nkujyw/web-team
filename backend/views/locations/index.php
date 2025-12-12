@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\LocationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Locations';
+$this->title = '地点';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="locations-index">
@@ -15,10 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Locations', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增地点', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,14 +24,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
-            'type',
-            'description:ntext',
+            // 'id',
+
+            [
+                'attribute' => 'name',
+                'label' => '地点名称',
+            ],
+            [
+                'attribute' => 'type',
+                'label' => '地点类型',
+            ],
+            [
+                'attribute' => 'description',
+                'label' => '地点描述',
+                'format' => 'ntext',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
 
 </div>
