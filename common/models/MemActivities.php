@@ -51,12 +51,12 @@ class MemActivities extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'activity_date' => 'Activity Date',
-            'location_id' => 'Location ID',
-            'organizer' => 'Organizer',
-            'description' => 'Description',
-            'photo_url' => 'Photo Url',
+            'name' => '活动名称',
+            'activity_date' => '活动时间',
+            'location_id' => '活动地点',
+            'organizer' => '主办方',
+            'description' => '活动简介',
+            'photo_url' => '活动图片',
         ];
     }
 

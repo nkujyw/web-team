@@ -55,10 +55,10 @@ class MemWorks extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'type' => 'Type',
-            'author' => 'Author',
-            'create_date' => 'Create Date',
+            'name' => '作品名称',
+            'type' => '作品类型',
+            'author' => '作者',
+            'create_date' => '创建日期',
             'description' => 'Description',
             'url' => 'Url',
             'related_event_id' => 'Related Event ID',

@@ -26,11 +26,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'name',
             'founded_date',
             'description:ntext',
-            'force_id',
+            //'force_id',
+            [
+                'attribute' => 'force_id',
+                'label' => '所属势力',
+                'value' => function($model) {
+                    return $model->force ? $model->force->name : '未知';
+                }
+            ],
             //'leader_id',
 
             ['class' => 'yii\grid\ActionColumn'],

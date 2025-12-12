@@ -50,11 +50,11 @@ class Teams extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'founded_date' => 'Founded Date',
-            'description' => 'Description',
-            'force_id' => 'Force ID',
-            'leader_id' => 'Leader ID',
+            'name' => '军队名称',
+            'founded_date' => '建立时间',
+            'description' => '简介',
+            'force_id' => '所属队伍',
+            'leader_id' => '领导人',
         ];
     }
 
