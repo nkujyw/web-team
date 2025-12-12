@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\search\ForcesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Forces';
+$this->title = '势力';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="forces-index">
@@ -15,10 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Forces', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新增势力', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,14 +24,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
-            'type',
-            'description:ntext',
+            // 'id',
+
+            [
+                'attribute' => 'name',
+                'label' => '势力名称',
+            ],
+            [
+                'label' => '势力类型',
+                'value' => function ($model) {
+                    return $model->typeText;
+                }
+            ],
+            [
+                'attribute' => 'description',
+                'label' => '势力简介',
+                'format' => 'ntext',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
 
 </div>
