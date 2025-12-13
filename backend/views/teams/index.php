@@ -1,7 +1,9 @@
 <?php
-
+use common\models\Forces;
+use common\models\Characters; // 引入人物模型（为了显示队长名字）
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\TeamsSearch */
@@ -30,19 +32,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'founded_date',
             'description:ntext',
-            //'force_id',
+            
+
             [
                 'attribute' => 'force_id',
                 'label' => '所属势力',
-                'value' => function($model) {
-                    return $model->force ? $model->force->name : '未知';
-                }
+                'value' => 'force.name', // 确保 Teams 模型里有 getForce()
+                'filter' => ArrayHelper::map(Forces::find()->asArray()->all(), 'id', 'name'),
             ],
-            //'leader_id',
+
+            [
+                'attribute' => 'leader_id',
+                'label' => '队长/领导人',
+                'value' => function($model) {
+                    // 确保 Teams 模型里有 getLeader() 
+                    return $model->leader ? $model->leader->name : '无';
+                },
+
+                 'filter' => ArrayHelper::map(Characters::find()->asArray()->all(), 'id', 'name'),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
 
 </div>
