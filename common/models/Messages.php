@@ -38,7 +38,7 @@ class Messages extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'message' => 'Message',
+            'message' => '留言信息',
         ];
     }
 }

@@ -26,17 +26,35 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'content:ntext',
             'option_a',
             'option_b',
             'option_c',
             'option_d',
-            //'correct_answer',
+            'correct_answer',
             //'related_event_id',
             //'related_character_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+
+        [
+            'attribute' => 'related_event_id',
+            'value' => function ($model) {
+                // 使用匿名函数更安全，防止关联数据为空时报错
+                return $model->relatedEvent ? $model->relatedEvent->name : '无';
+            },
+            'label' => '关联事件',
+        ],
+        [
+            'attribute' => 'related_character_id',
+            'value' => function ($model) {
+                return $model->relatedCharacter ? $model->relatedCharacter->name : '无';
+            },
+            'label' => '关联人物',
+        ],
+
+
+        ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

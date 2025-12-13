@@ -20,52 +20,60 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
-            'name',
-            'activity_date',
-            //'location_id',
-            [
-                'attribute' => 'location_id',
-                'label' => '地点',
-                'value' => function($model) {
-                    return $model->location ? $model->location->name : '未知';
-                }
-            ],
-            'organizer',
-            //'description:ntext',
-            //'photo_url:url',
-            [
-                'attribute' => 'photo_url',
-                'label' => '活动图片',
-                'format' => 'html',
-                'value' => function($model) {
-                    if (!empty($model->photo_url)) {
-                        $baseUrl = 'http://localhost:8080/web-team/frontend/web';
-                        $imageUrl = $baseUrl . $model->photo_url;
-                        
-                        return Html::img($imageUrl, [
-                            'style' => 'max-width: 100px; max-height: 100px; object-fit: cover;',
-                            'class' => 'img-thumbnail',
-                            'alt' => $model->name,
-                            'title' => '点击查看大图',
-                            'onclick' => "window.open('" . $imageUrl . "', '_blank')",
-                            'onerror' => "this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9IiNmNWY1ZjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHJ4PSIyIiByeT0iMiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIiBmaWxsPSIjY2NjIj7lm77niYc8L3RleHQ+PC9zdmc+'"
-                        ]);
-                    }
-                    return '<span class="text-muted">无图片</span>';
-                },
-                'contentOptions' => ['style' => 'text-align: center;'],
-            ],
+        // 'id', // 已隐藏 ID
+        'name',
+        'activity_date',
+        
 
-            ['class' => 'yii\grid\ActionColumn'],
+        [
+            'attribute' => 'location_id',
+            'label' => '地点',
+            'value' => function($model) {
+                // 确保你的 MemActivities 模型里有 getLocation() 方法
+                return $model->location ? $model->location->name : '未知';
+            }
         ],
-    ]); ?>
+
+        'organizer',
+        
+
+        [
+            'attribute' => 'photo_url', // 数据库字段名为 photo_url
+            'label' => '活动图片',      // 自定义表头
+            'format' => 'raw',          // 必须为 raw
+            'value' => function ($model) {
+                // 1. 判空处理
+                if (empty($model->photo_url)) {
+                    return '<span class="text-muted">暂无图片</span>';
+                }
+
+                // 2. 定义基础路径 (根据你的要求，注意端口)
+                // 如果你的项目需要 :8080 端口，请确保下面加上 :8080
+                $baseUrl = 'http://localhost/web-team/frontend/web'; 
+                
+                // 3. 生成图片标签
+                return Html::img($baseUrl . $model->photo_url, [
+                    'alt' => $model->name,
+                    'style' => 'width: 100px; height: 80px; object-fit: cover; border-radius: 4px;', // 样式保持一致
+                    'class' => 'img-thumbnail',
+                    'title' => '点击查看大图',
+                    // 点击在新窗口打开
+                    'onclick' => 'window.open("' . $baseUrl . $model->photo_url . '")',
+                    'style' => 'cursor:pointer; width:100px;' 
+                ]);
+            },
+            'contentOptions' => ['style' => 'text-align: center; vertical-align: middle; width: 120px;'], 
+        ],
+
+        ['class' => 'yii\grid\ActionColumn'],
+    ],
+]); ?>
 
 
 </div>

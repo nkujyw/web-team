@@ -53,14 +53,14 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'content' => 'Content',
-            'option_a' => 'Option A',
-            'option_b' => 'Option B',
-            'option_c' => 'Option C',
-            'option_d' => 'Option D',
-            'correct_answer' => 'Correct Answer',
-            'related_event_id' => 'Related Event ID',
-            'related_character_id' => 'Related Character ID',
+            'content' => '题目内容',  // 对应 SQL 中的注释
+            'option_a' => '选项 A',
+            'option_b' => '选项 B',
+            'option_c' => '选项 C',
+            'option_d' => '选项 D',
+            'correct_answer' => '正确答案',
+            'related_event_id' => '关联事件',
+            'related_character_id' => '关联人物',
         ];
     }
 
