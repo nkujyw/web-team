@@ -101,7 +101,11 @@ class SiteController extends Controller
         $artWorks = MemWorks::find()->orderBy(['create_date' => SORT_DESC])->limit(4)->all();
 
         // 5. 抗战雄师 (取4支著名部队)
-        $teams = \common\models\Teams::find()->limit(4)->all();
+        $teams = \common\models\Teams::find()
+            ->where(['not in', 'force_id', [8, 9]]) 
+            ->orderBy(new Expression('RAND()'))      // 保持随机
+            ->limit(4)
+            ->all();
 
         // 6. 最新留言 (取5条)
         $recentMessages = \common\models\Messages::find()->orderBy(['id' => SORT_DESC])->limit(5)->all();
