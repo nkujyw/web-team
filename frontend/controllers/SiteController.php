@@ -1,8 +1,6 @@
 <?php
 namespace frontend\controllers;
 
-use frontend\models\ResendVerificationEmailForm;
-use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -14,6 +12,16 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\ResendVerificationEmailForm;
+use frontend\models\VerifyEmailForm;
+
+// ---------------------------------------------------------
+// 【新增】引入我们生成的数据库模型
+// ---------------------------------------------------------
+use common\models\Events;      // 对应 events 表
+use common\models\Characters;  // 对应 characters 表
+use common\models\MemWorks;    // 对应 mem_works 表
+use yii\db\Expression;         // 用于随机排序 RAND()
 
 /**
  * Site controller
@@ -69,12 +77,39 @@ class SiteController extends Controller
 
     /**
      * Displays homepage.
+     * 【重点修改区域】
+     * 首页不再是静态的，而是从数据库拉取数据
      *
      * @return mixed
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        // 1. 获取轮播图数据 (例如：取3个影视/绘画作品作为轮播)
+        // 注意：如果没有数据，页面可能会报错，建议先在数据库 mem_works 表里填几条数据
+        $carouselWorks = MemWorks::find()
+            ->where(['type' => ['影视', '绘画', '雕塑']]) // 根据你的数据库内容调整
+            ->limit(3)
+            ->all();
+
+        // 2. 获取“重大战役”板块数据 (取3个最重要的战役)
+        // 按开始时间正序排列
+        $battles = Events::find()
+            ->where(['event_type' => 'battle'])
+            ->orderBy(['start_date' => SORT_ASC]) 
+            ->limit(3)
+            ->all();
+
+        // 3. 获取“每日英雄”板块数据 (随机取1个英雄)
+        $hero = Characters::find()
+            ->orderBy(new Expression('RAND()')) // 随机排序
+            ->one();
+
+        // 4. 将数据传递给视图文件 (views/site/index.php)
+        return $this->render('index', [
+            'carouselWorks' => $carouselWorks,
+            'battles' => $battles,
+            'hero' => $hero,
+        ]);
     }
 
     /**

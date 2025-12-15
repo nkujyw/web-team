@@ -1,120 +1,166 @@
-html,
-body {
-    height: 100%;
+/* --- 移植的自定义 CSS 样式 --- */
+
+/* 1. 轮播图修正 */
+/* 配合 Bootstrap 的 carousel 使用，确保图片宽度自适应 */
+.index-banner-img {
+    width: 100%;       /* 宽度占满屏幕 */
+    height: auto;      /* 【关键】高度自动，图片多高就显示多高，不会被裁剪 */
+    display: block;    /* 防止底部出现细微缝隙 */
+    max-height: 600px;
 }
 
-.wrap {
-    min-height: 100%;
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+/* 2. 特别关注 (News Box) */
+.news-box {
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 30px auto 55px;
+    padding: 0 20px;
+}
+.news-box .top-news {
+    display: flex;
+    align-items: center;
+    padding: 43px 50px;
+    border: solid 1px #ef8b1f;
+    background-color: #891e18; /* 深红背景 */
+    color: #fff;
+}
+.top-news .title {
+    flex-shrink: 0;
+    width: 135px;
+    height: 100px;
+    margin-right: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 如果没有这些背景图，可以用边框代替 */
+    border-left: 2px solid #ef8b1f;
+    border-right: 2px solid #ef8b1f;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffc7;
+}
+.top-news .centent {
+    flex: 1;
+}
+.top-news .centent a {
+    font-size: 24px;
+    line-height: 42px;
+    color: #f1e5c5;
+    text-decoration: none;
+    display: block; /* 让每条新闻占一行 */
+}
+.top-news .centent a:hover {
+    color: #fff;
 }
 
-.wrap > .container {
-    padding: 70px 15px 20px;
+/* 3. 要闻资讯 (左右布局) */
+.news {
+    max-width: 1600px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap; /* 允许手机端换行 */
 }
 
-.footer {
-    height: 60px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
+.news .news-l {
+    background-color: #f9f9f9; /* 给个默认背景色，防止没图时太丑 */
+    border: 1px solid #ddd;
+    padding: 30px 40px;
+    flex: 1;
+    min-width: 300px;
 }
 
-.jumbotron {
-    text-align: center;
-    background-color: transparent;
+.news .news-l .title {
+    padding-left: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #93231f;
+    border-left: 5px solid #93231f; /* 用左边框代替图片箭头 */
 }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
-.not-set {
-    color: #c55;
-    font-style: italic;
-}
-
-/* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    padding-left: 5px;
-}
-
-a.asc:after {
-    content: "\e151";
-}
-
-a.desc:after {
-    content: "\e152";
-}
-
-.sort-numerical a.asc:after {
-    content: "\e153";
-}
-
-.sort-numerical a.desc:after {
-    content: "\e154";
-}
-
-.sort-ordinal a.asc:after {
-    content: "\e155";
-}
-
-.sort-ordinal a.desc:after {
-    content: "\e156";
-}
-
-.grid-view td {
-    white-space: nowrap;
-}
-
-.grid-view .filters input,
-.grid-view .filters select {
-    min-width: 50px;
-}
-
-.hint-block {
-    display: block;
-    margin-top: 5px;
-    color: #999;
-}
-
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 15px;
-    }
-}
-
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
+.news .news-l .title a {
+    font-size: 24px;
+    color: #93231f;
+    font-weight: bold;
     text-decoration: none;
 }
 
-.nav > li > form > button.logout:focus {
-    outline: none;
+.news .news-l .content-list a {
+    display: block;
+    font-size: 16px;
+    color: #212224;
+    line-height: 36px;
+    text-decoration: none;
+    border-bottom: 1px dashed #eee;
+}
+.news .news-l .content-list a:hover {
+    color: #b4302c;
+}
+.news .news-l .content-list .time {
+    margin-right: 15px;
+    color: #999;
+    font-size: 0.9em;
+}
+
+/* 右侧四个功能块 */
+.news-r {
+    width: 408px;
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.news-r a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48%; /* 两个一行 */
+    height: 177px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #B71C1C; /* 默认红色背景 */
+    transition: transform 0.3s;
+}
+.news-r a:hover {
+    transform: translateY(-5px);
+    background-color: #8E1616;
+}
+
+/* 4. 公告栏 */
+.nav_gg {
+    max-width: 1600px;
+    margin: 43px auto 30px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+.nav_gg .gg-left {
+    background-color: #B71C1C;
+    color: #fff;
+    width: 120px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+.gg-content {
+    flex: 1;
+    height: 45px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-left: none;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+.gg-content marquee {
+    width: 100%;
+    line-height: 45px;
+    font-size: 16px;
 }
