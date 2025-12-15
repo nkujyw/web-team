@@ -306,4 +306,13 @@ class SiteController extends Controller
     {
         return $this->render('speech');
     }
+    // 新增：公告详情页通用接口
+    // 访问地址：index.php?r=site/announcement&id=1
+    public function actionAnnouncement($id = 1)
+    {
+        // 把 id 传给视图，视图负责根据 id 显示不同内容
+        return $this->render('announcement', [
+            'id' => $id
+        ]);
+    }
 }

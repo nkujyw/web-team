@@ -55,15 +55,27 @@ $this->title = '首页 - 中国抗战胜利纪念网';
     <div class="gg-left">
         <span class="gg-title">最新公告</span>
     </div>
-    <div class="gg-content">
-        <marquee onmouseover="this.stop()" onmouseout="this.start()">
-            <a href="#" style="margin-right: 50px; color:#333;">【通知】纪念馆将于9月18日免费开放</a>
-            <a href="#" style="margin-right: 50px; color:#333;">【活动】抗战老兵口述历史征集活动启动</a>
-            <a href="#" style="margin-right: 50px; color:#333;">【新闻】我馆举办抗战文物巡回展</a>
-        </marquee>
+    
+    <div class="gg-content" style="overflow: hidden; position: relative;">
+        <div class="seamless-scroll-box">
+            
+            <a href="<?= Url::to(['site/announcement', 'id' => 1]) ?>">【通知】纪念馆将于9月18日免费开放</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 2]) ?>">【活动】“寻找抗战记忆”老兵口述历史征集活动启动</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 3]) ?>">【新闻】我馆举办抗战文物巡回展</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 4]) ?>">【活动】“红色家书”诵读活动报名开始</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 5]) ?>">【招募】2025暑期大学生志愿讲解员招募</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 6]) ?>">【征集】面向社会征集抗战文物的公告</a>
+
+            <a href="<?= Url::to(['site/announcement', 'id' => 1]) ?>">【通知】纪念馆将于9月18日免费开放</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 2]) ?>">【活动】“寻找抗战记忆”老兵口述历史征集活动启动</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 3]) ?>">【新闻】我馆举办抗战文物巡回展</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 4]) ?>">【活动】“红色家书”诵读活动报名开始</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 5]) ?>">【招募】2025暑期大学生志愿讲解员招募</a>
+            <a href="<?= Url::to(['site/announcement', 'id' => 6]) ?>">【征集】面向社会征集抗战文物的公告</a>
+
+        </div>
     </div>
 </div>
-
 <div style="width: 100%; background-color: #891e18; border-top: 2px solid #ef8b1f; border-bottom: 2px solid #ef8b1f; margin-bottom: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
     <div class="container">
         <div class="top-news" style="display: flex; align-items: center; padding: 30px 0; color: #fff;">
@@ -265,5 +277,43 @@ $this->title = '首页 - 中国抗战胜利纪念网';
     transform: translateY(-5px);
     transition: all 0.3s;
     box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+/* --- 无缝滚动专用样式 --- */
+
+/* 滚动容器：让链接横向排列，不换行 */
+.seamless-scroll-box {
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* 强制不换行 */
+    
+    /* 动画配置：名字叫 scroll-left，时长 40秒(越小越快)，匀速，无限循环 */
+    animation: scroll-left 40s linear infinite;
+}
+
+/* 鼠标放上去时暂停，方便用户点击 */
+.seamless-scroll-box:hover {
+    animation-play-state: paused;
+}
+
+/* 链接样式微调 */
+.seamless-scroll-box a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 50px; /* 每条公告之间的间距 */
+    font-weight: 500;
+}
+
+/* 核心动画定义 */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* 向左移动 50% 的距离 */
+        /* 因为我们内容复制了一倍，移动到 50% 时，刚好是第二组的开头 */
+        /* 此时瞬间跳回 0%，肉眼看不出变化，实现无限循环 */
+        transform: translateX(-50%);
+    }
 }
 </style>

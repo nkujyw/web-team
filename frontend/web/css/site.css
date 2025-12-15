@@ -6,7 +6,7 @@
     width: 100%;       /* 宽度占满屏幕 */
     height: auto;      /* 【关键】高度自动，图片多高就显示多高，不会被裁剪 */
     display: block;    /* 防止底部出现细微缝隙 */
-    max-height: 600px;
+    max-height: 700px;
 }
 
 /* 2. 特别关注 (News Box) */
@@ -164,3 +164,4 @@
     line-height: 45px;
     font-size: 16px;
 }
+
