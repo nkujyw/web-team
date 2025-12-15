@@ -300,4 +300,10 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+    // 新增：习近平总书记讲话详情页
+    public function actionSpeech()
+    {
+        return $this->render('speech');
+    }
 }

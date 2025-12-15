@@ -88,7 +88,7 @@ $this->title = '首页 - 中国抗战胜利纪念网';
             </div>
 
             <div class="centent" style="flex: 1;">
-                <a href="#" style="
+                <a href="<?= Url::to(['site/speech']) ?>"style="
                     font-size: 28px; 
                     font-weight: bold; 
                     line-height: 1.5; 
@@ -106,7 +106,7 @@ $this->title = '首页 - 中国抗战胜利纪念网';
             </div>
             
             <div style="margin-left: 30px;">
-                <a href="#" class="btn btn-outline-warning" style="border-radius: 50px; padding: 8px 25px; border-width: 2px;">阅读全文 &raquo;</a>
+                <a href="<?= Url::to(['site/speech']) ?>" class="btn btn-outline-warning" style="border-radius: 50px; padding: 8px 25px; border-width: 2px;">阅读全文 &raquo;</a>
             </div>
             
         </div>
