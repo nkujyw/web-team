@@ -17,8 +17,8 @@ class ForcesSearch extends Forces
     public function rules()
     {
         return [
-            [['id', 'type'], 'integer'],
-            [['name', 'description'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'type', 'description'], 'safe'], // type 作为字符串接收
         ];
     }
 
@@ -27,7 +27,6 @@ class ForcesSearch extends Forces
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
@@ -35,14 +34,11 @@ class ForcesSearch extends Forces
      * Creates data provider instance with search query applied
      *
      * @param array $params
-     *
      * @return ActiveDataProvider
      */
     public function search($params)
     {
         $query = Forces::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -51,19 +47,18 @@ class ForcesSearch extends Forces
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        // 精确匹配（关键修改点）
         $query->andFilterWhere([
             'id' => $this->id,
-            'type' => $this->type,
+            'type' => $this->type, 
         ]);
 
+        // 其他字段仍然模糊搜索
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+              ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

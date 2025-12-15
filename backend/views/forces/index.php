@@ -24,18 +24,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // 'id',
-
+            
             [
                 'attribute' => 'name',
                 'label' => '势力名称',
             ],
+
+            
             [
-                'label' => '势力类型',
-                'value' => function ($model) {
-                    return $model->typeText;
-                }
+                'attribute' => 'type',
+                'label' => '势力类型',   
             ],
+
+
+            
             [
                 'attribute' => 'description',
                 'label' => '势力简介',
