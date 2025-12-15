@@ -84,31 +84,35 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        // 1. 获取轮播图数据 (例如：取3个影视/绘画作品作为轮播)
-        // 注意：如果没有数据，页面可能会报错，建议先在数据库 mem_works 表里填几条数据
-        $carouselWorks = MemWorks::find()
-            ->where(['type' => ['影视', '绘画', '雕塑']]) // 根据你的数据库内容调整
-            ->limit(3)
-            ->all();
+        // 1. 轮播图 (取3个)
+        $carouselWorks = MemWorks::find()->where(['type' => '绘画'])->limit(3)->all();
 
-        // 2. 获取“重大战役”板块数据 (取3个最重要的战役)
-        // 按开始时间正序排列
-        $battles = Events::find()
-            ->where(['event_type' => 'battle'])
-            ->orderBy(['start_date' => SORT_ASC]) 
-            ->limit(3)
-            ->all();
+        // 2. 重大战役 (取3个)
+        $battles = Events::find()->where(['event_type' => 'battle'])->orderBy(['start_date' => SORT_ASC])->limit(3)->all();
 
-        // 3. 获取“每日英雄”板块数据 (随机取1个英雄)
+        // 3. 每日英雄 (随机1个)
         $hero = Characters::find()
-            ->orderBy(new Expression('RAND()')) // 随机排序
-            ->one();
+            ->where(['not in', 'force_id', [8, 9]]) // 排除日军
+            ->orderBy(new Expression('RAND()'))->one();
 
-        // 4. 将数据传递给视图文件 (views/site/index.php)
+        // --- 【新增数据】 ---
+        
+        // 4. 抗战文艺 (取4个，排除轮播图用过的)
+        $artWorks = MemWorks::find()->orderBy(['create_date' => SORT_DESC])->limit(4)->all();
+
+        // 5. 抗战雄师 (取4支著名部队)
+        $teams = \common\models\Teams::find()->limit(4)->all();
+
+        // 6. 最新留言 (取5条)
+        $recentMessages = \common\models\Messages::find()->orderBy(['id' => SORT_DESC])->limit(5)->all();
+
         return $this->render('index', [
             'carouselWorks' => $carouselWorks,
             'battles' => $battles,
             'hero' => $hero,
+            'artWorks' => $artWorks,      // 传给视图
+            'teams' => $teams,            // 传给视图
+            'recentMessages' => $recentMessages, // 传给视图
         ]);
     }
 

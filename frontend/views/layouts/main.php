@@ -99,10 +99,35 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-    <div class="site-header">
+    <div class="site-header position-relative"> <div style="
+            position: absolute;
+            left: 30px;        /* 【关键】距离屏幕左边缘 30px */
+            top: 50%;          /* 垂直居中 */
+            transform: translateY(-50%);
+            z-index: 20;       /* 层级最高，防止被挡住 */
+            
+            background: #fff; 
+            width: 120px;      
+            height: 120px;
+            border-radius: 50%; 
+            overflow: hidden;
+            
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 3px solid #FFD700;
+        ">
+            <img src="<?= Url::to('@web/image/index-images/Great_Wall.png') ?>" 
+                 alt="Logo" 
+                 style="width: 75%; height: auto; object-fit: contain;"> 
+        </div>
+
         <div class="container">
-            <h1 class="site-title-text">中国抗战胜利80周年纪念网</h1>
-            <p class="site-subtitle">铭记历史 · 缅怀先烈 · 珍爱和平 · 开创未来</p>
+            <div class="text-center">
+                <h1 class="site-title-text" style="line-height: 1; margin-bottom: 10px;">中国抗战胜利80周年纪念网</h1>
+                <p class="site-subtitle" style="margin-bottom: 0; font-size: 1rem; opacity: 0.9;">铭记历史 · 缅怀先烈 · 珍爱和平 · 开创未来</p>
+            </div>
         </div>
     </div>
 
