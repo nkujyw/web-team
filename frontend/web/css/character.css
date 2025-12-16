@@ -1,0 +1,188 @@
+
+/* ===================== 全局风格 ===================== */
+:root{
+  --red-main:#8b1e1e;
+  --red-dark:#5c1212;
+  --gold:#c9a44c;
+  --gray:#777;
+  --dark:#1c1c1c;
+  --blue-dark:#1f2f3f;
+  --paper:#f6f2ea;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:"Noto Serif SC","Songti SC",serif;
+  background:var(--paper);
+  color:#2b2b2b;
+}
+
+
+/* ================= 地图区（来自 map.html）================= */
+#chinaMap{
+  width:100%;
+  height:650px;
+  margin:40px auto 20px;
+}
+
+/* ================= 图例（来自 map.html）================= */
+.legend{
+  width:80%;
+  margin:0 auto 60px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px 40px;
+  font-size:14px;
+}
+
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.legend-dot{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  border:1px solid #999;
+}
+
+/* ===================== 主体布局 ===================== */
+.main{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  padding:48px 64px;
+  min-height:100vh;
+}
+
+/* ===================== 中央中国地图（原静态，不动） ===================== */
+.china-map{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:520px;
+  opacity:0.12;
+  pointer-events:none;
+}
+
+.china-map img{
+  width:100%;
+}
+
+/* ===================== 阵营通用 ===================== */
+.camp{
+  padding:28px;
+  border-radius:6px;
+}
+
+.camp h2{
+  margin:0 0 16px;
+  font-size:26px;
+  border-left:6px solid;
+  padding-left:12px;
+}
+
+/* ===================== 反法西斯阵营 ===================== */
+.camp-anti{
+  background:linear-gradient(180deg,#f9f4ea,#efe4d2);
+  border:2px solid var(--gold);
+}
+
+.camp-anti h2{
+  color:var(--red-main);
+  border-color:var(--gold);
+}
+
+/* ===================== 法西斯阵营 ===================== */
+.camp-axis{
+  background:linear-gradient(180deg,#2a2a2a,#171717);
+  color:#ddd;
+  border:2px solid #444;
+}
+
+.camp-axis h2{
+  color:#e07a7a;
+  border-color:#a33;
+}
+
+/* ===================== 国旗 ===================== */
+.flags{
+  display:flex;
+  gap:14px;
+  margin-bottom:24px;
+}
+
+.flags img{
+  width:56px;
+  height:36px;
+  object-fit:cover;
+  border:1px solid #aaa;
+}
+
+/* ===================== 英雄卡片 ===================== */
+.heroes{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:20px;
+}
+
+.hero{
+  background:#fff;
+  padding:14px;
+  border-radius:6px;
+  text-align:center;
+  border:1px solid #ccc;
+}
+
+.camp-axis .hero{
+  background:#2d2d2d;
+  color:#ddd;
+  border-color:#555;
+}
+
+.hero img{
+  width:90px;
+  height:110px;
+  object-fit:cover;
+  border-radius:4px;
+  border:2px solid var(--gold);
+}
+
+.hero h4{
+  margin:6px 0 2px;
+  font-size:16px;
+  color:var(--red-main);
+}
+
+.camp-axis .hero h4{
+  color:#f0a0a0;
+}
+
+.hero span{
+  font-size:12px;
+  color:var(--gray);
+}
+
+.hero p{
+  font-size:12px;
+  margin-top:6px;
+  line-height:1.4;
+}
+
+/* ===================== 部队 ===================== */
+.teams{
+  margin-top:32px;
+  padding-top:20px;
+  border-top:1px dashed #aaa;
+}
+
+.team{
+  margin-bottom:16px;
+}
+
