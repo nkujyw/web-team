@@ -23,8 +23,8 @@ body{
 /* ================= 地图区（来自 map.html）================= */
 #chinaMap{
   width:100%;
-  height:650px;
-  margin:40px auto 20px;
+  height:1000px;
+  margin:100px auto 20px;
 }
 
 /* ================= 图例（来自 map.html）================= */
@@ -34,7 +34,7 @@ body{
   display:flex;
   flex-wrap:wrap;
   gap:24px 40px;
-  font-size:14px;
+  font-size:30px;
 }
 
 .legend-item{
@@ -56,34 +56,20 @@ body{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:48px;
-  padding:48px 64px;
+  padding:48px 200px;
   min-height:100vh;
 }
 
-/* ===================== 中央中国地图（原静态，不动） ===================== */
-.china-map{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:520px;
-  opacity:0.12;
-  pointer-events:none;
-}
-
-.china-map img{
-  width:100%;
-}
 
 /* ===================== 阵营通用 ===================== */
 .camp{
-  padding:28px;
+  padding:64px;
   border-radius:6px;
 }
 
 .camp h2{
   margin:0 0 16px;
-  font-size:26px;
+  font-size:40px;
   border-left:6px solid;
   padding-left:12px;
 }
@@ -111,18 +97,39 @@ body{
   border-color:#a33;
 }
 
-/* ===================== 国旗 ===================== */
-.flags{
+/* ===================== 人物/军队介绍 ===================== */
+
+.axis-sections{
   display:flex;
-  gap:14px;
-  margin-bottom:24px;
+  gap:40px;
+  margin:28px 0 24px;
 }
 
-.flags img{
-  width:56px;
-  height:36px;
-  object-fit:cover;
-  border:1px solid #aaa;
+/* 四字分区标题本体 */
+.axis-section-title{
+  font-size:32px;
+  font-weight:600;
+  letter-spacing:4px;          
+  color:#e0a0a0;            
+  padding-bottom:6px;
+  border-bottom:2px solid #a33;
+}
+
+
+
+/* ===================== 国旗 ===================== */
+
+.flags {
+  display: flex;
+
+  gap: 20px;           /* 旗帜之间的距离 */
+  margin: 20px 0;
+}
+
+.flags img {
+  height: 70px;        /* 统一高度 */
+  width: auto;
+  object-fit: contain;
 }
 
 /* ===================== 英雄卡片 ===================== */
@@ -176,13 +183,104 @@ body{
 }
 
 /* ===================== 部队 ===================== */
+
 .teams{
-  margin-top:32px;
-  padding-top:20px;
-  border-top:1px dashed #aaa;
+  margin-top:48px;
+  display:flex;
+  flex-direction:column;
+  gap:36px;
 }
 
+/* ===================== 单支军队 ===================== */
 .team{
-  margin-bottom:16px;
+  position:relative;
+  overflow:hidden;
+
+  padding:28px 32px;
+  border:1px solid #d6c6a3;
+  border-radius:6px;
+  background:#fdf9f1;
+
+  --title-color:#6f1d1d;
+  --text-color:#333;
+  --bg-hover:#fdf9f1;
+  --border-hover:#d6c6a3;
+
+  transition:all 0.4s ease;
 }
 
+.team:hover{
+  transform:translateY(-2px);
+  background:var(--bg-hover);
+  border-color:var(--border-hover);
+}
+
+/* ===================== 左侧历史光带 ===================== */
+.team::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(160,60,60,0.6),
+    rgba(120,40,40,0.3)
+  );
+  transition:width 0.4s ease;
+}
+
+.team:hover::before{
+  width:4px;
+}
+
+/* ===================== 法西斯阵营 ===================== */
+.camp-axis .team{
+  background:#242424;
+  border-color:#555;
+
+  --title-color:#f0a0a0;
+  --text-color:#ddd;
+  --bg-hover:#2a2a2a;
+  --border-hover:#777;
+}
+
+.camp-axis .team::before{
+  background:linear-gradient(
+    to bottom,
+    rgba(200,120,120,0.4),
+    rgba(120,80,80,0.2)
+  );
+}
+
+/* ===================== 标题 ===================== */
+.team h3{
+  margin:0 0 18px;
+  font-size:36px;
+  font-weight:900;
+  color:var(--title-color);
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  letter-spacing:0.5px;
+}
+
+/* ===================== 日期 ===================== */
+.team h3 span,
+.team h3 time{
+  font-size:14px;
+  font-weight:400;
+  color:#7a7a7a;
+}
+
+.camp-axis .team h3 span,
+.camp-axis .team h3 time{
+  color:#aaa;
+}
+
+/* ===================== 正文 ===================== */
+.team p{
+  margin:0;
+  max-width:48em;
+  line-height:2.0;
+  color:var(--text-color);
+}
