@@ -233,7 +233,7 @@ $this->title = '首页 - 中国抗战胜利纪念网';
                 <a href="<?= Url::to(['interactive/index']) ?>" class="list-group-item list-group-item-action active bg-danger border-danger">
                     <i class="fa fa-trophy"></i> 知识竞答挑战
                 </a>
-                <a href="<?= Url::to(['interactive/index']) ?>" class="list-group-item list-group-item-action">
+                <a href="<?= Url::to(['interactive/index', 'tab' => 'message']) ?>" class="list-group-item list-group-item-action">
                     <i class="fa fa-pencil"></i> 我要留言寄语
                 </a>
                 <a href="<?= Url::to(['mem/index']) ?>" class="list-group-item list-group-item-action">

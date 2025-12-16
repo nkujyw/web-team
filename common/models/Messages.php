@@ -25,10 +25,12 @@ class Messages extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
-            [['message'], 'required'],
-            [['message'], 'string'],
-        ];
+    return [
+        [['message'], 'required'],
+        [['message'], 'string'],
+        // 【新增】允许 nickname 字段是字符串，最大50个字
+        [['nickname'], 'string', 'max' => 50], 
+    ];
     }
 
     /**
