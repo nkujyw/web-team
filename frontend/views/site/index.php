@@ -230,14 +230,14 @@ $this->title = '首页 - 中国抗战胜利纪念网';
             </div>
 
             <div class="list-group mb-4 shadow-sm">
-                <a href="<?= Url::to(['interactive/quiz']) ?>" class="list-group-item list-group-item-action active bg-danger border-danger">
+                <a href="<?= Url::to(['interactive/index']) ?>" class="list-group-item list-group-item-action active bg-danger border-danger">
                     <i class="fa fa-trophy"></i> 知识竞答挑战
                 </a>
-                <a href="<?= Url::to(['interactive/message']) ?>" class="list-group-item list-group-item-action">
+                <a href="<?= Url::to(['interactive/index']) ?>" class="list-group-item list-group-item-action">
                     <i class="fa fa-pencil"></i> 我要留言寄语
                 </a>
                 <a href="<?= Url::to(['mem/index']) ?>" class="list-group-item list-group-item-action">
-                    <i class="fa fa-university"></i> VR 网上展馆
+                    <i class="fa fa-university"></i> 网上展馆
                 </a>
             </div>
 
