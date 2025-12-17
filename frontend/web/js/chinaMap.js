@@ -3,7 +3,7 @@
 const chart = echarts.init(document.getElementById('chinaMap'));
 
 /* ================= 加载中国地图 ================= */
-fetch('js/china_v2.json')
+fetch('js/china.json')
   .then(res => res.json())
   .then(chinaJson => {
 

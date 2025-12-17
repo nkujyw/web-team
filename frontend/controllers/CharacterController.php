@@ -28,6 +28,7 @@ class CharacterController extends Controller
         $antiTeams = Teams::find()
             ->joinWith('force')
             ->where(['forces.type' => '反法西斯阵营'])
+            ->andWhere(['teams.id' => [1, 2, 4, 7]])
             ->all();
 
         // 法西斯阵营部队

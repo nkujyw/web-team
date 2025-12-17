@@ -9,6 +9,125 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.j
 $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_END]);
 ?>
 
+<link rel="stylesheet" href="<?= Yii::getAlias('@web') ?>/css/character.css">
+
+
+<!-- ===================== 阵营对比（左右双栏） ===================== -->
+<section class="main">
+
+  <!-- ========== 左：反法西斯阵营 ========== -->
+  <div class="camp camp-anti">
+
+    <h2>反法西斯阵营</h2>
+
+    <!-- 国旗 -->
+    <div class="flags">
+      <img src="<?= Yii::getAlias('@web') ?>/image/flags/共产党.png">
+      <img src="<?= Yii::getAlias('@web') ?>/image/flags/国民党.png">
+      <img src="<?= Yii::getAlias('@web') ?>/image/flags/美国.png">
+      <img src="<?= Yii::getAlias('@web') ?>/image/flags/英国.png">
+    </div>
+
+    <!-- 国家分组 -->
+    <div class="teams">
+
+      <!-- 中国共产党 -->
+      <div class="team">
+        <h3>中国共产党</h3>
+        <div style="display:flex; gap:24px;">
+          <img src="<?= Yii::getAlias('@web') ?>/image/characters/毛泽东.png" width="120">
+          <p>领导敌后抗战，建立广泛抗日根据地，发动群众战争，牵制大量日军主力。</p>
+        </div>
+      </div>
+
+      <!-- 国民党 -->
+      <div class="team">
+        <h3>中国国民党</h3>
+        <div style="display:flex; gap:24px;">
+          <img src="<?= Yii::getAlias('@web') ?>/image/characters/蒋介石.png" width="120">
+          <p>正面战场主力承担者，组织淞沪、武汉、长沙等大会战，抵抗日军正面进攻。</p>
+        </div>
+      </div>
+
+      <!-- 苏联 -->
+      <div class="team">
+        <h3>苏联</h3>
+        <div style="display:flex; gap:24px;">
+          <img src="<?= Yii::getAlias('@web') ?>/image/characters/斯大林.png" width="120">
+          <p>向中国提供军事顾问、飞行员与装备援助，对日保持战略牵制。</p>
+        </div>
+      </div>
+
+      <!-- 美国 -->
+      <div class="team">
+        <h3>美国</h3>
+        <div style="display:flex; gap:24px;">
+          <img src="<?= Yii::getAlias('@web') ?>/image/characters/罗斯福.png" width="120">
+          <p>通过租借法案提供物资支援，派遣飞虎队援华，对日宣战后形成太平洋战场。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== 右：法西斯阵营 ========== -->
+  <div class="camp camp-axis">
+
+    <h2>法西斯阵营</h2>
+
+    <!-- 国旗 -->
+    <div class="flags">
+      <img src="<?= Yii::getAlias('@web') ?>/image/flags/日本.png">
+      <img src="<?= Yii::getAlias('@web') ?>/image/flags/伪满洲.png">
+      <img src="<?= Yii::getAlias('@web') ?>/image/flags/德国.png">
+    </div>
+
+    <!-- 国家分组 -->
+    <div class="teams">
+
+      <!-- 日本 -->
+      <div class="team">
+        <h3>日本</h3>
+        <div style="display:flex; gap:24px;">
+          <img src="<?= Yii::getAlias('@web') ?>/image/characters/昭和天皇.png" width="120">
+          <p>发动全面侵华战争，实施南京大屠杀、细菌战、三光政策等严重战争罪行。</p>
+        </div>
+      </div>
+
+      <!-- 伪满洲国 -->
+      <div class="team">
+        <h3>伪满洲国</h3>
+        <div style="display:flex; gap:24px;">
+          <img src="<?= Yii::getAlias('@web') ?>/image/characters/溥仪.png" width="120">
+          <p>日本扶植的傀儡政权，为侵略提供资源、劳工与政治掩护。</p>
+        </div>
+      </div>
+
+      <!-- 德国 -->
+      <div class="team">
+        <h3>德国</h3>
+        <div style="display:flex; gap:24px;">
+          <img src="<?= Yii::getAlias('@web') ?>/image/characters/希特勒.png" width="120">
+          <p>欧洲法西斯核心国家，与日本结盟，对世界反法西斯战争构成重大威胁。</p>
+        </div>
+      </div>
+
+      <!-- 意大利 -->
+      <div class="team">
+        <h3>意大利</h3>
+        <div style="display:flex; gap:24px;">
+          <img src="<?= Yii::getAlias('@web') ?>/image/characters/墨索里尼.png" width="120">
+          <p>法西斯同盟国之一，在欧洲与北非战场参与侵略行动。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+
 <!-- 地图标题 -->
 <div class="map-title">
   抗日战争形势图
@@ -38,47 +157,11 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         </div>
     </div>
 
-
 <div class="main">
 
 
   <!-- 反法西斯阵营 -->
   <section class="camp camp-anti">
-    <h2>反法西斯阵营</h2>
-
-    <div class="force-intro">
-    <h3>主要抗战力量</h3>
-    <?php foreach ($antiForces as $force): ?>
-        <div class="force-card">
-        <strong><?= $force->name ?></strong>
-        <p><?= $force->description ?></p>
-        </div>
-    <?php endforeach; ?>
-    </div>
-
-
-    <div class="flags">
-    <img src="<?= Url::to('@web/image/flags/共产党.png') ?>" alt="中国共产党">
-    <img src="<?= Url::to('@web/image/flags/国民党.png') ?>" alt="中国国民党">
-    <img src="<?= Url::to('@web/image/flags/美国.png') ?>" alt="美国">
-    <img src="<?= Url::to('@web/image/flags/英国.png') ?>" alt="英国">
-    </div>
-
-    <div class="axis-sections">
-    <div class="axis-section-title">人物介绍</div>
-    </div>
-
-
-    <div class="heroes">
-      <?php foreach ($antiHeroes as $hero): ?>
-        <div class="hero">
-          <img src="<?= Yii::getAlias('@web') . $hero->url ?>">
-          <h4><?= $hero->name ?></h4>
-          <span><?= $hero->rank ?></span>
-          <p><?= $hero->achievements ?></p>
-        </div>
-      <?php endforeach; ?>
-    </div>
 
     <div class="axis-sections">
     <div class="axis-section-title">军队介绍</div>
@@ -97,39 +180,6 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
 
   <!-- 法西斯阵营 -->
   <section class="camp camp-axis">
-    <h2>法西斯阵营</h2>
-
-    <div class="force-intro">
-    <h3>侵略与傀儡势力</h3>
-    <?php foreach ($axisForces as $force): ?>
-        <div class="force-card">
-        <strong><?= $force->name ?></strong>
-        <p><?= $force->description ?></p>
-        </div>
-    <?php endforeach; ?>
-    </div>
-    
-    <div class="flags">
-    <img src="<?= Url::to('@web/image/flags/日本.png') ?>" alt="日本">
-    <img src="<?= Url::to('@web/image/flags/伪满洲.png') ?>" alt="伪满洲国">
-    <img src="<?= Url::to('@web/image/flags/德国.png') ?>" alt="德国">
-    </div>  
-
-    <!-- 新增：法西斯阵营下一级分区标题 -->
-    <div class="axis-sections">
-    <div class="axis-section-title">人物介绍</div>
-    </div>
-
-    <div class="heroes">
-      <?php foreach ($axisHeroes as $hero): ?>
-        <div class="hero">
-          <img src="<?= Yii::getAlias('@web') . $hero->url ?>">
-          <h4><?= $hero->name ?></h4>
-          <span><?= $hero->rank ?></span>
-          <p><?= $hero->achievements ?></p>
-        </div>
-      <?php endforeach; ?>
-    </div>
 
     <div class="axis-sections">
     <div class="axis-section-title">军队介绍</div>
@@ -147,6 +197,8 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
   </section>
 
 </div>
+
+
 
 <?php
 $heroSubtitles = [
