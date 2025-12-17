@@ -10,7 +10,6 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.j
 $yearDataBase = Url::to(['event/year-data']);   // 返回 { points:[], provinces:[] }
 $yearListBase = Url::to(['event/year-list']);   // 返回 { items:[] }
 $chinaJsonUrl  = Url::to('@web/js/china_v2.json');
-$flagBgUrl = Url::to('@web/image/china_pic/china.png');
 
 $this->registerJs(<<<JS
 window.MAP_CFG = {
@@ -25,42 +24,19 @@ JS
 
 <style>
   body{
-  /* ✅ 左右大背景：你的 china.png */
- background: url("image/china_pic/china.png") center / cover no-repeat fixed;
+    background:
+      radial-gradient(1200px 700px at 15% 10%, rgba(180,0,0,0.18), transparent 55%),
+      radial-gradient(900px 520px at 85% 15%, rgba(255,210,120,0.10), transparent 55%),
+      radial-gradient(900px 650px at 55% 90%, rgba(120,170,255,0.10), transparent 55%),
+      linear-gradient(180deg, #070A12 0%, #0B1020 50%, #060812 100%);
+    color:#eaeef7;
+  }
 
-  color:#eaeef7;
-  margin: 0;
-}
-
-/* ✅ 暗化遮罩：让国旗不抢戏（透明度可调 0.3~0.6） */
-body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  pointer-events: none;
-  z-index: 0;
-}
-
- .map-page{
-  position: relative;
-  z-index: 1; /* ✅ 盖住 body::before 的暗化层 */
-
-  max-width: 1400px;
-  margin: 24px auto 60px;
-  padding: 0 18px;
-
-  /* ✅ 原来 body 的深色渐变背景搬到这里，保证中间区域不变 */
-  background:
-    radial-gradient(1200px 700px at 15% 10%, rgba(180,0,0,0.18), transparent 55%),
-    radial-gradient(900px 520px at 85% 15%, rgba(255,210,120,0.10), transparent 55%),
-    radial-gradient(900px 650px at 55% 90%, rgba(120,170,255,0.10), transparent 55%),
-    linear-gradient(180deg, #070A12 0%, #0B1020 50%, #060812 100%);
-
-  border-radius: 26px;
-  box-shadow: 0 40px 120px rgba(0,0,0,0.55);
-}
-
+  .map-page{
+    max-width: 1400px;
+    margin: 24px auto 60px;
+    padding: 0 18px;
+  }
 
   .hero{
     display:flex;
@@ -329,7 +305,7 @@ body::before{
   <div class="hero">
     <div>
       <h2>抗战时期重大事件时间轴</h2>
-      
+      <div class="subtitle">点击年份：点亮该年有事件的省份；点击省份：单独高亮浮空（再点一次取消）</div>
     </div>
     <div class="badge">
       <span class="badge-dot"></span>
@@ -350,7 +326,7 @@ body::before{
     <div class="map-card-head">
       <div class="left">
         <div class="title">事件地图</div>
-        
+        <div class="hint">热点省份默认亮起浮起；非热点省份保持暗色</div>
       </div>
       <div class="badge" style="box-shadow:none;">
         <span class="badge-dot" style="background:rgba(255,210,120,0.95); box-shadow:0 0 18px rgba(255,210,120,0.45)"></span>
