@@ -28,7 +28,6 @@ class Messages extends \yii\db\ActiveRecord
     return [
         [['message'], 'required'],
         [['message'], 'string'],
-        // 【新增】允许 nickname 字段是字符串，最大50个字
         [['nickname'], 'string', 'max' => 50], 
     ];
     }
@@ -41,6 +40,7 @@ class Messages extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'message' => '留言信息',
+            'nickname' => '昵称',
         ];
     }
 }

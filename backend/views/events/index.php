@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'start_date',
             'end_date',
             //'location_id',
-            //'description:ntext',
-            //'outcome:ntext',
+            'description:ntext',
+            'significance:ntext',
             //'event_type',
             [
                 'attribute' => 'location_id',

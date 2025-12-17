@@ -137,7 +137,7 @@ $this->title = '首页 - 中国抗战胜利纪念网';
                             <div class="card h-100 border-0 shadow-sm hover-card">
                                 <div class="img-wrapper" style="height:150px; overflow:hidden;">
                                     <?php
-                                        $imgName = 'battle.jpg'; // 默认底图（防止有的战役没图）
+                                        $imgName = 'battle.jpg'; 
 
                                         switch ($battle->id) {
                                             case 1: 
@@ -163,7 +163,7 @@ $this->title = '首页 - 中国抗战胜利纪念网';
                                     <p class="card-text text-secondary small" style="height: 40px; overflow: hidden;">
                                         <?= mb_substr(strip_tags($battle->description), 0, 35) ?>...
                                     </p>
-                                    <a href="<?= Url::to(['event/view', 'id' => $battle->id]) ?>" class="btn btn-outline-danger btn-sm btn-block">查看战况</a>
+                                    <a href="<?= Url::to(['event/important-battle', 'id' => $battle->id]) ?>" class="btn btn-outline-danger btn-sm btn-block">查看战况</a>
                                 </div>
                             </div>
                         </div>

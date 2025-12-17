@@ -13,7 +13,7 @@ use Yii;
  * @property string|null $end_date 事件结束时间
  * @property int|null $location_id 发生地点ID
  * @property string|null $description 事件描述
- * @property string|null $outcome 事件影响
+ * @property string|null $significance 事件意义
  * @property string $event_type 事件类型
  *
  * @property BattleEvents $battleEvents
@@ -42,7 +42,7 @@ class Events extends \yii\db\ActiveRecord
             [['name', 'event_type'], 'required'],
             [['start_date', 'end_date'], 'safe'],
             [['location_id'], 'integer'],
-            [['description', 'outcome', 'event_type'], 'string'],
+            [['description', 'significance', 'event_type'], 'string'],
             [['name'], 'string', 'max' => 255],
             [['location_id'], 'exist', 'skipOnError' => true, 'targetClass' => Locations::className(), 'targetAttribute' => ['location_id' => 'id']],
         ];
@@ -55,12 +55,12 @@ class Events extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => '名称',
+            'name' => '名字',
             'start_date' => '开始时间',
             'end_date' => '结束时间',
             'location_id' => '地点',
-            'description' => '介绍',
-            'outcome' => '结果',
+            'description' => '描述',
+            'significance' => '意义',
             'event_type' => '事件类型',
         ];
     }
@@ -124,4 +124,5 @@ class Events extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Question::className(), ['related_event_id' => 'id']);
     }
+    
 }

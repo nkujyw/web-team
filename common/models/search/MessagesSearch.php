@@ -19,6 +19,7 @@ class MessagesSearch extends Messages
         return [
             [['id'], 'integer'],
             [['message'], 'safe'],
+            [['nickname'], 'safe'] ,
         ];
     }
 
@@ -62,6 +63,7 @@ class MessagesSearch extends Messages
         ]);
 
         $query->andFilterWhere(['like', 'message', $this->message]);
+        $query->andFilterWhere(['like', 'nickname', $this->nickname]);
 
         return $dataProvider;
     }
