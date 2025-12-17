@@ -9,6 +9,12 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.j
 $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_END]);
 ?>
 
+<!-- 地图标题 -->
+<div class="map-title">
+  抗日战争形势图
+  <span>（1931.9.18 – 1945.9.3）</span>
+</div>
+
 <!-- 中国地图 -->
 <div id="chinaMap"></div>
 
@@ -39,6 +45,17 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
   <!-- 反法西斯阵营 -->
   <section class="camp camp-anti">
     <h2>反法西斯阵营</h2>
+
+    <div class="force-intro">
+    <h3>主要抗战力量</h3>
+    <?php foreach ($antiForces as $force): ?>
+        <div class="force-card">
+        <strong><?= $force->name ?></strong>
+        <p><?= $force->description ?></p>
+        </div>
+    <?php endforeach; ?>
+    </div>
+
 
     <div class="flags">
     <img src="<?= Url::to('@web/image/flags/共产党.png') ?>" alt="中国共产党">
@@ -82,6 +99,16 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
   <section class="camp camp-axis">
     <h2>法西斯阵营</h2>
 
+    <div class="force-intro">
+    <h3>侵略与傀儡势力</h3>
+    <?php foreach ($axisForces as $force): ?>
+        <div class="force-card">
+        <strong><?= $force->name ?></strong>
+        <p><?= $force->description ?></p>
+        </div>
+    <?php endforeach; ?>
+    </div>
+    
     <div class="flags">
     <img src="<?= Url::to('@web/image/flags/日本.png') ?>" alt="日本">
     <img src="<?= Url::to('@web/image/flags/伪满洲.png') ?>" alt="伪满洲国">
@@ -120,3 +147,38 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
   </section>
 
 </div>
+
+<?php
+$heroSubtitles = [
+    '江竹筠' => '十指钉竹签，信仰比钢坚',
+    '赵一曼' => '红枪白马女政委',
+    '杨靖宇' => '白山黑水间的民族脊梁',
+    '杨学诚' => '鄂中大地上的青年先锋',
+];
+?>
+
+<section class="hero-martyrs">
+  <h2 class="martyr-title">英雄集锦</h2>
+  <p class="martyr-subtitle">天地英雄气，千秋尚凛然</p>
+
+  <div class="martyr-grid">
+    <?php foreach ($heroMartyrs as $hero): ?>
+      <div class="martyr-card">
+        <span class="red-star">★</span>
+
+        <img src="<?= Yii::getAlias('@web') . $hero->url ?>" alt="<?= $hero->name ?>">
+
+        <h4><?= $hero->name ?></h4>
+
+        <?php if (isset($heroSubtitles[$hero->name])): ?>
+          <div class="hero-subtitle">
+            <?= $heroSubtitles[$hero->name] ?>
+          </div>
+        <?php endif; ?>
+
+        <p><?= $hero->biography ?></p>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
+

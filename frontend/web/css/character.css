@@ -19,6 +19,23 @@ body{
   color:#2b2b2b;
 }
 
+/* ================= 地图标题 ================= */
+.map-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #7b1e1e;
+  margin: 40px 0 16px;
+  letter-spacing: 3px;
+}
+
+.map-title span {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
 
 /* ================= 地图区（来自 map.html）================= */
 #chinaMap{
@@ -65,6 +82,7 @@ body{
 .camp{
   padding:64px;
   border-radius:6px;
+  box-sizing: border-box;
 }
 
 .camp h2{
@@ -97,6 +115,55 @@ body{
   border-color:#a33;
 }
 
+/* ================= 势力介绍 ================= */
+.force-intro {
+  margin: 30px 0 50px;
+  padding: 20px 28px;
+  background: #f8efe2;
+  border-left: 5px solid #8b1a1a;
+}
+
+.camp-axis .force-intro {
+  background: #1f1f1f;
+  border-left-color: #b30000;
+}
+
+.force-intro h3 {
+  margin: 0 0 18px;
+  font-size: 18px;
+  color: #7b1e1e;
+  letter-spacing: 2px;
+}
+
+.camp-axis .force-intro h3 {
+  color: #ffcccc;
+}
+
+.force-card {
+  margin-bottom: 14px;
+}
+
+.force-card strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #5a0000;
+}
+
+.camp-axis .force-card strong {
+  color: #ff9999;
+}
+
+.force-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.camp-axis .force-card p {
+  color: #ccc;
+}
 /* ===================== 人物/军队介绍 ===================== */
 
 .axis-sections{
@@ -283,4 +350,150 @@ body{
   max-width:48em;
   line-height:2.0;
   color:var(--text-color);
+}
+
+/* ================= 一句话结语（铭文式） ================= */
+.epilogue-quote {
+  margin: 80px auto 100px;
+  padding: 22px 48px;
+  background: linear-gradient(
+    to bottom,
+    #8b1a1a,
+    #6f0f0f
+  );
+  width: fit-content;              /* 关键：不撑满页面 */
+  border: 2px solid #d4af37;        /* 金色描边 */
+  border-radius: 2px;
+  text-align: center;
+}
+
+/* 文字本体 */
+.epilogue-quote span {
+  font-size: 20px;
+  color: #ffffff;
+  letter-spacing: 6px;
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  white-space: nowrap;             /* 保证一行 */
+}
+
+/* ================= 英雄集锦（独立纪念模块） ================= */
+
+.hero-martyrs {
+  margin: 120px auto;
+  max-width: 1200px;
+  padding: 70px 50px;
+  background: linear-gradient(to bottom, #7a0f0f, #5a0b0b);
+  border-radius: 14px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+/* 标题 */
+.martyr-title {
+  font-size: 32px;
+  color: #ffffff;
+  letter-spacing: 6px;
+  margin-bottom: 12px;
+}
+
+/* 副标题 */
+.martyr-subtitle {
+  font-size: 18px;
+  color: #f3dede;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+}
+
+/* 卡片网格：保证居中，不偏左 */
+.martyr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+/* 单个英雄卡 */
+.martyr-card {
+  position: relative;
+  padding: 36px 22px 28px;
+  background: #8b1a1a;
+  border-radius: 10px;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.35);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.12);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+/* 花边（四角） */
+.martyr-card::before,
+.martyr-card::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #f5e6e6;
+}
+
+.martyr-card::before {
+  top: 8px;
+  left: 8px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.martyr-card::after {
+  bottom: 8px;
+  right: 8px;
+  border-left: none;
+  border-top: none;
+}
+
+/* 红星 */
+.red-star {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px;
+  color: #ffd700;
+}
+
+/* 头像 */
+.martyr-card img {
+  width: 100px;
+  height: 130px;
+  object-fit: cover;
+  margin-bottom: 14px;
+  filter: grayscale(10%);
+}
+
+/* 姓名 */
+.martyr-card h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+/* 英雄小标题（姓名下方） */
+.hero-subtitle {
+  display: inline-block;
+  margin: 8px auto 14px;
+  padding: 4px 12px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #ffdede;
+  background: rgba(255, 255, 255, 0.15);
+  border-left: 4px solid #ffd700;
+  border-radius: 4px;
+}
+
+
+/* 简介 */
+.martyr-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #f2f2f2;
+}
+
+/* hover */
+.martyr-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.45);
 }
