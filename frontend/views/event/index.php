@@ -33,8 +33,8 @@ JS
   }
 
   .map-page{
-    max-width: 1400px;
-    margin: 24px auto 60px;
+    max-width: 1600px;
+    margin: 20px auto 60px;
     padding: 0 18px;
   }
 
@@ -43,12 +43,12 @@ JS
     align-items:flex-end;
     justify-content:space-between;
     gap:16px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   .hero h2{
     margin:0;
     font-size: 34px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 1px;
     line-height: 1.15;
   }
@@ -80,8 +80,8 @@ JS
 
   .timeline-wrap{
     position: relative;
-    margin: 18px 0 18px;
-    padding: 16px 14px 10px;
+    margin: 14px 0 14px;
+    padding: 14px 14px 8px;
     border-radius: 18px;
     border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.05);
@@ -94,7 +94,7 @@ JS
     gap:10px;
     margin: 0 0 10px;
     color: rgba(255,210,120,0.95);
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 1px;
     font-size: 14px;
   }
@@ -110,10 +110,10 @@ JS
     gap:14px;
     flex-wrap:wrap;
     align-items:center;
-    padding: 8px 4px 6px;
+    padding: 6px 4px 6px;
   }
   .year-node{
-    min-width: 110px;
+    min-width: 112px;
     height: 58px;
     display:flex;
     align-items:center;
@@ -123,7 +123,7 @@ JS
     background: rgba(255,255,255,0.06);
     color: rgba(234,238,247,0.86);
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 900;
     cursor:pointer;
     user-select:none;
     transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
@@ -207,22 +207,22 @@ JS
     backdrop-filter: blur(6px);
   }
   .map-card-head .left{ display:flex; flex-direction:column; gap:4px; }
-  .map-card-head .title{ font-weight: 900; letter-spacing: 0.6px; color: rgba(234,238,247,0.92); }
+  .map-card-head .title{ font-weight: 950; letter-spacing: 0.6px; color: rgba(234,238,247,0.92); }
   .map-card-head .hint{ font-size: 12px; color: rgba(234,238,247,0.62); }
 
   #chinaMap{
     position: relative;
     z-index: 1;
     width:100%;
-    height: calc(100vh - 260px);
-    min-height: 760px;
+    height: calc(100vh - 210px);
+    min-height: 880px;
   }
 
-  .action-row{ text-align:center; margin: 22px 0 6px; }
+  .action-row{ text-align:center; margin: 18px 0 6px; }
   #showYearEvents{
     padding: 14px 34px;
     font-size: 16px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 1px;
     border:none;
     border-radius: 12px;
@@ -242,7 +242,7 @@ JS
   .event-list-title{
     margin: 0 0 12px;
     font-size: 22px;
-    font-weight: 900;
+    font-weight: 950;
     letter-spacing: 1px;
     color: rgba(255,210,120,0.92);
   }
@@ -254,20 +254,33 @@ JS
     background: rgba(255,255,255,0.05);
     box-shadow: 0 16px 40px rgba(0,0,0,0.35);
   }
-  .event-card .name{ font-weight: 900; font-size: 16px; color: rgba(234,238,247,0.92); margin-bottom: 6px; }
+  .event-card .name{ font-weight: 950; font-size: 16px; color: rgba(234,238,247,0.92); margin-bottom: 6px; }
   .event-card .meta{ font-size: 12px; color: rgba(234,238,247,0.62); margin-bottom: 8px; }
   .event-card .desc{ color: rgba(234,238,247,0.78); line-height: 1.8; font-size: 14px; }
+  .event-card .sig{
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,210,120,0.22);
+    background: rgba(255,210,120,0.08);
+    color: rgba(234,238,247,0.86);
+    line-height: 1.75;
+    font-size: 13px;
+  }
 
-  #eventModalMask{ backdrop-filter: blur(8px); }
+  #eventModalMask{
+    backdrop-filter: blur(10px);
+  }
   .modal-shell{
-    width: 86%;
+    width: 88%;
     max-width: 980px;
-    max-height: 82%;
+    max-height: 84%;
     border-radius: 18px;
     overflow:hidden;
-    border: 1px solid rgba(255,255,255,0.14);
-    background: rgba(10,14,28,0.92);
-    box-shadow: 0 40px 110px rgba(0,0,0,0.70);
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(12,16,32,0.74);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 50px 130px rgba(0,0,0,0.78);
     display:flex;
     flex-direction:column;
   }
@@ -277,9 +290,15 @@ JS
     justify-content:space-between;
     align-items:center;
     border-bottom: 1px solid rgba(255,255,255,0.10);
-    background: linear-gradient(135deg, rgba(180,0,0,0.55), rgba(255,210,120,0.12));
+    background: linear-gradient(135deg, rgba(180,0,0,0.42), rgba(255,210,120,0.10));
   }
-  .modal-title{ font-size: 20px; font-weight: 950; letter-spacing: 0.8px; color:#fff; }
+  .modal-title{
+    font-size: 20px;
+    font-weight: 980;
+    letter-spacing: 0.8px;
+    color:#fff;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
   #closeEventModal{
     width: 42px; height: 42px;
     border-radius: 12px;
@@ -291,13 +310,61 @@ JS
     transition: transform .15s ease, background .15s ease;
   }
   #closeEventModal:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.10); }
-  .modal-body{ padding: 18px; overflow:auto; color: rgba(234,238,247,0.86); line-height: 1.9; font-size: 14px; }
+  .modal-body{ padding: 18px; overflow:auto; color: rgba(234,238,247,0.88); line-height: 1.9; font-size: 14px; }
   .modal-body hr{ border: none; border-top: 1px solid rgba(255,255,255,0.12); margin: 14px 0; }
+
+  /* ✅ 弹窗 Meta（朴素两行：无图标、无框） */
+  .modal-meta{
+    margin-bottom: 10px;
+  }
+  .modal-meta .meta-row{
+    display:flex;
+    gap:10px;
+    padding: 2px 0;
+    line-height: 1.65;
+  }
+  .modal-meta .k{
+    min-width: 52px;
+    color: rgba(234,238,247,0.70);
+    font-weight: 800;
+    letter-spacing: .4px;
+  }
+  .modal-meta .v{
+    color: rgba(234,238,247,0.95);
+    font-weight: 800;
+  }
+
+  .sig-box{
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,210,120,0.22);
+    background:
+      radial-gradient(420px 220px at 20% 20%, rgba(255,210,120,0.10), transparent 60%),
+      linear-gradient(135deg, rgba(255,210,120,0.08), rgba(180,0,0,0.06));
+    box-shadow: 0 18px 50px rgba(0,0,0,0.30);
+  }
+  .sig-title{
+    display:flex; align-items:center; gap:10px;
+    font-weight: 950;
+    color: rgba(255,210,120,0.95);
+    letter-spacing: .8px;
+    margin-bottom: 6px;
+  }
+  .sig-title:before{
+    content:"";
+    width:10px;height:10px;border-radius:50%;
+    background: rgba(255,210,120,0.95);
+    box-shadow: 0 0 16px rgba(255,210,120,0.55);
+  }
+  .sig-text{ color: rgba(234,238,247,0.88); line-height: 1.85; }
 
   @media (max-width: 768px){
     .hero h2{ font-size: 26px; }
     .year-node{ min-width: 92px; height: 52px; font-size: 18px; }
-    #chinaMap{ min-height: 620px; }
+    #chinaMap{ min-height: 680px; height: calc(100vh - 220px); }
+    .modal-meta .meta-row{ flex-direction:column; gap:2px; }
+    .modal-meta .k{ min-width: auto; }
   }
 </style>
 
@@ -347,7 +414,7 @@ JS
   display:none;
   position:fixed;
   left:0;top:0;right:0;bottom:0;
-  background:rgba(0,0,0,0.62);
+  background:rgba(0,0,0,0.42);
   z-index:9999;
   align-items:center;
   justify-content:center;
@@ -369,7 +436,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   const chart = echarts.init(el);
   const battleCard = document.getElementById('battleCard');
 
-  // —— 省份名映射：短名 -> 全名（避免“不亮”）
   const PROV_ALIAS = {
     '北京':'北京市','天津':'天津市','上海':'上海市','重庆':'重庆市',
     '河北':'河北省','山西':'山西省','辽宁':'辽宁省','吉林':'吉林省','黑龙江':'黑龙江省',
@@ -404,7 +470,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     return unique(out);
   }
 
-  // ✅ 拼 URL：兼容 /index.php?r=... 以及 pretty url
   function buildUrl(base, params){
     const u = new URL(base, window.location.origin);
     Object.entries(params || {}).forEach(([k,v]) => u.searchParams.set(k, v));
@@ -417,7 +482,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     return await r.json();
   }
 
-  // 年份氛围
   function applyYearMood(year){
     const t = Math.min(1, Math.max(0, (Number(year) - 1937) / 8));
     battleCard.style.setProperty('--fire1', (0.10 + 0.22 * t).toFixed(3));
@@ -429,33 +493,28 @@ document.addEventListener('DOMContentLoaded', async function () {
     battleCard.style.setProperty('--flicker', (0.50 + 0.25 * t).toFixed(3));
   }
 
-  // —— 底色（暗）
   const fillDark = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
     { offset: 0, color: 'rgba(120,140,180,0.07)' },
     { offset: 1, color: 'rgba(20,30,55,0.16)' }
   ]);
 
-  // —— 热点（亮 + 浮起）
   const fillHot = new echarts.graphic.LinearGradient(0, 0, 1, 1, [
     { offset: 0, color: 'rgba(255,200,100,0.30)' },
     { offset: 0.55, color: 'rgba(180,0,0,0.40)' },
     { offset: 1, color: 'rgba(255,240,180,0.12)' }
   ]);
 
-  // —— 点击选中（更亮 + 更浮起）
   const fillSelected = new echarts.graphic.LinearGradient(0, 0, 1, 1, [
     { offset: 0, color: 'rgba(255,235,160,0.40)' },
     { offset: 0.55, color: 'rgba(255,70,70,0.46)' },
     { offset: 1, color: 'rgba(255,255,255,0.10)' }
   ]);
 
-  // —— hover（轻微）
   const fillHover = new echarts.graphic.LinearGradient(0, 0, 1, 1, [
     { offset: 0, color: 'rgba(255,210,120,0.10)' },
     { offset: 1, color: 'rgba(255,60,0,0.08)' }
   ]);
 
-  // ========== 1) 先注册地图：失败就直接给用户提示 ==========
   try{
     const chinaJson = await fetchJson(window.MAP_CFG.chinaJsonUrl);
     echarts.registerMap('china', chinaJson);
@@ -473,7 +532,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     return;
   }
 
-  // ========== 2) 状态：当年热点省份 & 用户点击选中省份 ==========
   let hotProvinces = [];
   let selectedProvince = null;
 
@@ -484,11 +542,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('yearNow').innerText = `当前年份：${year}`;
   }
 
-  // ✅ geo.regions：给指定省份覆盖样式（热点/选中）
   function buildRegions(){
     const regions = [];
 
-    // 年份热点：允许多个亮起
     (hotProvinces || []).forEach(name => {
       regions.push({
         name,
@@ -504,7 +560,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       });
     });
 
-    // 点击选中：只把这个再加强（覆盖同名 region）
     if (selectedProvince) {
       regions.push({
         name: selectedProvince,
@@ -523,32 +578,34 @@ document.addEventListener('DOMContentLoaded', async function () {
     return regions;
   }
 
-  // ========== 3) 初始把“地图骨架”画出来：保证永不空白 ==========
   chart.setOption({
     backgroundColor: 'transparent',
     tooltip: {
       trigger: 'item',
       formatter: (p) => {
-        // geo 省份
-        if (p.componentType === 'geo') {
-          return `<strong>${p.name}</strong>`;
-        }
-        // 红点事件
+        if (p.componentType === 'geo') return `<strong>${p.name}</strong>`;
+
         if (p.seriesType === 'effectScatter' && p.data?.event) {
           const ev = p.data.event;
-          return `<div style="font-weight:800;font-size:13px;margin-bottom:4px;">${ev.name}</div>
+          const sig = ev.significance ? `<div style="opacity:.88;margin-top:6px;line-height:1.6;"><strong>意义：</strong>${ev.significance}</div>` : '';
+          return `<div style="font-weight:900;font-size:13px;margin-bottom:4px;">${ev.name || ''}</div>
                   <div style="opacity:.85">${ev.start_date || ''} ~ ${ev.end_date || ''}</div>
-                  <div style="opacity:.75;margin-top:4px;">${ev.location || ''}</div>`;
+                  <div style="opacity:.75;margin-top:4px;">${ev.location || ''}</div>
+                  ${sig}`;
         }
         return '';
       }
     },
     geo: {
       map: 'china',
-      show: true,         // ✅ 关键：底图一定要显示
+      show: true,
       roam: true,
-      zoom: 1.15,
-      label: { show: true, color: 'rgba(234,238,247,0.40)', fontSize: 11 },
+      zoom: 1.42,
+      layoutCenter: ['50%','54%'],
+      layoutSize: '175%',
+      scaleLimit: { min: 1.0, max: 6.0 },
+
+      label: { show: true, color: 'rgba(234,238,247,0.42)', fontSize: 11 },
       itemStyle: {
         areaColor: fillDark,
         borderColor: 'rgba(255,255,255,0.14)',
@@ -558,7 +615,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         shadowOffsetY: 12
       },
       emphasis: {
-        label: { color: 'rgba(234,238,247,0.70)', fontWeight: 'bold' },
+        label: { color: 'rgba(234,238,247,0.78)', fontWeight: 'bold' },
         itemStyle: {
           areaColor: fillHover,
           borderColor: 'rgba(255,210,120,0.60)',
@@ -568,7 +625,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           shadowOffsetY: -8
         }
       },
-      regions: [] // 热点/选中会在这里动态覆盖
+      regions: []
     },
     series: [
       {
@@ -588,16 +645,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     ]
   });
 
-  // ========== 4) 年份加载：点亮热点省份 + 更新红点 ==========
   async function loadYear(year){
     window.MAP_CFG.currentYear = year;
     setActiveYearNode(year);
     applyYearMood(year);
 
-    // 切年份时，清掉“手动选中省份”，回到“当年热点”模式
     selectedProvince = null;
 
-    // 收起列表（不影响地图）
     const list = document.getElementById('yearEventList');
     list.style.display = 'none';
     list.innerHTML = '';
@@ -628,7 +682,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   }
 
-  // 默认加载
   loadYear(1937);
 
   document.getElementById('yearTimeline').onclick = (e) => {
@@ -636,27 +689,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (node) loadYear(node.dataset.year);
   };
 
-  // ========== 5) “点击省份”：只高亮该省（再点一次取消） ==========
   chart.on('click', (params) => {
-    // 红点事件弹窗在下面单独处理，这里先放过
     if (params.seriesType === 'effectScatter') return;
 
-    // geo 省份点击
     if (params.componentType === 'geo' && params.name) {
       const name = normalizeProvinceName(params.name) || params.name;
 
-      if (selectedProvince === name) {
-        // 再点一次取消，回到“年份热点”
-        selectedProvince = null;
-      } else {
-        selectedProvince = name;
-      }
+      if (selectedProvince === name) selectedProvince = null;
+      else selectedProvince = name;
 
       chart.setOption({ geo: { regions: buildRegions() } });
     }
   });
 
-  // ========== 6) 全年事件列表 ==========
   document.getElementById('showYearEvents').onclick = async () => {
     const box = document.getElementById('yearEventList');
     const year = window.MAP_CFG.currentYear;
@@ -672,6 +717,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             <div class="name">${ev.name || ''}</div>
             <div class="meta">${(ev.start_date||'')} ~ ${(ev.end_date||'')} ｜ ${(ev.location||'')}</div>
             <div class="desc">${ev.description || ''}</div>
+            ${ev.significance ? `<div class="sig"><strong>意义：</strong>${ev.significance}</div>` : ``}
           </div>
         `).join('');
 
@@ -684,29 +730,56 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   };
 
-  // ========== 7) 红点弹窗 ==========
   const mask = document.getElementById('eventModalMask');
   document.getElementById('closeEventModal').onclick = () => mask.style.display = 'none';
   mask.onclick = e => { if (e.target === mask) mask.style.display = 'none'; };
 
+  function escapeHtml(str){
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // ✅ 红点弹窗（朴素两行时间/地点）
   chart.on('click', (params) => {
     if (params.seriesType === 'effectScatter' && params.data?.event) {
-      const ev = params.data.event;
-      document.getElementById('eventModalTitle').innerText = ev.name || '';
+      const ev = params.data.event || {};
+      const title = ev.name || '';
+      const timeText = `${ev.start_date || ''} ~ ${ev.end_date || ''}`.trim();
+      const locText  = (ev.location || ev.city || ev.province || '').trim();
+      const desc     = ev.description || '';
+      const sig      = ev.significance || '';
+
+      document.getElementById('eventModalTitle').innerText = title;
+
       document.getElementById('eventModalBody').innerHTML = `
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
-          <div class="badge" style="box-shadow:none;">
-            <span class="badge-dot"></span>
-            <span><strong>时间：</strong>${(ev.start_date||'')} ~ ${(ev.end_date||'')}</span>
+        <div class="modal-meta">
+          <div class="meta-row">
+            <div class="k">时间：</div>
+            <div class="v">${escapeHtml(timeText || '—')}</div>
           </div>
-          <div class="badge" style="box-shadow:none;">
-            <span class="badge-dot" style="background:rgba(255,210,120,0.95)"></span>
-            <span><strong>地点：</strong>${ev.location || ''}</span>
+          <div class="meta-row">
+            <div class="k">地点：</div>
+            <div class="v">${escapeHtml(locText || '—')}</div>
           </div>
         </div>
+
         <hr>
-        <div style="opacity:.92;">${ev.description || ''}</div>
+
+        <div style="opacity:.92;">${escapeHtml(desc).replace(/\n/g,'<br>')}</div>
+
+        ${sig ? `
+          <div class="sig-box">
+            <div class="sig-title">事件意义</div>
+            <div class="sig-text">${escapeHtml(sig).replace(/\n/g,'<br>')}</div>
+          </div>
+        ` : ``}
       `;
+
       mask.style.display = 'flex';
     }
   });
