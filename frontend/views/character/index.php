@@ -36,7 +36,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         <h3>中国共产党</h3>
         <div style="display:flex; gap:24px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/毛泽东.png" width="120">
-          <p>领导敌后抗战，建立广泛抗日根据地，发动群众战争，牵制大量日军主力。</p>
+          <p>中国共产党率先倡导并推动抗日民族统一战线，领导八路军、新四军深入敌后，广泛发动群众，开展游击战争，建立抗日根据地，长期牵制和消耗日军力量，为中国乃至世界反法西斯战争作出重要贡献。</p>
         </div>
       </div>
 
@@ -45,7 +45,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         <h3>中国国民党</h3>
         <div style="display:flex; gap:24px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/蒋介石.png" width="120">
-          <p>正面战场主力承担者，组织淞沪、武汉、长沙等大会战，抵抗日军正面进攻。</p>
+          <p>中国国民党政府在全国抗战中承担了正面战场的主要作战任务。国民革命军在淞沪、台儿庄、武汉、长沙等重大战役中与日军正面作战，付出了巨大人员和物资牺牲。国民政府坚持对日宣战并维持国家政权运转，在争取国际承认和外援方面发挥了关键作用。</p>
         </div>
       </div>
 
@@ -54,7 +54,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         <h3>苏联</h3>
         <div style="display:flex; gap:24px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/斯大林.png" width="120">
-          <p>向中国提供军事顾问、飞行员与装备援助，对日保持战略牵制。</p>
+          <p>苏联是世界反法西斯战争的重要支柱，在欧洲战场正面打击纳粹德国，同时在中国抗战初期向中国提供飞机、武器和军事顾问，并派志愿航空队参战，对遏制法西斯扩张发挥了关键作用。战能力，对稳定战局具有重要意义。</p>
         </div>
       </div>
 
@@ -63,7 +63,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         <h3>美国</h3>
         <div style="display:flex; gap:24px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/罗斯福.png" width="120">
-          <p>通过租借法案提供物资支援，派遣飞虎队援华，对日宣战后形成太平洋战场。</p>
+          <p>美国在珍珠港事件后对日宣战，成为反法西斯同盟的重要成员。美国通过租借法案向中国提供大量军事和经济援助，并派遣飞虎队协助中国空军作战。美国的工业生产能力和资源支持对抗击日本侵略起到了关键作用。</p>
         </div>
       </div>
 
@@ -90,7 +90,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         <h3>日本</h3>
         <div style="display:flex; gap:24px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/昭和天皇.png" width="120">
-          <p>发动全面侵华战争，实施南京大屠杀、细菌战、三光政策等严重战争罪行。</p>
+          <p>1931年发动九一八事变侵占中国东北，1937年全面侵华，并在亚洲发动大规模战争。随着太平洋战争失利、国内外压力加剧，1945年在盟军打击和苏联出兵后宣布无条件投降。</p>
         </div>
       </div>
 
@@ -99,7 +99,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         <h3>伪满洲国</h3>
         <div style="display:flex; gap:24px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/溥仪.png" width="120">
-          <p>日本扶植的傀儡政权，为侵略提供资源、劳工与政治掩护。</p>
+          <p>1932年在日本扶植下于中国东北成立，作为侵略中国的殖民政权存在，完全受日本控制。1945年苏联红军进军东北，日本战败，伪满洲国随即覆灭。</p>
         </div>
       </div>
 
@@ -108,7 +108,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         <h3>德国</h3>
         <div style="display:flex; gap:24px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/希特勒.png" width="120">
-          <p>欧洲法西斯核心国家，与日本结盟，对世界反法西斯战争构成重大威胁。</p>
+          <p>1939年入侵波兰，引发第二次世界大战，在欧洲迅速扩张。后期在苏德战场和西线遭到重大失败，1945年柏林被攻占，纳粹政权崩溃并宣布投降。</p>
         </div>
       </div>
 
@@ -117,7 +117,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
         <h3>意大利</h3>
         <div style="display:flex; gap:24px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/墨索里尼.png" width="120">
-          <p>法西斯同盟国之一，在欧洲与北非战场参与侵略行动。</p>
+          <p>在墨索里尼统治下发动对外侵略，参与法西斯同盟并加入二战。战争中连遭失败，1943年政权倒台并转而对德作战，1945年法西斯政权彻底瓦解。</p>
         </div>
       </div>
 

@@ -46,13 +46,17 @@ body{
 
 /* ================= 图例（来自 map.html）================= */
 .legend{
-  width:80%;
-  margin:0 auto 60px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:24px 40px;
-  font-size:30px;
+  width: fit-content;
+  margin: 0 120px 40px auto;
+
+  display: flex;
+  flex-wrap: nowrap;   /* ✅ 关键 */
+  gap: 12px 20px;
+
+  font-size: 13px;
+  white-space: nowrap;
 }
+
 
 .legend-item{
   display:flex;
@@ -115,55 +119,7 @@ body{
   border-color:#a33;
 }
 
-/* ================= 势力介绍 ================= */
-.force-intro {
-  margin: 30px 0 50px;
-  padding: 20px 28px;
-  background: #f8efe2;
-  border-left: 5px solid #8b1a1a;
-}
 
-.camp-axis .force-intro {
-  background: #1f1f1f;
-  border-left-color: #b30000;
-}
-
-.force-intro h3 {
-  margin: 0 0 18px;
-  font-size: 18px;
-  color: #7b1e1e;
-  letter-spacing: 2px;
-}
-
-.camp-axis .force-intro h3 {
-  color: #ffcccc;
-}
-
-.force-card {
-  margin-bottom: 14px;
-}
-
-.force-card strong {
-  display: block;
-  font-size: 15px;
-  margin-bottom: 6px;
-  color: #5a0000;
-}
-
-.camp-axis .force-card strong {
-  color: #ff9999;
-}
-
-.force-card p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.8;
-  color: #333;
-}
-
-.camp-axis .force-card p {
-  color: #ccc;
-}
 /* ===================== 人物/军队介绍 ===================== */
 
 .axis-sections{
@@ -253,27 +209,25 @@ body{
 
 .teams{
   margin-top:48px;
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-columns: 1fr;   /* 单列时 */
+  grid-auto-rows: 1fr;          /* 每一行等高 */
   gap:36px;
 }
 
 /* ===================== 单支军队 ===================== */
 .team{
+  height: 100%;                 /* 关键 */
+  display: flex;
+  flex-direction: column;
+
   position:relative;
   overflow:hidden;
-
   padding:28px 32px;
   border:1px solid #d6c6a3;
   border-radius:6px;
   background:#fdf9f1;
-
-  --title-color:#6f1d1d;
-  --text-color:#333;
-  --bg-hover:#fdf9f1;
-  --border-hover:#d6c6a3;
-
-  transition:all 0.4s ease;
+    min-height: 320px;
 }
 
 .team:hover{
