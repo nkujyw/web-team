@@ -465,40 +465,42 @@ use yii\helpers\Url;
 </div>
 
 <script>
-// 初始化点击致敬计数（使用localStorage存储）
-let tributeCount = localStorage.getItem('tributeCount') || 0;
-document.getElementById('tributeCount').textContent = tributeCount;
+// 初始化点击致敬计数
+let tributeCount = <?= $tributeCount ?>;
 
-// 简单的交互效果
 document.addEventListener('DOMContentLoaded', function() {
     // 点击致敬功能
     const tributeBtn = document.getElementById('tributeBtn');
     const tributeCounter = document.getElementById('tributeCounter');
     
     tributeBtn.addEventListener('click', function() {
-        // 增加计数
-        tributeCount++;
-        
-        // 更新显示
-        document.getElementById('tributeCount').textContent = tributeCount;
-        
-        // 保存到localStorage
-        localStorage.setItem('tributeCount', tributeCount);
-        
-        // 添加点击效果
-        this.innerHTML = '<i class="fa fa-check"></i> 已致敬';
-        this.style.background = '#4CAF50';
-        this.disabled = true;
-        
-        // 显示感谢消息
-        alert('感谢您的致敬！您已向革命先烈表达崇高敬意。');
-        
-        // 3秒后恢复按钮状态
-        setTimeout(() => {
-            this.innerHTML = '点击致敬';
-            this.style.background = '';
-            this.disabled = false;
-        }, 3000);
+        // 发起 AJAX 请求增加致敬计数
+        fetch('<?= Url::to(['mem/tribute']) ?>', {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 更新显示
+                tributeCount = data.count;
+                document.getElementById('tributeCount').textContent = tributeCount;
+                
+                // 添加点击效果
+                this.innerHTML = '<i class="fa fa-check"></i> 已致敬';
+                this.style.background = '#4CAF50';
+                this.disabled = true;
+                
+                // 显示感谢消息
+                alert('感谢您的致敬！您已向革命先烈表达崇高敬意。');
+                
+                // 3秒后恢复按钮状态
+                setTimeout(() => {
+                    this.innerHTML = '点击致敬';
+                    this.style.background = '';
+                    this.disabled = false;
+                }, 3000);
+            }
+        });
     });
     
     // 纪念作品卡片点击效果
@@ -543,11 +545,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 弹窗控制函数
 function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // 防止背景滚动
-    }
+    fetch('<?= Url::to(['mem/get-modal-content']) ?>', {
+        method: 'POST',
+        body: JSON.stringify({ modalId: modalId }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const modalContent = data.content;
+            const modal = document.getElementById(modalId);
+            const modalHeader = modal.querySelector('.modal-header h2');
+            const modalBody = modal.querySelector('.modal-body');
+            
+            modalHeader.textContent = modalContent.title;
+            modalBody.innerHTML = modalContent.body;
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        }
+    });
 }
 
 function closeModal(modalId) {
