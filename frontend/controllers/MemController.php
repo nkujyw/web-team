@@ -4,7 +4,8 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
-use yii\web\Response;
+use common\models\MemWorks;
+use common\models\MemActivities;
 
 class MemController extends Controller
 {
@@ -13,87 +14,126 @@ class MemController extends Controller
      */
     public function actionIndex()
     {
-        // 设置页面标题
         $this->view->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
         
-        // 获取致敬计数
-        $tributeCount = Yii::$app->request->cookies->getValue('tributeCount', 0);
+        // 从数据库获取纪念作品数据
+        $memWorks = MemWorks::find()
+            ->orderBy(['create_date' => SORT_DESC])
+            ->limit(6)
+            ->all();
+        
+        // 从数据库获取纪念活动数据
+        $memActivities = MemActivities::find()
+            ->orderBy(['activity_date' => SORT_DESC])
+            ->limit(4)
+            ->all();
         
         return $this->render('index', [
-            'tributeCount' => $tributeCount,
+            'memWorks' => $memWorks,
+            'memActivities' => $memActivities,
         ]);
     }
     
     /**
-     * 点击致敬
+     * 获取所有纪念作品列表 - AJAX接口
      */
-    public function actionTribute()
+    public function actionGetAllWorks()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         
-        // 获取当前计数
-        $tributeCount = Yii::$app->request->cookies->getValue('tributeCount', 0);
-        $tributeCount++;
-        
-        // 保存新的计数到Cookie
-        Yii::$app->response->cookies->add(new \yii\web\Cookie([
-            'name' => 'tributeCount',
-            'value' => $tributeCount,
-            'expire' => time() + 3600 * 24 * 365, // 保存一年
-        ]));
-        
-        return [
-            'success' => true,
-            'count' => $tributeCount,
-        ];
+        try {
+            $works = MemWorks::find()
+                ->orderBy(['create_date' => SORT_DESC])
+                ->all();
+            
+            $result = [];
+            foreach ($works as $work) {
+                $result[] = [
+                    'id' => $work->id,
+                    'name' => $work->name,
+                    'author' => $work->author,
+                    'type' => $work->type,
+                    'description' => $work->description,
+                    'create_date' => Yii::$app->formatter->asDate($work->create_date, 'yyyy年MM月dd日'),
+                    'url' => $work->url,
+                    'full_url' => $this->getFullImageUrl($work->url),
+                ];
+            }
+            
+            return [
+                'status' => 'success',
+                'data' => $result
+            ];
+        } catch (\Exception $e) {
+            Yii::error('获取纪念作品失败: ' . $e->getMessage());
+            return [
+                'status' => 'error',
+                'message' => '获取数据失败'
+            ];
+        }
     }
     
     /**
-     * 获取弹窗内容
+     * 获取所有纪念活动列表 - AJAX接口
      */
-    public function actionGetModalContent($modalId)
+    public function actionGetAllActivities()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         
-        $modalContent = '';
-        switch ($modalId) {
-            case 'worksModal':
-                $modalContent = [
-                    'title' => '纪念作品',
-                    'body' => '
-                        <p>这里将展示纪念作品相关内容...</p>
-                        <p>功能正在开发中，敬请期待！</p>
-                        <p>您可以浏览以下内容：</p>
-                        <ul style="padding-left: 20px; margin: 10px 0;">
-                            <li>历史照片</li>
-                            <li>艺术作品</li>
-                            <li>文献资料</li>
-                            <li>数字化文物</li>
-                        </ul>
-                    ',
+        try {
+            $activities = MemActivities::find()
+                ->orderBy(['activity_date' => SORT_DESC])
+                ->all();
+            
+            $result = [];
+            foreach ($activities as $activity) {
+                $result[] = [
+                    'id' => $activity->id,
+                    'name' => $activity->name,
+                    'description' => $activity->description,
+                    'activity_date' => Yii::$app->formatter->asDate($activity->activity_date, 'yyyy年MM月dd日'),
+                    'location_id' => $activity->location_id,
+                    'organizer' => $activity->organizer,
+                    'photo_url' => $activity->photo_url,
+                    'full_photo_url' => $this->getFullImageUrl($activity->photo_url),
                 ];
-                break;
-            case 'eventsModal':
-                $modalContent = [
-                    'title' => '纪念活动',
-                    'body' => '
-                        <p>这里将展示纪念活动相关内容...</p>
-                        <p>功能正在开发中，敬请期待！</p>
-                        <p>您可以参与以下活动：</p>
-                        <ul style="padding-left: 20px; margin: 10px 0;">
-                            <li>线上祭扫</li>
-                            <li>留言致敬</li>
-                            <li>献花活动</li>
-                            <li>专题展览</li>
-                        </ul>
-                    ',
-                ];
-                break;
+            }
+            
+            return [
+                'status' => 'success',
+                'data' => $result
+            ];
+        } catch (\Exception $e) {
+            Yii::error('获取纪念活动失败: ' . $e->getMessage());
+            return [
+                'status' => 'error',
+                'message' => '获取数据失败'
+            ];
+        }
+    }
+    
+    /**
+     * 获取完整的图片URL
+     */
+    private function getFullImageUrl($path)
+    {
+        if (empty($path)) {
+            return '';
         }
         
-        return [
-            'success' => true,
-            'content' => $modalContent,
-        ];
+        // 如果已经是完整的URL，直接返回
+        if (strpos($path, 'http://') === 0 || strpos($path, 'https://') === 0) {
+            return $path;
+        }
+        
+        // 添加网站基础URL
+        $baseUrl = Yii::getAlias('@web');
+        
+        // 确保路径以斜杠开头
+        if (strpos($path, '/') !== 0) {
+            $path = '/' . $path;
+        }
+        
+        return $baseUrl . $path;
     }
 }
