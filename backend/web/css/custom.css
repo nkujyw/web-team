@@ -1,86 +1,218 @@
 /* =========================================
-   1. 侧边栏与 Logo 区域 (浅灰风格)
+   1. 侧边栏 (Sidebar) 核心优化
    ========================================= */
+/* 背景与基础文字：提升对比度 */
 .sidebar {
-    background: #ffffff !important;
-    border-right: 1px solid #eff2f7;
+    background: #1e2936 !important;
+    transition: all 0.3s ease;
 }
 
-/* 将 Logo 所在地方也变为导航栏的浅灰 */
-.sidebar-brand {
-    background-color: #f8f9fa !important; /* 与 Navbar 背景一致的浅灰 */
-    color: #495057 !important;
-    border-bottom: 1px solid #eff2f7;
-    padding: 1.25rem 1.5rem;
+/* 一级菜单：文字与图标亮度提升至 0.85 以上 */
+.sidebar-link, 
+.sidebar-link svg, 
+.sidebar-link i {
+    color: rgba(255, 255, 255, 0.85) !important; 
+    font-weight: 500;
 }
 
-/* 文字 Logo 方块 */
-.logo-box {
-    background: #3b5de7;
-    color: white;
-    padding: 2px 8px;
-    border-radius: 6px;
-    font-weight: 800;
-    font-size: 14px;
+/* 悬停状态：平滑提亮 */
+.sidebar-link:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
 }
 
-.sidebar-link {
-    color: #555 !important;
+/* 激活状态：左侧主题色边框 + 渐变背景 */
+.sidebar-item.active .sidebar-link,
+.sidebar-item.active .sidebar-link svg {
+    color: #ffffff !important;
+    background: linear-gradient(90deg, rgba(59, 93, 231, 0.2) 0%, rgba(59, 93, 231, 0) 100%) !important;
+    border-left: 4px solid #3b5de7;
+}
+
+/* 子菜单 (Dropdown)：解决之前看不清的重灾区 */
+.sidebar-dropdown .sidebar-link {
+    padding-left: 3rem !important;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.sidebar-dropdown .sidebar-item.active .sidebar-link {
+    color: #5bb7ff !important; /* 激活的子模块用明亮的浅蓝色 */
+    font-weight: 600;
     background: transparent !important;
 }
 
-/* =========================================
-   2. 紫色背景 + 白色 A 头像 (最终修复方案)
-   ========================================= */
-/* 头像外部容器，模仿你给的图，增加四色圆环效果 */
-.avatar-initial-wrapper {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    padding: 2px;
-    background: conic-gradient(
-        #f5365c 0% 25%, 
-        #11cdef 25% 50%, 
-        #2dce89 50% 75%, 
-        #fb6340 75% 100%
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* 内部紫底白字 */
-.avatar-initial {
-    width: 100%;
-    height: 100%;
-    background-color: #6f42c1 !important; /* 紫色背景 */
-    color: #ffffff !important;           /* 白色文字 */
-    border-radius: 50%;
-    display: flex !important;            /* 强制显示 */
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+.sidebar-header {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.4);
     font-weight: 700;
-    border: 2px solid #ffffff;           /* 字母与彩环间的白缝 */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 /* =========================================
-   3. 深色模式适配
+   2. 暗黑模式全局适配 (body[data-theme="dark"])
    ========================================= */
-body[data-theme="dark"] { background-color: #222736; }
+body[data-theme="dark"] {
+    background-color: #1a1d21;
+    color: #adb5bd;
+}
 
-body[data-theme="dark"] .sidebar,
-body[data-theme="dark"] .sidebar-brand {
-    background-color: #2a3042 !important;
+/* 顶部导航栏适配 */
+body[data-theme="dark"] .navbar {
+    background-color: #222736 !important;
+    border-bottom: 1px solid #2e3548;
+}
+
+body[data-theme="dark"] .navbar .nav-link,
+body[data-theme="dark"] .nav-user-name {
     color: #eff2f7 !important;
 }
 
+/* 卡片组件：取消白色背景，改用深灰蓝色 */
 body[data-theme="dark"] .card {
-    background-color: #2a3042 !important;
-    color: #fff;
-    border: 1px solid #32394e;
+    background-color: #222736 !important;
+    color: #eff2f7;
+    border: 1px solid #2e3548;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2) !important;
 }
 
-body[data-theme="dark"] .navbar {
+/* 全局标题提亮 */
+body[data-theme="dark"] h1, body[data-theme="dark"] h2, 
+body[data-theme="dark"] h3, body[data-theme="dark"] h4, 
+body[data-theme="dark"] h5, body[data-theme="dark"] h6 {
+    color: #f8f9fa !important;
+}
+
+/* =========================================
+   3. 数据库表格 (GridView) 极简重塑
+   ========================================= */
+/* =========================================
+   3. 数据库表格 (GridView) 样式重塑 - 彻底去除斑马纹版
+   ========================================= */
+
+/* 1. 强制所有行背景透明，显示底层统一的表格颜色 */
+body[data-theme="dark"] .table tbody tr,
+body[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd),
+body[data-theme="dark"] .table-striped tbody tr:nth-of-type(even) {
+    background-color: transparent !important;
+    color: #adb5bd !important;
+    /* 强制覆盖 Bootstrap 5 的背景变量 */
+    --bs-table-accent-bg: transparent !important;
+    --bs-table-striped-bg: transparent !important;
+    --bs-table-bg: transparent !important;
+}
+
+/* 2. 给表格设置统一底色，并增加圆角和边框阴影 */
+body[data-theme="dark"] .table {
+    background-color: #222736 !important; /* 统一的深灰蓝色 */
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border: 1px solid #2e3548 !important;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 3. 使用极细的边框线做横向分割线 */
+body[data-theme="dark"] .table td {
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important; 
+    padding: 14px 15px !important;
+    vertical-align: middle;
+}
+
+/* 4. 仅在鼠标悬停时显示背景色 (交互感) */
+body[data-theme="dark"] .table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.04) !important; 
+    color: #ffffff !important;
+}
+
+/* 5. 表头样式：纯色深背景 + 顶部和底部强调线 */
+body[data-theme="dark"] .table thead th {
+    background-color: #1a1d21 !important; /* 表头稍微比内容深一点点，显专业 */
+    color: #ffffff !important;
+    font-weight: 600;
+    border-top: none !important;
+    border-bottom: 2px solid #3b5de7 !important; /* 主题色底线 */
+    padding: 15px !important;
+}
+
+/* 6. 修正表格内搜索框 (Filter) 的视觉 */
+body[data-theme="dark"] .grid-view .filters td {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body[data-theme="dark"] .grid-view .filters input {
+    background-color: #1a1d21 !important;
+    border: 1px solid #32394e !important;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* 7. 图标操作颜色 */
+body[data-theme="dark"] .grid-view a {
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+}
+body[data-theme="dark"] .grid-view a:hover {
+    color: #3b5de7;
+}
+/* =========================================
+   4. 表单、分页与交互组件
+   ========================================= */
+/* 输入框：深色化处理 */
+body[data-theme="dark"] .form-control {
     background-color: #2a3042 !important;
+    border-color: #32394e !important;
+    color: #ced4da !important;
+}
+
+body[data-theme="dark"] .form-control:focus {
+    background-color: #2e3548 !important;
+    border-color: #3b5de7 !important;
+    box-shadow: none;
+}
+
+/* 分页 */
+body[data-theme="dark"] .pagination .page-link {
+    background-color: #2a3042 !important;
+    border-color: #32394e !important;
+    color: #adb5bd !important;
+}
+
+body[data-theme="dark"] .pagination .page-item.active .page-link {
+    background-color: #3b5de7 !important;
+    border-color: #3b5de7 !important;
+    color: #fff !important;
+}
+
+/* 下拉菜单 */
+body[data-theme="dark"] .dropdown-menu {
+    background-color: #2e3548 !important;
+    border: 1px solid #32394e !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
+}
+
+body[data-theme="dark"] .dropdown-item {
+    color: #ced4da !important;
+}
+
+body[data-theme="dark"] .dropdown-item:hover {
+    background-color: #3b5de7 !important;
+    color: #fff !important;
+}
+
+/* =========================================
+   5. 特色组件 (头像)
+   ========================================= */
+.avatar-initial-wrapper {
+    width: 40px; height: 40px; border-radius: 50%; padding: 2px;
+    background: conic-gradient(#f5365c 0% 25%, #11cdef 25% 50%, #2dce89 50% 75%, #fb6340 75% 100%);
+    display: flex; align-items: center; justify-content: center;
+}
+.avatar-initial {
+    width: 100%; height: 100%; background-color: #6f42c1 !important;
+    color: #ffffff !important; border-radius: 50%;
+    display: flex !important; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; border: 2px solid #ffffff;
 }

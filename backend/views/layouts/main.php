@@ -31,22 +31,80 @@ AppAsset::register($this);
                 </div>
             </a>
 
-            <ul class="sidebar-nav">
-                <?php $c = Yii::$app->controller->id; ?>
-                <li class="sidebar-header">Main</li>
-                <li class="sidebar-item <?= $c === 'site' && Yii::$app->controller->action->id === 'index' ? 'active' : '' ?>">
-                    <a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/site/index']) ?>">
-                        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
-                    </a>
-                </li>
+<ul class="sidebar-nav">
+    <li class="sidebar-item active">
+        <a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/site/index']) ?>">
+            <i class="align-middle" data-feather="sliders"></i> <span>控制台首页</span>
+        </a>
+    </li>
 
-                <li class="sidebar-header">Data Management</li>
-                <li class="sidebar-item <?= $c === 'characters' ? 'active' : '' ?>">
-                    <a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/characters/index']) ?>">
-                        <i class="align-middle" data-feather="users"></i> <span class="align-middle">人物管理</span>
-                    </a>
-                </li>
-            </ul>
+    <li class="sidebar-header">核心档案库</li>
+    <li class="sidebar-item">
+        <a data-bs-target="#history" data-bs-toggle="collapse" class="sidebar-link collapsed">
+            <i class="align-middle" data-feather="archive"></i> <span>历史档案</span>
+        </a>
+        <ul id="history" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/events/index']) ?>">大事件总表</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/battle-events/index']) ?>">战役详情录</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/diplomatic-events/index']) ?>">外交风云</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/meeting-events/index']) ?>">重要会议</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/locations/index']) ?>">地理坐标</a></li>
+        </ul>
+    </li>
+
+    <li class="sidebar-header">人文与英雄</li>
+    <li class="sidebar-item">
+        <a data-bs-target="#people" data-bs-toggle="collapse" class="sidebar-link collapsed">
+            <i class="align-middle" data-feather="users"></i> <span>人物与势力</span>
+        </a>
+        <ul id="people" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/characters/index']) ?>">英雄人物谱</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/teams/index']) ?>">参战部队</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/forces/index']) ?>">阵营分类</a></li>
+        </ul>
+    </li>
+
+    <li class="sidebar-header">文化纪念</li>
+    <li class="sidebar-item">
+        <a data-bs-target="#culture" data-bs-toggle="collapse" class="sidebar-link collapsed">
+            <i class="align-middle" data-feather="heart"></i> <span>纪念展示</span>
+        </a>
+        <ul id="culture" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/mem-works/index']) ?>">纪念作品</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/mem-activities/index']) ?>">线下活动</a></li>
+        </ul>
+    </li>
+
+    <li class="sidebar-header">系统与交互</li>
+    <li class="sidebar-item">
+        <a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/question/index']) ?>">
+            <i class="align-middle" data-feather="help-circle"></i> <span>知识问答库</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/messages/index']) ?>">
+            <i class="align-middle" data-feather="message-circle"></i> <span>留言审核</span>
+        </a>
+    </li>
+
+    <li class="sidebar-header">作业交付</li>
+    <li class="sidebar-item">
+        <a data-bs-target="#homework" data-bs-toggle="collapse" class="sidebar-link collapsed">
+            <i class="align-middle" data-feather="download-cloud"></i> <span>作业下载</span>
+        </a>
+        <ul id="homework" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+            <li class="sidebar-item"><a class="sidebar-link" href="#">文档下载</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="#">团队作业</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="#">个人作业</a></li>
+        </ul>
+    </li>
+
+    <li class="sidebar-item">
+        <a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/site/team']) ?>">
+            <i class="align-middle" data-feather="smile"></i> <span>团队介绍</span>
+        </a>
+    </li>
+</ul>
         </div>
     </nav>
 

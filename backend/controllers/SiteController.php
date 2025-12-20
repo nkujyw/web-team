@@ -88,29 +88,40 @@ class SiteController extends Controller
 
         return $this->redirect('../../frontend/web/index.php');
     }
-    public function actionIndex()
+public function actionIndex()
 {
-    // 获取各项统计数据
-    $charCount = \common\models\Characters::find()->count();
-    $battleCount = \common\models\Events::find()->where(['event_type' => 'battle'])->count();
-    // 假设留言表中所有数据暂视为“未处理”
-    $msgCount = \common\models\Messages::find()->count();
-    $workCount = \common\models\MemWorks::find()->count();
+    // 1. 统计数据 - 确保键名和视图一致
+    $stats = [
+        'charCount'   => \common\models\Characters::find()->count(),
+        'battleCount' => \common\models\Events::find()->where(['event_type' => 'battle'])->count(),
+        'msgCount'    => \common\models\Messages::find()->count(),
+        'workCount'   => \common\models\MemWorks::find()->count(),
+    ];
 
-    // 准备折线图数据：按年份统计事件数量
+    // 2. 准备折线图数据
     $eventData = (new \yii\db\Query())
         ->select(["DATE_FORMAT(start_date, '%Y') as year", "COUNT(*) as count"])
         ->from('events')
+        ->where(['not', ['start_date' => null]])
         ->groupBy('year')
         ->orderBy('year ASC')
         ->all();
 
+    // 3. 准备饼图数据
+    $typeData = (new \yii\db\Query())
+        ->select(['event_type', 'COUNT(*) as count'])
+        ->from('events')
+        ->groupBy('event_type')
+        ->all();
+
     return $this->render('index', [
-        'charCount' => $charCount,
-        'battleCount' => $battleCount,
-        'msgCount' => $msgCount,
-        'workCount' => $workCount,
+        'stats'     => $stats,
         'eventData' => $eventData,
+        'typeData'  => $typeData,
     ]);
 }
+// 预留“图表展示”页面
+    public function actionCharts() {
+        return $this->render('charts');
+    }
 }
