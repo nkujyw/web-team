@@ -124,4 +124,35 @@ class SiteController extends Controller
             'id' => $id
         ]);
     }
+
+    /**
+     * 抗战雄师详情聚合页
+     * 对应视图：frontend/views/site/index-teams.php
+     * 访问路由：site/index-teams
+     */
+    public function actionIndexTeams($ids = '')
+    {
+        // 1. 处理 ID 字符串
+        $idArray = explode(',', $ids);
+
+        // 2. 查询数据 (复用之前的逻辑)
+        if (empty($ids)) {
+             $teams = \common\models\Teams::find()
+                ->where(['in', 'force_id', [5, 6, 7]])
+                ->orderBy(new \yii\db\Expression('rand()'))
+                ->limit(4)
+                ->all();
+        } else {
+            $teams = \common\models\Teams::find()
+                ->where(['id' => $idArray])
+                // 注意这里要引入 Expression，或者确保文件头部 use 了 yii\db\Expression
+                ->orderBy(new \yii\db\Expression('FIELD (id, ' . $ids . ')'))
+                ->all();
+        }
+
+        // 3. 渲染你新建的那个文件 'index-teams'
+        return $this->render('index-teams', [
+            'teams' => $teams,
+        ]);
+    }
 }

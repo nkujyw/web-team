@@ -53,15 +53,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
 
     /**
      * Login action.
@@ -97,4 +88,29 @@ class SiteController extends Controller
 
         return $this->redirect('../../frontend/web/index.php');
     }
+    public function actionIndex()
+{
+    // 获取各项统计数据
+    $charCount = \common\models\Characters::find()->count();
+    $battleCount = \common\models\Events::find()->where(['event_type' => 'battle'])->count();
+    // 假设留言表中所有数据暂视为“未处理”
+    $msgCount = \common\models\Messages::find()->count();
+    $workCount = \common\models\MemWorks::find()->count();
+
+    // 准备折线图数据：按年份统计事件数量
+    $eventData = (new \yii\db\Query())
+        ->select(["DATE_FORMAT(start_date, '%Y') as year", "COUNT(*) as count"])
+        ->from('events')
+        ->groupBy('year')
+        ->orderBy('year ASC')
+        ->all();
+
+    return $this->render('index', [
+        'charCount' => $charCount,
+        'battleCount' => $battleCount,
+        'msgCount' => $msgCount,
+        'workCount' => $workCount,
+        'eventData' => $eventData,
+    ]);
+}
 }

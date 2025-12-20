@@ -1,144 +1,86 @@
 /* =========================================
-   URBIX 风格复刻版 CSS
+   1. 侧边栏与 Logo 区域 (浅灰风格)
    ========================================= */
-
-/* 1. 全局背景：浅灰色，突出卡片的悬浮感 */
-body {
-    background-color: #f5f7fb;
-    font-family: 'Inter', sans-serif;
-}
-
-/* 2. 侧边栏 (Sidebar) - 纯白风格 */
 .sidebar {
     background: #ffffff !important;
     border-right: 1px solid #eff2f7;
-    box-shadow: none; /* Urbix 风格通常不需要侧边栏阴影，靠边框分隔 */
 }
 
-/* Sidebar Logo 区域 */
+/* 将 Logo 所在地方也变为导航栏的浅灰 */
 .sidebar-brand {
-    background-color: #ffffff;
+    background-color: #f8f9fa !important; /* 与 Navbar 背景一致的浅灰 */
     color: #495057 !important;
-    font-size: 1.15rem;
-    font-weight: 700;
-    padding: 1.5rem 1.5rem;
+    border-bottom: 1px solid #eff2f7;
+    padding: 1.25rem 1.5rem;
 }
 
-/* 菜单项颜色 */
-.sidebar-link, a.sidebar-link {
-    background: transparent !important;
-    color: #74788d !important; /* 柔和的深灰 */
-    font-weight: 500;
-    transition: all 0.3s;
-}
-.sidebar-link i, a.sidebar-link i {
-    color: #74788d !important;
-}
-
-/* 菜单悬停 & 激活状态 */
-.sidebar-link:hover, .sidebar-item.active .sidebar-link {
-    color: #3b5de7 !important; /* Urbix 蓝 */
-    background-color: rgba(59, 93, 231, 0.08) !important; /* 极淡的蓝色背景 */
-    border-radius: 4px; /* 圆角菜单 */
-}
-.sidebar-link:hover i, .sidebar-item.active .sidebar-link i {
-    color: #3b5de7 !important;
-}
-
-.sidebar-header {
-    color: #8592a3 !important;
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-}
-
-/* 3. 顶部导航栏 (Navbar) - 纯白悬浮 */
-.navbar {
-    background-color: #ffffff !important;
-    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,0.03); /* 柔和阴影 */
-    padding: 12px 24px; /* 增加高度，更有呼吸感 */
-}
-
-/* Navbar 图标按钮 (通知、设置、月亮) */
-.nav-icon {
-    color: #555b6d;
-    position: relative;
-    padding: 0 10px;
-}
-.nav-icon:hover {
-    color: #3b5de7;
-}
-
-/* 4. 用户信息区 (Navbar 右侧) */
-.nav-user-info {
-    display: flex;
-    align-items: center;
-    text-align: right;
-    line-height: 1.2;
-}
-.nav-user-name {
-    font-weight: 600;
-    color: #495057;
+/* 文字 Logo 方块 */
+.logo-box {
+    background: #3b5de7;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 800;
     font-size: 14px;
-    display: block;
-}
-.nav-user-role {
-    font-size: 12px;
-    color: #74788d;
-    display: block;
 }
 
-/* 头像样式 */
-.admin-avatar-nav {
-    width: 36px;
-    height: 36px;
-    background-color: #eff2f7;
-    border-radius: 50%;
-    margin-left: 10px;
-    object-fit: cover;
+.sidebar-link {
+    color: #555 !important;
+    background: transparent !important;
 }
 
 /* =========================================
-   深色模式适配 (Dark Mode)
+   2. 紫色背景 + 白色 A 头像 (最终修复方案)
    ========================================= */
-body[data-theme="dark"] {
-    background-color: #222736;
+/* 头像外部容器，模仿你给的图，增加四色圆环效果 */
+.avatar-initial-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 2px;
+    background: conic-gradient(
+        #f5365c 0% 25%, 
+        #11cdef 25% 50%, 
+        #2dce89 50% 75%, 
+        #fb6340 75% 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-body[data-theme="dark"] .sidebar {
-    background: #2a3042 !important;
-    border-right: 1px solid #32394e;
+
+/* 内部紫底白字 */
+.avatar-initial {
+    width: 100%;
+    height: 100%;
+    background-color: #6f42c1 !important; /* 紫色背景 */
+    color: #ffffff !important;           /* 白色文字 */
+    border-radius: 50%;
+    display: flex !important;            /* 强制显示 */
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    border: 2px solid #ffffff;           /* 字母与彩环间的白缝 */
 }
+
+/* =========================================
+   3. 深色模式适配
+   ========================================= */
+body[data-theme="dark"] { background-color: #222736; }
+
+body[data-theme="dark"] .sidebar,
 body[data-theme="dark"] .sidebar-brand {
-    background-color: #2a3042;
-    color: #fff !important;
+    background-color: #2a3042 !important;
+    color: #eff2f7 !important;
 }
-body[data-theme="dark"] .sidebar-link, 
-body[data-theme="dark"] .sidebar-link i {
-    color: #a6b0cf !important;
+
+body[data-theme="dark"] .card {
+    background-color: #2a3042 !important;
+    color: #fff;
+    border: 1px solid #32394e;
 }
-body[data-theme="dark"] .sidebar-item.active .sidebar-link {
-    color: #fff !important;
-    background-color: rgba(255,255,255,0.1) !important;
-}
+
 body[data-theme="dark"] .navbar {
     background-color: #2a3042 !important;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
-body[data-theme="dark"] .nav-icon {
-    color: #a6b0cf;
-}
-body[data-theme="dark"] .nav-user-name {
-    color: #eff2f7;
-}
-body[data-theme="dark"] .nav-user-role {
-    color: #a6b0cf;
-}
-body[data-theme="dark"] .content {
-    background-color: #222736;
-}
-/* 深色模式下的表格修复 (保留上一轮的修复) */
-body[data-theme="dark"] .table { color: #e9ecef; border-color: #32394e; }
-body[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) > * { background-color: rgba(255, 255, 255, 0.05); color: #e9ecef; box-shadow: none;}
-body[data-theme="dark"] .table > :not(caption) > * > * { background-color: transparent; }
-body[data-theme="dark"] .table-hover > tbody > tr:hover > * { background-color: rgba(255, 255, 255, 0.1); color: #fff; }
-body[data-theme="dark"] .card { background-color: #2a3042 !important; color: #e9ecef; border: 1px solid #32394e; }

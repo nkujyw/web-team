@@ -7,7 +7,6 @@ use yii\helpers\Url;
 
 $this->title = $model->name . ' - 战役纪实';
 
-// ================= 配置区域 =================
 // 数据库里没有的“指挥官”和“兵力”信息，依然保留在数组里
 $battleStats = [
     // 1. 卢沟桥事变
@@ -89,7 +88,7 @@ $stats = isset($battleStats[$model->id]) ? $battleStats[$model->id] : [
                             </div>
 
                             <div class="mt-5 p-4" style="background: #fff8f8; border-radius: 5px; border: 1px dashed #ebb;">
-                                <h5 class="text-danger font-weight-bold"><i class="fa fa-history"></i> 历史意义</h5>
+                                <h5 class="text-danger font-weight-bold"><i class="fa fa-history"></i> 最终结果</h5>
                                 <p class="mb-0 small text-secondary" style="line-height: 1.8; font-size: 16px;">
                                     <?= Html::encode($model->significance) ?>
                                 </p>

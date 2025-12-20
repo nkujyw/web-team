@@ -173,14 +173,28 @@ $this->title = '首页 - 中国抗战胜利纪念网';
 
             <div class="section-box mb-5">
                 <h3 class="section-title"><span>抗战雄师</span> <small>HEROIC TROOPS</small></h3>
+                
+                <?php 
+                    // 1. 先把这 4 个随机队伍的 ID 提取出来
+                    $teamIds = [];
+                    foreach ($teams as $t) {
+                        $teamIds[] = $t->id;
+                    }
+                    // 2. 拼成字符串，例如 "5,12,3,8"
+                    $idsString = implode(',', $teamIds); 
+                ?>
+
                 <div class="list-group">
                     <?php foreach ($teams as $team): ?>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-left-0 border-right-0">
+                        
+                        <a href="<?= Url::to(['site/index-teams', 'ids' => $idsString, '#' => 'team-' . $team->id]) ?>" class="list-group-item list-group-item-action flex-column align-items-start border-left-0 border-right-0">
+                            
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1 text-dark"><i class="fa fa-flag text-danger"></i> <?= Html::encode($team->name) ?></h5>
                                 <small class="text-muted">成立时间：<?= $team->founded_date ?></small>
                             </div>
                             <p class="mb-1 text-secondary small"><?= mb_substr($team->description, 0, 80) ?>...</p>
+                        
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -210,21 +224,49 @@ $this->title = '首页 - 中国抗战胜利纪念网';
         <div class="col-lg-4">
             
             <div class="mb-4">
-                <div class="card border-danger mb-3">
-                    <div class="card-header bg-danger text-white font-weight-bold">
-                        <i class="fa fa-star"></i> 每日英烈
+                <div class="card border-danger mb-3 shadow hero-card-hover" style="transition: all 0.3s;">
+                    
+                    <div class="card-header bg-danger text-white font-weight-bold d-flex justify-content-between align-items-center">
+                        <span><i class="fa fa-star"></i> 每日英烈</span>
+                        <span class="badge badge-light text-danger">今日缅怀</span>
                     </div>
+
                     <?php if ($hero): ?>
-                        <div style="width: 100%; height: 350px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        
+                        <div class="hero-img-box bg-white text-center border-bottom" style="height: 320px; overflow: hidden; padding: 10px;">
                              <img src="<?= Url::to('@web' . $hero->url) ?>" 
                                   alt="<?= $hero->name ?>" 
-                                  style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;">
+                                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title text-center font-weight-bold"><?= Html::encode($hero->name) ?></h5>
-                            <p class="card-text text-muted small"><?= mb_substr($hero->biography, 0, 60) ?>...</p>
-                            <a href="<?= Url::to(['character/view', 'id' => $hero->id]) ?>" class="btn btn-danger btn-sm btn-block">瞻仰生平</a>
+
+                        <div class="hero-name-bar bg-white text-center py-2" style="border-bottom: 1px solid #eee; position: relative; z-index: 2;">
+                            <h4 class="text-danger font-weight-bold mb-0"><?= Html::encode($hero->name) ?></h4>
+                            <small class="text-muted"><?= Html::encode($hero->rank ?? '民族英雄') ?></small>
+                            <div class="text-muted small mt-1"><i class="fa fa-chevron-down transition-icon"></i></div>
                         </div>
+
+                        <div class="hero-details bg-white border-top-0" 
+                             style="
+                                max-height: 0;       /* 默认关上 */
+                                overflow: hidden;    /* 内容藏起来 */
+                                transition: max-height 0.5s ease-in-out; /* 0.5秒平滑过渡 */
+                             ">
+                             
+                             <div class="p-3" style="background-color: #fffbfb;">
+                                <strong class="d-block text-danger border-bottom pb-2 mb-2">【生平事迹】</strong>
+                                <div class="text-secondary small text-justify" style="line-height: 1.8;">
+                                    <?= nl2br(Html::encode($hero->biography)) ?>
+                                    
+                                    <?php if (!empty($hero->achievements)): ?>
+                                         <hr style="margin: 10px 0; border-top: 1px dashed #ddd;">
+                                         <strong class="d-block text-danger mb-2">【主要功绩】</strong>
+                                         <?= nl2br(Html::encode($hero->achievements)) ?>
+                                    <?php endif; ?>
+                                </div>
+                             </div>
+
+                        </div>
+
                     <?php endif; ?>
                 </div>
             </div>
@@ -316,4 +358,22 @@ $this->title = '首页 - 中国抗战胜利纪念网';
         transform: translateX(-50%);
     }
 }
+
+/* 1. 鼠标放上去：把最大高度设大，撑开页面 */
+.hero-card-hover:hover .hero-details {
+ max-height: 800px !important; /* 设置一个足够大的值 */
+}
+
+/* 2. 鼠标放上去：箭头旋转 */
+.hero-card-hover:hover .transition-icon {
+transform: rotate(180deg);
+}
+.transition-icon {
+    transition: transform 0.3s;
+}
+/* 3. 鼠标放上去：卡片阴影加深 */
+.hero-card-hover:hover {
+ box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
 </style>
+
