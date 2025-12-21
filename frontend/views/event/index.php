@@ -79,15 +79,16 @@ JS
   }
 
   .timeline-wrap{
-    position: relative;
-    margin: 14px 0 14px;
-    padding: 14px 14px 8px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 22px 55px rgba(0,0,0,0.35);
-  }
+  position: relative;
+  margin: 10px 0 12px;          /* 上下收紧 */
+  padding: 10px 12px 6px;       /* 内边距整体缩小 */
+  border-radius: 14px;          /* 圆角减小，更克制 */
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06); /* 稍微提亮一点 */
+  backdrop-filter: blur(8px);   /* 模糊减弱 */
+  box-shadow: 0 14px 32px rgba(0,0,0,0.30); /* 阴影减轻 */
+}
+
   .timeline-title{
     display:flex;
     align-items:center;
@@ -113,21 +114,26 @@ JS
     padding: 6px 4px 6px;
   }
   .year-node{
-    min-width: 112px;
-    height: 58px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.16);
-    background: rgba(255,255,255,0.06);
-    color: rgba(234,238,247,0.86);
-    font-size: 20px;
-    font-weight: 900;
-    cursor:pointer;
-    user-select:none;
-    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
-  }
+  min-width: 96px;              /* 宽度缩小 */
+  height: 46px;                 /* 高度明显下降 */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06);
+  color: rgba(234,238,247,0.88);
+  font-size: 18px;              /* 字号回到正文+ */
+  font-weight: 800;             /* 稍降权重 */
+  cursor:pointer;
+  user-select:none;
+  transition: transform .18s ease,
+              box-shadow .18s ease,
+              background .18s ease,
+              border-color .18s ease,
+              color .18s ease;
+}
+
   .year-node:hover{
     transform: translateY(-3px);
     box-shadow: 0 18px 40px rgba(0,0,0,0.42);
@@ -179,12 +185,13 @@ JS
   .map-card:after{
     content:"";
     position:absolute;
+    filter: brightness(1.90);
     inset:0;
     background:
       radial-gradient(900px 700px at 50% 40%, rgba(255,255,255,0.06), transparent 60%),
       radial-gradient(1200px 900px at 50% 110%, rgba(0,0,0,var(--smoke)), transparent 60%),
       linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,var(--smoke)));
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
     pointer-events:none;
   }
 
@@ -211,14 +218,11 @@ JS
   .map-card-head .hint{ font-size: 12px; color: rgba(234,238,247,0.62); }
 
 #chinaMap{
-  position: relative;
-  z-index: 1;
-
-  width: 100%;              /* 吃满卡片宽度 */
-  aspect-ratio: 3 / 2;      /* ✅ 宽 : 高 = 3 : 2（等价于高=2/3宽） */
-
-  margin: 0;
+  width: 100%;
+  height: 720px;          /* 固定高度，核心 */
+  margin: 24px auto 20px; /* 上下留节奏 */
 }
+
 
 
 
@@ -606,9 +610,9 @@ document.addEventListener('DOMContentLoaded', async function () {
       map: 'china',
       show: true,
       roam: true,
-      zoom: 1.42,
-      layoutCenter: ['50%','54%'],
-      layoutSize: '175%',
+      zoom: 1.15,
+      layoutSize: '145%',
+      layoutCenter: ['50%', '52%'],
       scaleLimit: { min: 1.0, max: 6.0 },
 
       label: { show: true, color: 'rgba(234,238,247,0.42)', fontSize: 11 },
