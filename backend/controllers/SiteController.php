@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'team', 'charts'],
+                        'actions' => ['logout', 'index', 'team', 'charts', 'team-homework', 'personal-homework','download','get-file-list'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -165,4 +165,62 @@ class SiteController extends Controller
 
         return $this->render('team', ['data' => $data]);
     }
+    public function actionTeamHomework()
+{
+    return $this->render('team-homework');
+}
+
+public function actionPersonalHomework()
+{
+    return $this->render('personal-homework');
+}
+/**
+ * 通用下载方法
+ * @param string $type 类别：team, personal, db
+ * @param string $file 文件名
+ * @param string $folder 个人作业的子文件夹名（学号_姓名）
+ */
+public function actionDownload($type, $file, $folder = '')
+{
+    // 定义基础路径指向根目录下的 data
+    $basePath = \Yii::getAlias('@backend/../data/');
+
+    // 根据类型拼装具体的物理路径
+    if ($type === 'db') {
+        $path = $basePath . $file;
+    } elseif ($type === 'team') {
+        $path = $basePath . 'team/' . $file;
+    } elseif ($type === 'personal') {
+        $path = $basePath . 'personal/' . $folder . '/' . $file;
+    } else {
+        throw new \yii\web\NotFoundHttpException("非法请求");
+    }
+
+    if (file_exists($path)) {
+        return \Yii::$app->response->sendFile($path);
+    } else {
+        // 如果找不到文件，给个友好的报错
+        \Yii::$app->session->setFlash('error', "文件不存在：$path");
+        return $this->redirect(\Yii::$app->request->referrer);
+    }
+}
+/**
+ * 获取指定学生目录下的所有文件列表 (返回 JSON)
+ */
+public function actionGetFileList($folder)
+{
+    \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    $folderPath = \Yii::getAlias('@backend/../data/personal/') . $folder;
+    
+    $fileList = [];
+    if (is_dir($folderPath)) {
+        $files = new \DirectoryIterator($folderPath);
+        foreach ($files as $fileInfo) {
+            if (!$fileInfo->isDot() && !$fileInfo->isDir()) {
+                $fileList[] = $fileInfo->getFilename();
+            }
+        }
+    }
+    return $fileList;
+}
 }

@@ -93,10 +93,13 @@ AppAsset::register($this);
             <i class="align-middle" data-feather="download-cloud"></i> <span>作业下载</span>
         </a>
         <ul id="homework" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-            <li class="sidebar-item"><a class="sidebar-link" href="#">文档下载</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="#">团队作业</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="#">个人作业</a></li>
-        </ul>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/site/team-homework']) ?>">团队作业</a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="<?= \yii\helpers\Url::to(['/site/personal-homework']) ?>">个人作业</a>
+        </li>
+    </ul>
     </li>
 
     <li class="sidebar-item">
