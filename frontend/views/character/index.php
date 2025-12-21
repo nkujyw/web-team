@@ -24,8 +24,7 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
     <div class="flags">
       <img src="<?= Yii::getAlias('@web') ?>/image/flags/共产党.png">
       <img src="<?= Yii::getAlias('@web') ?>/image/flags/国民党.png">
-      <img src="<?= Yii::getAlias('@web') ?>/image/flags/美国.png">
-      <img src="<?= Yii::getAlias('@web') ?>/image/flags/英国.png">
+      <img src="<?= Yii::getAlias('@web') ?>/image/flags/united.png">
     </div>
 
     <!-- 国家分组 -->
@@ -34,18 +33,18 @@ $this->registerJsFile('@web/js/chinaMap.js', ['position' => \yii\web\View::POS_E
       <!-- 中国共产党 -->
       <div class="team">
         <h3>中国共产党</h3>
-        <div style="display:flex; gap:24px;">
+        <div style="display:flex; gap:44px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/毛泽东.png" width="120">
-          <p>中国共产党率先倡导并推动抗日民族统一战线，领导八路军、新四军深入敌后，广泛发动群众，开展游击战争，建立抗日根据地，长期牵制和消耗日军力量，为中国乃至世界反法西斯战争作出重要贡献。</p>
+          <p>中国共产党率先倡导并推动抗日民族统一战线，领导八路军、新四军深入敌后，广泛发动群众，开展游击战争，建立抗日根据地，长期牵制和消耗日军力量。</p>
         </div>
       </div>
 
       <!-- 国民党 -->
       <div class="team">
         <h3>中国国民党</h3>
-        <div style="display:flex; gap:24px;">
+        <div style="display:flex; gap:20px;">
           <img src="<?= Yii::getAlias('@web') ?>/image/characters/蒋介石.png" width="120">
-          <p>中国国民党政府在全国抗战中承担了正面战场的主要作战任务。国民革命军在淞沪、台儿庄、武汉、长沙等重大战役中与日军正面作战，付出了巨大人员和物资牺牲。国民政府坚持对日宣战并维持国家政权运转，在争取国际承认和外援方面发挥了关键作用。</p>
+          <p>中国国民党政府在全国抗战中承担了正面战场的主要作战任务。国民革命军在淞沪、台儿庄、武汉、长沙等重大战役中与日军正面作战，付出了巨大人员和物资牺牲,也在争取国际承认和外援方面发挥了关键作用。</p>
         </div>
       </div>
 

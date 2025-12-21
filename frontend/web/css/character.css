@@ -76,7 +76,7 @@ body{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:48px;
-  padding:48px 200px;
+  padding:50px 200px;
   min-height:100vh;
 }
 
@@ -216,7 +216,7 @@ body{
 
 /* ===================== 单支军队 ===================== */
 .team{
-  height: 100%;                 /* 关键 */
+  height: 80%;                 /* 关键 */
   display: flex;
   flex-direction: column;
 
