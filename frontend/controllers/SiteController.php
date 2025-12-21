@@ -155,4 +155,28 @@ class SiteController extends Controller
             'teams' => $teams,
         ]);
     }
+
+public function actionTeamInfo()
+{
+    // 使用相对路径从项目根目录寻找
+    $jsonPath = Yii::getAlias('@common') . '/../backend/views/teams/team_data.json';
+    $jsonPath = \Yii::getAlias($jsonPath);
+
+    if (file_exists($jsonPath)) {
+        $jsonContent = file_get_contents($jsonPath);
+        $data = json_decode($jsonContent, true);
+        
+        // 如果 JSON 解析失败，data 会是 null
+        if (!$data) {
+            die("JSON 文件内容格式不正确，请检查 backend/data/team_data.json");
+        }
+    } else {
+        // 如果找不到文件，直接报错提醒你路径对不对
+        die("找不到 JSON 数据文件，请检查路径是否正确: " . $jsonPath);
+    }
+
+    return $this->render('team-info', [
+        'data' => $data,
+    ]);
+}
 }
