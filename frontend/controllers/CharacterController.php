@@ -1,4 +1,12 @@
 <?php
+/**
+ * CharacterController.php
+ * 作者：刘成蕊
+ * 学号：2312478
+ * 功能：实现“英雄与部队”页面的数据控制，
+ *      从数据库中读取人物、部队及阵营信息，
+ *      按反法西斯阵营与法西斯阵营分类并传递给视图展示。
+ */
 namespace frontend\controllers;
 
 use yii\web\Controller;
