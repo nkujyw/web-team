@@ -1,3 +1,8 @@
+/**
+*Team：方圆双睿
+*Coding by 滕一睿 2313109，20251212
+*势力表搜索优化
+*/
 <?php
 
 namespace common\models\search;
@@ -18,7 +23,7 @@ class ForcesSearch extends Forces
     {
         return [
             [['id'], 'integer'],
-            [['name', 'type', 'description'], 'safe'], // type 作为字符串接收
+            [['name', 'type', 'description'], 'safe'], 
         ];
     }
 
@@ -50,13 +55,13 @@ class ForcesSearch extends Forces
             return $dataProvider;
         }
 
-        // 精确匹配（关键修改点）
+       
         $query->andFilterWhere([
             'id' => $this->id,
             'type' => $this->type, 
         ]);
 
-        // 其他字段仍然模糊搜索
+     
         $query->andFilterWhere(['like', 'name', $this->name])
               ->andFilterWhere(['like', 'description', $this->description]);
 
