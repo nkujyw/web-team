@@ -1,3 +1,8 @@
+/**
+*Team：方圆双睿
+*Coding by 滕一睿 2313109，20251210
+*势力表汉化属性/隐藏id
+*/
 <?php
 
 namespace common\models;

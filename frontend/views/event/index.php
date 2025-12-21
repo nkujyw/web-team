@@ -1,3 +1,8 @@
+/**
+*Team：方圆双睿
+*Coding by 滕一睿 2313109，20251216
+*这是前端的抗日时间轴模块实现
+*/
 <?php
 use yii\helpers\Url;
 
@@ -6,7 +11,6 @@ $this->title = '事件时间轴地图';
 /* 引入 ECharts */
 $this->registerJsFile('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js');
 
-/* 接口地址（基础URL，不要自己拼 &year= ） */
 $yearDataBase = Url::to(['event/year-data']);   // 返回 { points:[], provinces:[] }
 $yearListBase = Url::to(['event/year-list']);   // 返回 { items:[] }
 $chinaJsonUrl  = Url::to('@web/js/china_v2.json');
@@ -79,15 +83,16 @@ JS
   }
 
   .timeline-wrap{
-    position: relative;
-    margin: 14px 0 14px;
-    padding: 14px 14px 8px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 22px 55px rgba(0,0,0,0.35);
-  }
+  position: relative;
+  margin: 10px 0 12px;          
+  padding: 10px 12px 6px;       
+  border-radius: 14px;         
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);  
+  box-shadow: 0 14px 32px rgba(0,0,0,0.30); 
+}
+
   .timeline-title{
     display:flex;
     align-items:center;
@@ -113,21 +118,26 @@ JS
     padding: 6px 4px 6px;
   }
   .year-node{
-    min-width: 112px;
-    height: 58px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.16);
-    background: rgba(255,255,255,0.06);
-    color: rgba(234,238,247,0.86);
-    font-size: 20px;
-    font-weight: 900;
-    cursor:pointer;
-    user-select:none;
-    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
-  }
+  min-width: 96px;             
+  height: 46px;              
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06);
+  color: rgba(234,238,247,0.88);
+  font-size: 18px;             
+  font-weight: 800;            
+  cursor:pointer;
+  user-select:none;
+  transition: transform .18s ease,
+              box-shadow .18s ease,
+              background .18s ease,
+              border-color .18s ease,
+              color .18s ease;
+}
+
   .year-node:hover{
     transform: translateY(-3px);
     box-shadow: 0 18px 40px rgba(0,0,0,0.42);
@@ -179,12 +189,13 @@ JS
   .map-card:after{
     content:"";
     position:absolute;
+    filter: brightness(1.90);
     inset:0;
     background:
       radial-gradient(900px 700px at 50% 40%, rgba(255,255,255,0.06), transparent 60%),
       radial-gradient(1200px 900px at 50% 110%, rgba(0,0,0,var(--smoke)), transparent 60%),
       linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,var(--smoke)));
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
     pointer-events:none;
   }
 
@@ -210,13 +221,16 @@ JS
   .map-card-head .title{ font-weight: 950; letter-spacing: 0.6px; color: rgba(234,238,247,0.92); }
   .map-card-head .hint{ font-size: 12px; color: rgba(234,238,247,0.62); }
 
-  #chinaMap{
-    position: relative;
-    z-index: 1;
-    width:100%;
-    height: calc(100vh - 210px);
-    min-height: 880px;
-  }
+#chinaMap{
+  width: 100%;
+  height: 720px;       
+  margin: 24px auto 20px; 
+}
+
+
+
+
+
 
   .action-row{ text-align:center; margin: 18px 0 6px; }
   #showYearEvents{
@@ -313,7 +327,6 @@ JS
   .modal-body{ padding: 18px; overflow:auto; color: rgba(234,238,247,0.88); line-height: 1.9; font-size: 14px; }
   .modal-body hr{ border: none; border-top: 1px solid rgba(255,255,255,0.12); margin: 14px 0; }
 
-  /* ✅ 弹窗 Meta（朴素两行：无图标、无框） */
   .modal-meta{
     margin-bottom: 10px;
   }
@@ -372,7 +385,7 @@ JS
   <div class="hero">
     <div>
       <h2>抗战时期重大事件时间轴</h2>
-      <div class="subtitle">点击年份：点亮该年有事件的省份；点击省份：单独高亮浮空（再点一次取消）</div>
+      
     </div>
     <div class="badge">
       <span class="badge-dot"></span>
@@ -600,9 +613,9 @@ document.addEventListener('DOMContentLoaded', async function () {
       map: 'china',
       show: true,
       roam: true,
-      zoom: 1.42,
-      layoutCenter: ['50%','54%'],
-      layoutSize: '175%',
+      zoom: 1.15,
+      layoutSize: '145%',
+      layoutCenter: ['50%', '52%'],
       scaleLimit: { min: 1.0, max: 6.0 },
 
       label: { show: true, color: 'rgba(234,238,247,0.42)', fontSize: 11 },
@@ -744,7 +757,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       .replace(/'/g, "&#039;");
   }
 
-  // ✅ 红点弹窗（朴素两行时间/地点）
   chart.on('click', (params) => {
     if (params.seriesType === 'effectScatter' && params.data?.event) {
       const ev = params.data.event || {};
