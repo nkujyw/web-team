@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+// 使用动态数据
 $info = $data['team_info'];
 $members = $data['members'];
 $this->title = '团队介绍 - ' . $info['team_name'];
@@ -31,7 +32,6 @@ $this->title = '团队介绍 - ' . $info['team_name'];
                         <div class="col-md-8 mb-3">
                             <label class="small fw-bold">团队总体介绍</label>
                             <textarea name="TeamInfo[intro]" class="form-control" rows="2"><?= Html::encode($info['intro']) ?></textarea>
-                            
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="small fw-bold">理念板块标题</label>
@@ -58,7 +58,7 @@ $this->title = '团队介绍 - ' . $info['team_name'];
                 <?php foreach ($members as $index => $member): ?>
                     <div class="col-md-6 mb-3">
                         <div class="card p-3 border shadow-none">
-                            <h6 class="fw-bold mb-3 text-info">成员：<?= Html::encode($member['name']) ?> (头像已锁定)</h6>
+                            <h6 class="fw-bold mb-3 text-info">成员：<?= Html::encode($member['name']) ?></h6>
                             <div class="row g-2">
                                 <div class="col-6">
                                     <label class="small">姓名</label>
@@ -95,7 +95,7 @@ $this->title = '团队介绍 - ' . $info['team_name'];
                         <div class="row align-items-center mb-3">
                             <div class="col-auto">
                                 <img src="<?= Url::to('../../frontend/web/image/our-img/' . $member['img']) ?>"
-                                     class="rounded-circle border border-3 border-primary p-1" 
+                                     class="rounded-circle border border-3 border-primary p-1 shadow-sm" 
                                      style="width: 85px; height: 85px; object-fit: cover;">
                             </div>
                             <div class="col">
@@ -155,16 +155,14 @@ function toggleEdit() {
 </script>
 
 <style>
-/* 卡片通用美化 */
+/* 基础样式 */
 .team-card { transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); }
 .team-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; }
 .bg-primary-light { background: rgba(59, 93, 231, 0.1); padding: 4px 8px; font-size: 0.75rem; border-radius: 4px; }
 .feather-sm { width: 14px; height: 14px; }
 
-/* 核心：修复深色背景下文字看不清的问题 */
 .custom-team-box { color: #ffffff !important; }
 .custom-team-box p { color: rgba(255, 255, 255, 0.9) !important; line-height: 2; text-align: justify; }
-.custom-team-box h3 { color: #ffffff !important; }
 
 /* 暗黑模式适配 */
 body[data-theme="dark"] .bg-primary-light { background: rgba(91, 183, 255, 0.2); color: #5bb7ff !important; }
