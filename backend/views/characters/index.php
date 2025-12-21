@@ -1,10 +1,9 @@
+<?php
 /**
 *Team：方圆双睿
 *Coding by 滕一睿 2313109，20251210
 *人物表汉化属性/隐藏id
 */
-<?php
-
 use yii\helpers\ArrayHelper;
 use common\models\Forces; 
 use yii\helpers\Html;

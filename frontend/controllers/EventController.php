@@ -1,10 +1,9 @@
+<?php
 /**
  * Team：方圆双睿
  * Coding by 滕一睿 2313109，20251216
  * 前端抗日战争时间轴模块逻辑实现（完善版）
  */
-<?php
-
 namespace frontend\controllers;
 
 use Yii;

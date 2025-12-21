@@ -1,9 +1,9 @@
+<?php
 /**
 *Team：方圆双睿
 *Coding by 滕一睿 2313109，20251216
 *这是前端的抗日时间轴模块实现
 */
-<?php
 use yii\helpers\Url;
 
 $this->title = '事件时间轴地图';
