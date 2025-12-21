@@ -296,7 +296,19 @@ $this->title = '首页 - 中国抗战胜利纪念网';
                     <?php endforeach; ?>
                 </ul>
             </div>
-
+            <div class="card mt-4 shadow-sm border-0">
+                <div class="card-header bg-dark text-white font-weight-bold">
+                    <i class="fa fa-info-circle"></i> 关于我们
+                </div>
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="fa fa-users fa-3x text-danger"></i>
+                </div>
+                    <h5 class="card-title">开发小组</h5>
+                    <p class="card-text small text-muted">铭记历史，用技术传承民族精神。</p>
+                    <a href="<?= Url::to(['site/team-info']) ?>" class="btn btn-danger btn-block">查看团队介绍</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,3 +1,9 @@
+/**
+ * 文件名：chinaMap.js
+ * 作者：刘成蕊（2312478）
+ * 功能：基于 ECharts 绘制抗日战争时期中国形势地图，
+ *      按侵略程度对各省区域进行颜色区分，并支持交互扩展。
+ */
 
 /* ================= 初始化 ================= */
 const chart = echarts.init(document.getElementById('chinaMap'));
