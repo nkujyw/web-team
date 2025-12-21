@@ -1,10 +1,10 @@
+
+<?php
 /**
 *Team：方圆双睿
 *Coding by 滕一睿 2313109，20251212
 *势力表搜索优化
 */
-<?php
-
 namespace common\models\search;
 
 use yii\base\Model;
