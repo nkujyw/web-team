@@ -1,14 +1,14 @@
 
 <?php
+
+namespace common\models;
+
+use Yii;
 /**
 *Team：方圆双睿
 *Coding by 滕一睿 2313109，20251210
 *地点表汉化属性/隐藏id
 */
-namespace common\models;
-
-use Yii;
-
 /**
  * This is the model class for table "locations".
  *
