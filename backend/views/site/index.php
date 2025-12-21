@@ -1,5 +1,29 @@
 <?php
+use yii\helpers\Url;
+
 $this->title = '数据控制台 - 抗战 80 周年纪念项目';
+
+/** * 1. 强制引入 Chart.js 库 (放在顶部，确保先加载库再执行绘图)
+ */
+$this->registerJsFile('https://lib.baomitu.com/Chart.js/2.9.4/Chart.min.js', ['position' => \yii\web\View::POS_HEAD]);
+
+// 映射数据库英文类型到中文
+$typeMap = [
+    'battle' => '战役/战斗',
+    'diplomatic' => '外交事件',
+    'meeting' => '重要会议'
+];
+
+// 处理数据
+$lineLabels = json_encode(array_column($eventData, 'year') ?: []);
+$lineValues = json_encode(array_column($eventData, 'count') ?: []);
+
+$processedPieLabels = array_map(function($type) use ($typeMap) {
+    return $typeMap[$type] ?? $type;
+}, array_column($typeData, 'event_type') ?: []);
+
+$pieLabels = json_encode($processedPieLabels);
+$pieValues = json_encode(array_column($typeData, 'count') ?: []);
 ?>
 
 <div class="container-fluid p-0">
@@ -54,7 +78,7 @@ $this->title = '数据控制台 - 抗战 80 周年纪念项目';
                         <div class="col-auto"><div class="stat text-warning"><i class="align-middle" data-feather="message-square"></i></div></div>
                     </div>
                     <h1 class="mt-1 mb-3"><?= $stats['msgCount'] ?></h1>
-                    <div class="mb-0"><span class="text-muted">今日新增留言需处理</span></div>
+                    <div class="mb-0"><span class="text-muted">累计收录访客感言</span></div>
                 </div>
             </div>
         </div>
@@ -65,60 +89,78 @@ $this->title = '数据控制台 - 抗战 80 周年纪念项目';
             <div class="card flex-fill w-100">
                 <div class="card-header"><h5 class="card-title mb-0">抗战历史事件时间线 (按年统计)</h5></div>
                 <div class="card-body py-3">
-                    <div class="chart chart-sm"><canvas id="chartjs-dashboard-line"></canvas></div>
+                    <div class="chart chart-sm" style="height: 300px;">
+                        <canvas id="chartjs-dashboard-line"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-12 col-lg-4 d-flex">
             <div class="card flex-fill w-100">
                 <div class="card-header"><h5 class="card-title mb-0">事件类型占比</h5></div>
-                <div class="card-body d-flex"><div class="align-self-center w-100"><div class="py-3 chart-pie"><canvas id="chartjs-dashboard-pie"></canvas></div></div></div>
+                <div class="card-body d-flex">
+                    <div class="align-self-center w-100">
+                        <div class="py-3 chart-pie" style="height: 300px;">
+                            <canvas id="chartjs-dashboard-pie"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <?php
-// 处理图表 JS 数据
-$lineLabels = json_encode(array_column($eventData, 'year'));
-$lineValues = json_encode(array_column($eventData, 'count'));
-
-$pieLabels = json_encode(array_column($typeData, 'event_type'));
-$pieValues = json_encode(array_column($typeData, 'count'));
-
+/**
+ * 3. 绘图脚本 (使用 window.onload 确保库已完全加载)
+ */
 $script = <<< JS
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. 折线图
-    new Chart(document.getElementById("chartjs-dashboard-line"), {
-        type: "line",
-        data: {
-            labels: $lineLabels,
-            datasets: [{
-                label: "事件数量",
-                fill: true,
-                backgroundColor: "rgba(59, 93, 231, 0.1)",
-                borderColor: "#3b5de7",
-                data: $lineValues,
-                tension: 0.4
-            }]
-        },
-        options: { maintainAspectRatio: false }
-    });
+window.onload = function() {
+    if (typeof Chart === 'undefined') {
+        console.error("Chart.js 未能加载，请检查网络或 CDN 链接。");
+        return;
+    }
 
-    // 2. 饼图
-    new Chart(document.getElementById("chartjs-dashboard-pie"), {
-        type: "doughnut",
-        data: {
-            labels: $pieLabels,
-            datasets: [{
-                data: $pieValues,
-                backgroundColor: ["#3b5de7", "#f1b44c", "#f46a6a", "#2dce89"],
-                borderWidth: 5
-            }]
-        },
-        options: { maintainAspectRatio: false, cutoutPercentage: 70 }
-    });
-});
+    // 绘制柱状图
+    var ctxLine = document.getElementById("chartjs-dashboard-line");
+    if (ctxLine) {
+        new Chart(ctxLine, {
+            type: "bar",
+            data: {
+                labels: $lineLabels,
+                datasets: [{
+                    label: "事件数量",
+                    backgroundColor: "#3b7ddd",
+                    data: $lineValues
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: { yAxes: [{ ticks: { beginAtZero: true, stepSize: 1 } }] }
+            }
+        });
+    }
+
+    // 绘制饼图
+    var ctxPie = document.getElementById("chartjs-dashboard-pie");
+    if (ctxPie) {
+        new Chart(ctxPie, {
+            type: "pie",
+            data: {
+                labels: $pieLabels,
+                datasets: [{
+                    data: $pieValues,
+                    backgroundColor: ["#f46a6a", "#3b5de7", "#f1b44c", "#2dce89"],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                legend: { display: true, position: 'bottom' }
+            }
+        });
+    }
+};
 JS;
-$this->registerJs($script);
+$this->registerJs($script, \yii\web\View::POS_END);
 ?>
