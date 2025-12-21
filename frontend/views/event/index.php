@@ -1,3 +1,8 @@
+/**
+*Team：方圆双睿
+*Coding by 滕一睿 2313109，20251216
+*这是前端的抗日时间轴模块实现
+*/
 <?php
 use yii\helpers\Url;
 
@@ -6,7 +11,6 @@ $this->title = '事件时间轴地图';
 /* 引入 ECharts */
 $this->registerJsFile('https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js');
 
-/* 接口地址（基础URL，不要自己拼 &year= ） */
 $yearDataBase = Url::to(['event/year-data']);   // 返回 { points:[], provinces:[] }
 $yearListBase = Url::to(['event/year-list']);   // 返回 { items:[] }
 $chinaJsonUrl  = Url::to('@web/js/china_v2.json');
@@ -80,13 +84,13 @@ JS
 
   .timeline-wrap{
   position: relative;
-  margin: 10px 0 12px;          /* 上下收紧 */
-  padding: 10px 12px 6px;       /* 内边距整体缩小 */
-  border-radius: 14px;          /* 圆角减小，更克制 */
+  margin: 10px 0 12px;          
+  padding: 10px 12px 6px;       
+  border-radius: 14px;         
   border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.06); /* 稍微提亮一点 */
-  backdrop-filter: blur(8px);   /* 模糊减弱 */
-  box-shadow: 0 14px 32px rgba(0,0,0,0.30); /* 阴影减轻 */
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);  
+  box-shadow: 0 14px 32px rgba(0,0,0,0.30); 
 }
 
   .timeline-title{
@@ -114,8 +118,8 @@ JS
     padding: 6px 4px 6px;
   }
   .year-node{
-  min-width: 96px;              /* 宽度缩小 */
-  height: 46px;                 /* 高度明显下降 */
+  min-width: 96px;             
+  height: 46px;              
   display:flex;
   align-items:center;
   justify-content:center;
@@ -123,8 +127,8 @@ JS
   border: 1px solid rgba(255,255,255,0.16);
   background: rgba(255,255,255,0.06);
   color: rgba(234,238,247,0.88);
-  font-size: 18px;              /* 字号回到正文+ */
-  font-weight: 800;             /* 稍降权重 */
+  font-size: 18px;             
+  font-weight: 800;            
   cursor:pointer;
   user-select:none;
   transition: transform .18s ease,
@@ -219,8 +223,8 @@ JS
 
 #chinaMap{
   width: 100%;
-  height: 720px;          /* 固定高度，核心 */
-  margin: 24px auto 20px; /* 上下留节奏 */
+  height: 720px;       
+  margin: 24px auto 20px; 
 }
 
 
@@ -323,7 +327,6 @@ JS
   .modal-body{ padding: 18px; overflow:auto; color: rgba(234,238,247,0.88); line-height: 1.9; font-size: 14px; }
   .modal-body hr{ border: none; border-top: 1px solid rgba(255,255,255,0.12); margin: 14px 0; }
 
-  /* ✅ 弹窗 Meta（朴素两行：无图标、无框） */
   .modal-meta{
     margin-bottom: 10px;
   }
@@ -754,7 +757,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       .replace(/'/g, "&#039;");
   }
 
-  // ✅ 红点弹窗（朴素两行时间/地点）
   chart.on('click', (params) => {
     if (params.seriesType === 'effectScatter' && params.data?.event) {
       const ev = params.data.event || {};
