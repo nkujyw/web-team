@@ -210,13 +210,19 @@ JS
   .map-card-head .title{ font-weight: 950; letter-spacing: 0.6px; color: rgba(234,238,247,0.92); }
   .map-card-head .hint{ font-size: 12px; color: rgba(234,238,247,0.62); }
 
-  #chinaMap{
-    position: relative;
-    z-index: 1;
-    width:100%;
-    height: calc(100vh - 210px);
-    min-height: 880px;
-  }
+#chinaMap{
+  position: relative;
+  z-index: 1;
+
+  width: 100%;              /* 吃满卡片宽度 */
+  aspect-ratio: 3 / 2;      /* ✅ 宽 : 高 = 3 : 2（等价于高=2/3宽） */
+
+  margin: 0;
+}
+
+
+
+
 
   .action-row{ text-align:center; margin: 18px 0 6px; }
   #showYearEvents{
@@ -372,7 +378,7 @@ JS
   <div class="hero">
     <div>
       <h2>抗战时期重大事件时间轴</h2>
-      <div class="subtitle">点击年份：点亮该年有事件的省份；点击省份：单独高亮浮空（再点一次取消）</div>
+      
     </div>
     <div class="badge">
       <span class="badge-dot"></span>
