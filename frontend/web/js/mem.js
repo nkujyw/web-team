@@ -547,13 +547,6 @@ function renderActivityDetail(activity) {
             </div>
             ` : ''}
             
-            ${locationDesc ? `
-            <div class="detail-section">
-                <h3>地点介绍</h3>
-                <p>${locationDesc}</p>
-            </div>
-            ` : ''}
-            
             ${activity.content ? `
             <div class="detail-section">
                 <h3>活动详情</h3>
