@@ -1,4 +1,11 @@
 <?php
+/**
+ * frontend/views/site/speech.php
+ * 重要讲话视图文件
+ * 包含：习近平在纪念中国人民抗日战争暨世界反法西斯战争胜利80周年大会上的讲话全文
+ * @author 2311786 吉圆伟
+ * @date 2025-12-16
+ */
 use yii\helpers\Html;
 use yii\helpers\Url;
 

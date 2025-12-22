@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Messages.php
+ * 消息模型类，加入汉化功能
+ * @author 2311786 吉圆伟
+ * @date 2025-12-12
+ */
 namespace common\models;
 
 use Yii;

@@ -1,6 +1,11 @@
 <?php
-/* @var $this \yii\web\View */
-/* @var $content string */
+/**
+ * main.php
+ * 网站主布局文件
+ * 定义网站的整体结构，包括头部、导航栏、内容区域和页脚。
+ * @author 吉圆伟
+ * @date 2025-12-17
+ */
 
 use yii\helpers\Html;
 use yii\helpers\Url;

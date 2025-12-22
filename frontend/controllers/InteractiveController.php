@@ -1,4 +1,12 @@
 <?php
+/**
+ * InteractiveController.php
+ * 实现“互动问答与留言”页面的数据控制，
+ * 包括获取随机题目、处理用户留言提交、
+ * 以及通过AJAX接口加载更多留言等功能。
+ * @author 吉圆伟
+ * @date 2025-12-15
+ */
 
 namespace frontend\controllers;
 
@@ -19,11 +27,10 @@ class InteractiveController extends Controller
             ->all();
         $newMessage = new Messages();
 
-        // 2. 获取随机题目 (随机取5道，增加趣味性)
-        // 注意：SQL中 RAND() 性能在数据量大时不好，但你只有10条数据，完全没问题
+        // 2. 获取随机题目 (随机取5道)
         $questions = Question::find()->orderBy(new \yii\db\Expression('RAND()'))->limit(5)->all();
 
-        // 3. 处理留言提交 (非AJAX的简单处理方式，建议后续升级为AJAX)
+        // 3. 处理留言提交
         if ($newMessage->load(Yii::$app->request->post()) && $newMessage->save()) {
             Yii::$app->session->setFlash('success', '留言发布成功！');
             return $this->refresh();
@@ -36,7 +43,7 @@ class InteractiveController extends Controller
         ]);
     }
     
-    // 如果想做AJAX答题验证，可以加这个方法
+    
     public function actionCheckAnswer()
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;

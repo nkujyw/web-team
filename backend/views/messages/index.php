@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 消息管理页面
+ * 提供消息的查看、创建、编辑和删除功能，隐藏了ID字段以简化界面
+ * @author: 2311786 吉圆伟
+ * @date: 2025-12-13
+ */
 use yii\helpers\Html;
 use yii\grid\GridView;
 

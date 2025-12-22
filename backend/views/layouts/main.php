@@ -1,4 +1,10 @@
 <?php
+/**
+ * 主布局文件
+ * 定义后台管理系统的整体结构和样式
+ * @author: 2311786 吉圆伟
+ * @date: 2025-12-18
+ */
 use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
