@@ -1,4 +1,11 @@
 <?php
+
+/**
+*Team：方圆双睿
+*Coding by 丛方昊 2310682
+*纪念馆前端，简单介绍纪念馆，展示纪念作品与纪念活动
+*/
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -10,16 +17,15 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
 ?>
 
 <style>
-/* 纪念馆模块样式 */
 .mem-classic-body {
     margin: 0;
     padding: 0;
     line-height: 1.5em;
     font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
-    font-size: 16px; /* 可以保留16px，这样文字稍大更清晰 */
+    font-size: 16px;
     color: #333;
-    background: #faf1dd url('https://www.toptal.com/designers/subtlepatterns/uploads/old_map.png') repeat;
-    min-height: 100vh; /* 这个可以保留，保证页面占满全屏 */
+    background: #faf1dd url('https://www.toptal.com/designers/subtlepatterns/uploads/old_map.png  ') repeat;
+    min-height: 100vh;
 }
 
 .mem-classic-container {
@@ -49,7 +55,6 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* 纪念馆简介 */
 .intro-section {
     background: #fef9ec;
     border: 2px solid #e3bb67;
@@ -59,7 +64,6 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* 纪念功能区网格 */
 .mem-grid-2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -135,7 +139,6 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* 内容列表样式 */
 .mem-content-list {
     display: grid;
     gap: 20px;
@@ -150,11 +153,13 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     border-radius: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    cursor: pointer;
 }
 
 .mem-content-item:hover {
     background: #fff5e0;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateX(5px);
 }
 
 .mem-number-circle {
@@ -185,7 +190,6 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     font-size: 1rem;
 }
 
-/* 弹窗样式 */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -270,7 +274,6 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     font-size: 1.1rem;
 }
 
-/* 列表项样式 */
 .work-item, .activity-item {
     padding: 25px;
     border-bottom: 2px solid #e3bb67;
@@ -278,6 +281,14 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     border-radius: 10px;
     margin-bottom: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.work-item:hover, .activity-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #fffdf6 0%, #fff8e6 100%);
 }
 
 .work-item img, .activity-item img {
@@ -289,7 +300,86 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* 响应式调整 */
+.detail-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.detail-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #e3bb67;
+}
+
+.detail-title {
+    color: #ab1010;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    font-family: 'KaiTi', serif;
+}
+
+.detail-meta {
+    color: #666;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.detail-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-meta-item i {
+    color: #8E1616;
+}
+
+.detail-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 4px solid #d4bc88;
+    margin: 20px 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.detail-content {
+    margin-top: 30px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.detail-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    border-left: 5px solid #8E1616;
+}
+
+.detail-section h3 {
+    color: #8E1616;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: 'KaiTi', serif;
+    font-size: 1.5rem;
+}
+
+.detail-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #e3bb67;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
 @media (max-width: 768px) {
     .modal-content {
         width: 95%;
@@ -319,18 +409,25 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
     .mem-classic-header {
         font-size: 24px;
     }
+    
+    .detail-title {
+        font-size: 1.8rem;
+    }
+    
+    .detail-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 </style>
 
 <div class="mem-classic-body">
     <div class="mem-classic-container">
-        <!-- 页面标题区域 -->
         <div style="text-align: center; padding: 40px 0;">
             <h1 style="color: #B71C1C; font-family: 'KaiTi', serif; font-size: 2.8rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 2px;">网上纪念馆</h1>
             <p style="color: #666; margin: 10px 0 0 0; font-style: italic; font-size: 1.2rem; letter-spacing: 1px;">铭记历史 · 缅怀先烈 · 珍爱和平</p>
         </div>
 
-        <!-- 纪念馆简介 -->
         <div class="intro-section">
             <h2 class="mem-classic-header">纪念馆简介</h2>
             <p style="line-height: 1.9; font-size: 1.2rem; color: #333; text-align: justify; text-indent: 2em;">
@@ -339,12 +436,10 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
             </p>
         </div>
 
-        <!-- 纪念功能区 -->
         <div class="mem-classic-section">
             <h2 class="mem-classic-header">纪念功能区</h2>
             
             <div class="mem-grid-2">
-                <!-- 纪念作品 -->
                 <div class="mem-feature-card" id="worksCard">
                     <div class="mem-icon-circle">
                         <i class="fa fa-picture-o"></i>
@@ -354,7 +449,6 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
                     <button class="mem-btn-classic view-works-btn">进入查看</button>
                 </div>
 
-                <!-- 纪念活动 -->
                 <div class="mem-feature-card" id="eventsCard">
                     <div class="mem-icon-circle">
                         <i class="fa fa-calendar"></i>
@@ -366,14 +460,14 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
             </div>
         </div>
 
-        <!-- 最新纪念内容 -->
         <div class="mem-classic-section">
-            <h2 class="mem-classic-header">最新纪念内容</h2>
+            <h2 class="mem-classic-header">推荐纪念内容</h2>
             
+            <h3 style="color: #8E1616; margin: 20px 0 10px 0; font-size: 1.5rem; border-left: 5px solid #8E1616; padding-left: 10px;">纪念作品</h3>
             <div class="mem-content-list">
                 <?php if (!empty($memWorks)): ?>
                     <?php foreach ($memWorks as $index => $work): ?>
-                        <div class="mem-content-item">
+                        <div class="mem-content-item mem-work-item" data-id="<?= $work->id ?>" data-type="work">
                             <div class="mem-number-circle"><?= $index + 1 ?></div>
                             <div>
                                 <h4><?= Html::encode($work->name) ?></h4>
@@ -387,18 +481,35 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
                     <p style="text-align: center; color: #666; padding: 30px; font-size: 1.2rem;">暂无纪念作品</p>
                 <?php endif; ?>
             </div>
+            
+            <h3 style="color: #8E1616; margin: 40px 0 10px 0; font-size: 1.5rem; border-left: 5px solid #8E1616; padding-left: 10px;">纪念活动</h3>
+            <div class="mem-content-list">
+                <?php if (!empty($memActivities)): ?>
+                    <?php foreach ($memActivities as $index => $activity): ?>
+                        <div class="mem-content-item mem-activity-item" data-id="<?= $activity->id ?>" data-type="activity">
+                            <div class="mem-number-circle"><?= $index + 1 ?></div>
+                            <div>
+                                <h4><?= Html::encode($activity->name) ?></h4>
+                                <p>
+                                    <?= Html::encode($activity->organizer) ?> · <?= Yii::$app->formatter->asDate($activity->activity_date, 'yyyy年MM月dd日') ?>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p style="text-align: center; color: #666; padding: 30px; font-size: 1.2rem;">暂无纪念活动</p>
+                <?php endif; ?>
+            </div>
         </div>
 
-        <!-- 页脚 -->
         <div style="text-align: center; padding: 40px 0; color: #666; border-top: 2px solid #e3bb67; margin-top: 40px;">
             <p style="margin: 0; font-size: 1.1rem;">
-                &copy; 2025 抗战80周年纪念项目组 | 铭记历史 吾辈自强
+                &copy; 一寸山河一寸血，一抔热土一抔魂​
             </p>
         </div>
     </div>
 </div>
 
-<!-- 纪念作品弹窗 -->
 <div id="worksModal" class="modal-overlay">
     <div class="modal-content">
         <div class="modal-header">
@@ -406,12 +517,10 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
             <button class="modal-close">&times;</button>
         </div>
         <div class="modal-body" id="worksModalBody">
-            <!-- 内容由JavaScript动态加载 -->
         </div>
     </div>
 </div>
 
-<!-- 纪念活动弹窗 -->
 <div id="eventsModal" class="modal-overlay">
     <div class="modal-content">
         <div class="modal-header">
@@ -419,13 +528,22 @@ $this->title = '网上纪念馆 - 中国抗战胜利80周年纪念网';
             <button class="modal-close">&times;</button>
         </div>
         <div class="modal-body" id="eventsModalBody">
-            <!-- 内容由JavaScript动态加载 -->
+        </div>
+    </div>
+</div>
+
+<div id="detailModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="detailTitle">详情</h2>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body" id="detailModalBody">
         </div>
     </div>
 </div>
 
 <script>
-// 纪念馆模块交互功能
 document.addEventListener('DOMContentLoaded', function() {
     initInterface();
     bindEvents();
@@ -436,7 +554,6 @@ function initInterface() {
 }
 
 function bindEvents() {
-    // 纪念作品相关交互
     const worksCard = document.getElementById('worksCard');
     const viewWorksBtn = document.querySelector('.view-works-btn');
     
@@ -453,7 +570,6 @@ function bindEvents() {
         loadAllWorks();
     });
     
-    // 纪念活动相关交互
     const eventsCard = document.getElementById('eventsCard');
     const viewEventsBtn = document.querySelector('.view-events-btn');
     
@@ -470,10 +586,20 @@ function bindEvents() {
         loadAllActivities();
     });
     
-    // 移除作品列表项的点击事件
-    // 不再绑定点击事件
+    document.querySelectorAll('.mem-work-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            loadWorkDetail(id);
+        });
+    });
     
-    // 弹窗控制
+    document.querySelectorAll('.mem-activity-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            loadActivityDetail(id);
+        });
+    });
+    
     document.querySelectorAll('.modal-close').forEach(btn => {
         btn.addEventListener('click', closeModal);
     });
@@ -491,7 +617,6 @@ function bindEvents() {
     });
 }
 
-// 弹窗控制函数
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -507,7 +632,6 @@ function closeModal() {
     document.body.style.overflow = 'auto';
 }
 
-// 加载所有纪念作品
 function loadAllWorks() {
     const modalBody = document.getElementById('worksModalBody');
     modalBody.innerHTML = `
@@ -530,6 +654,12 @@ function loadAllWorks() {
             console.log('作品数据:', data);
             if (data.status === 'success') {
                 modalBody.innerHTML = renderWorksList(data.data);
+                document.querySelectorAll('.work-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        loadWorkDetail(id);
+                    });
+                });
             } else {
                 modalBody.innerHTML = `
                     <div style="text-align: center; padding: 40px;">
@@ -552,7 +682,6 @@ function loadAllWorks() {
         });
 }
 
-// 加载所有纪念活动
 function loadAllActivities() {
     const modalBody = document.getElementById('eventsModalBody');
     modalBody.innerHTML = `
@@ -575,6 +704,12 @@ function loadAllActivities() {
             console.log('活动数据:', data);
             if (data.status === 'success') {
                 modalBody.innerHTML = renderActivitiesList(data.data);
+                document.querySelectorAll('.activity-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        loadActivityDetail(id);
+                    });
+                });
             } else {
                 modalBody.innerHTML = `
                     <div style="text-align: center; padding: 40px;">
@@ -597,7 +732,108 @@ function loadAllActivities() {
         });
 }
 
-// 渲染纪念作品列表
+function loadWorkDetail(id) {
+    const modalBody = document.getElementById('detailModalBody');
+    const detailTitle = document.getElementById('detailTitle');
+    
+    modalBody.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 3rem; color: #8E1616; margin-bottom: 20px;">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+            <p style="font-size: 1.3rem; color: #666;">正在加载作品详情...</p>
+        </div>
+    `;
+    
+    detailTitle.textContent = '纪念作品详情';
+    
+    fetch('<?= Url::to(['mem/get-work-detail']) ?>&id=' + id)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('网络响应错误: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('作品详情数据:', data);
+            if (data.status === 'success') {
+                modalBody.innerHTML = renderWorkDetail(data.data);
+                openModal('detailModal');
+            } else {
+                modalBody.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 5rem; color: #ddd; margin-bottom: 20px;">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <p style="font-size: 1.4rem; color: #666;">${data.message || '加载失败'}</p>
+                    </div>`;
+                openModal('detailModal');
+            }
+        })
+        .catch(error => {
+            console.error('加载错误:', error);
+            modalBody.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: #666;">
+                    <div style="font-size: 5rem; color: #ddd; margin-bottom: 20px;">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </div>
+                    <p style="font-size: 1.4rem;">加载失败，请稍后重试</p>
+                </div>`;
+            openModal('detailModal');
+        });
+}
+
+function loadActivityDetail(id) {
+    const modalBody = document.getElementById('detailModalBody');
+    const detailTitle = document.getElementById('detailTitle');
+    
+    modalBody.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 3rem; color: #8E1616; margin-bottom: 20px;">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+            <p style="font-size: 1.3rem; color: #666;">正在加载活动详情...</p>
+        </div>
+    `;
+    
+    detailTitle.textContent = '纪念活动详情';
+    
+    fetch('<?= Url::to(['mem/get-activity-detail']) ?>&id=' + id)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('网络响应错误: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('活动详情数据:', data);
+            if (data.status === 'success') {
+                modalBody.innerHTML = renderActivityDetail(data.data);
+                openModal('detailModal');
+            } else {
+                modalBody.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 5rem; color: #ddd; margin-bottom: 20px;">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <p style="font-size: 1.4rem; color: #666;">${data.message || '加载失败'}</p>
+                    </div>`;
+                openModal('detailModal');
+            }
+        })
+        .catch(error => {
+            console.error('加载错误:', error);
+            modalBody.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: #666;">
+                    <div style="font-size: 5rem; color: #ddd; margin-bottom: 20px;">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </div>
+                    <p style="font-size: 1.4rem;">加载失败，请稍后重试</p>
+                </div>`;
+            openModal('detailModal');
+        });
+}
+
 function renderWorksList(works) {
     if (!works || works.length === 0) {
         return `
@@ -621,7 +857,7 @@ function renderWorksList(works) {
     works.forEach(work => {
         const imageUrl = work.full_url || work.url;
         html += `
-            <div class="work-item">
+            <div class="work-item" data-id="${work.id}">
                 <div style="display: flex; align-items: center;">
                     ${imageUrl ? `
                     <div style="flex-shrink: 0; width: 160px; height: 120px; margin-right: 25px; 
@@ -667,7 +903,6 @@ function renderWorksList(works) {
     return html;
 }
 
-// 渲染纪念活动列表
 function renderActivitiesList(activities) {
     if (!activities || activities.length === 0) {
         return `
@@ -690,8 +925,10 @@ function renderActivitiesList(activities) {
     
     activities.forEach(activity => {
         const imageUrl = activity.full_photo_url || activity.photo_url;
+        const locationName = activity.location_name || (activity.location_id ? '地点ID: ' + activity.location_id : '未指定地点');
+        
         html += `
-            <div class="activity-item">
+            <div class="activity-item" data-id="${activity.id}">
                 <div style="display: flex; align-items: center;">
                     ${imageUrl ? `
                     <div style="flex-shrink: 0; width: 160px; height: 120px; margin-right: 25px; 
@@ -719,7 +956,7 @@ function renderActivitiesList(activities) {
                             <strong>时间：</strong>${activity.activity_date}
                         </p>
                         <p style="margin: 0; color: #888; font-size: 1rem;">
-                            <strong>地点：</strong>${activity.location_id || '未指定'}
+                            <strong>地点：</strong>${locationName}
                         </p>
                     </div>
                 </div>
@@ -735,5 +972,152 @@ function renderActivitiesList(activities) {
     });
     
     return html;
+}
+
+function renderWorkDetail(work) {
+    const imageUrl = work.full_url || work.url;
+    
+    return `
+        <div class="detail-container">
+            <div class="detail-header">
+                <h1 class="detail-title">${work.name}</h1>
+                <div class="detail-meta">
+                    <div class="detail-meta-item">
+                        <i class="fa fa-user"></i>
+                        <span><strong>作者：</strong>${work.author || '未知'}</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fa fa-tag"></i>
+                        <span><strong>类型：</strong>${work.type || '未分类'}</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fa fa-calendar"></i>
+                        <span><strong>创作时间：</strong>${work.create_date || '未知'}</span>
+                    </div>
+                </div>
+            </div>
+            
+            ${imageUrl ? `
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="${imageUrl}" alt="${work.name}" class="detail-image" 
+                     onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'padding:40px; text-align:center; color:#888; font-size:1.2rem;\'>暂无图片</div>';">
+            </div>
+            ` : ''}
+            
+            ${work.description ? `
+            <div class="detail-section">
+                <h3>作品简介</h3>
+                <p>${work.description}</p>
+            </div>
+            ` : ''}
+            
+            ${work.content ? `
+            <div class="detail-section">
+                <h3>详细内容</h3>
+                <p>${work.content}</p>
+            </div>
+            ` : ''}
+            
+            ${work.keywords ? `
+            <div class="detail-section">
+                <h3>关键词</h3>
+                <p>${work.keywords}</p>
+            </div>
+            ` : ''}
+            
+            ${work.source ? `
+            <div class="detail-section">
+                <h3>来源</h3>
+                <p>${work.source}</p>
+            </div>
+            ` : ''}
+            
+            <div class="detail-footer">
+                <p>抗战胜利80周年纪念网 网上纪念馆</p>
+            </div>
+        </div>
+    `;
+}
+
+function renderActivityDetail(activity) {
+    const imageUrl = activity.full_photo_url || activity.photo_url;
+    const locationName = activity.location_info ? activity.location_info.name : (activity.location_id ? '地点ID: ' + activity.location_id : '未指定地点');
+    const locationType = activity.location_info ? activity.location_info.type : '';
+    const locationDesc = activity.location_info ? activity.location_info.description : '';
+    
+    return `
+        <div class="detail-container">
+            <div class="detail-header">
+                <h1 class="detail-title">${activity.name}</h1>
+                <div class="detail-meta">
+                    <div class="detail-meta-item">
+                        <i class="fa fa-calendar"></i>
+                        <span><strong>活动时间：</strong>${activity.activity_date || '未知'}</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fa fa-map-marker"></i>
+                        <span><strong>地点：</strong>${locationName}</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fa fa-users"></i>
+                        <span><strong>主办方：</strong>${activity.organizer || '未知'}</span>
+                    </div>
+                </div>
+            </div>
+            
+            ${imageUrl ? `
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="${imageUrl}" alt="${activity.name}" class="detail-image" 
+                     onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'padding:40px; text-align:center; color:#888; font-size:1.2rem;\'>暂无图片</div>';">
+            </div>
+            ` : ''}
+            
+            ${activity.description ? `
+            <div class="detail-section">
+                <h3>活动简介</h3>
+                <p>${activity.description}</p>
+            </div>
+            ` : ''}
+            
+            ${locationDesc ? `
+            <div class="detail-section">
+                <h3>地点介绍</h3>
+                <p>${locationDesc}</p>
+            </div>
+            ` : ''}
+            
+            ${activity.content ? `
+            <div class="detail-section">
+                <h3>活动详情</h3>
+                <p>${activity.content}</p>
+            </div>
+            ` : ''}
+            
+            ${activity.address ? `
+            <div class="detail-section">
+                <h3>详细地址</h3>
+                <p>${activity.address}</p>
+            </div>
+            ` : ''}
+            
+            ${activity.participants ? `
+            <div class="detail-section">
+                <h3>参与人员</h3>
+                <p>${activity.participants}</p>
+            </div>
+            ` : ''}
+            
+            ${activity.status ? `
+            <div class="detail-section">
+                <h3>活动状态</h3>
+                <p>${activity.status}</p>
+            </div>
+            ` : ''}
+            
+            <div class="detail-footer">
+                <p>抗战胜利80周年纪念网 网上纪念馆</p>
+            </div>
+        </div>
+    `;
 }
 </script>
