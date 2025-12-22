@@ -1,4 +1,11 @@
 <?php
+
+/**
+*Team：方圆双睿
+*Coding by 丛方昊 2310682
+*队伍汉化属性/隐藏id
+*/
+
 use common\models\Forces;
 use common\models\Characters; // 引入人物模型（为了显示队长名字）
 use yii\helpers\Html;

@@ -1,5 +1,11 @@
 <?php
 
+/**
+*Team：方圆双睿
+*Coding by 丛方昊 2310682
+*纪念活动汉化属性/隐藏id/展示图片
+*/
+
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -18,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Mem Activities', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php ?>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -26,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
-        // 'id', // 已隐藏 ID
+        // 'id',
         'name',
         'activity_date',
         
@@ -35,7 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'location_id',
             'label' => '地点',
             'value' => function($model) {
-                // 确保你的 MemActivities 模型里有 getLocation() 方法
                 return $model->location ? $model->location->name : '未知';
             }
         ],
@@ -44,26 +49,20 @@ $this->params['breadcrumbs'][] = $this->title;
         
 
         [
-            'attribute' => 'photo_url', // 数据库字段名为 photo_url
-            'label' => '活动图片',      // 自定义表头
-            'format' => 'raw',          // 必须为 raw
+            'attribute' => 'photo_url',
+            'label' => '活动图片',
+            'format' => 'raw',
             'value' => function ($model) {
-                // 1. 判空处理
                 if (empty($model->photo_url)) {
                     return '<span class="text-muted">暂无图片</span>';
                 }
-
-                // 2. 定义基础路径 (根据你的要求，注意端口)
-                // 如果你的项目需要 :8080 端口，请确保下面加上 :8080
                 $baseUrl = 'http://localhost/web-team/frontend/web'; 
                 
-                // 3. 生成图片标签
                 return Html::img($baseUrl . $model->photo_url, [
                     'alt' => $model->name,
-                    'style' => 'width: 100px; height: 80px; object-fit: cover; border-radius: 4px;', // 样式保持一致
+                    'style' => 'width: 100px; height: 80px; object-fit: cover; border-radius: 4px;',
                     'class' => 'img-thumbnail',
                     'title' => '点击查看大图',
-                    // 点击在新窗口打开
                     'onclick' => 'window.open("' . $baseUrl . $model->photo_url . '")',
                     'style' => 'cursor:pointer; width:100px;' 
                 ]);

@@ -1,5 +1,11 @@
 <?php
 
+/**
+*Team：方圆双睿
+*Coding by 丛方昊 2310682
+*队伍表汉化属性/隐藏id
+*/
+
 namespace common\models;
 
 use Yii;
