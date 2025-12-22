@@ -1,4 +1,10 @@
 <?php
+/**
+ * SiteController.php
+ * 站点控制器，处理首页及其他通用页面请求，主要服务于首页功能。
+ * @author 吉圆伟
+ * @date 2025-12-16
+ */
 namespace frontend\controllers;
 
 use Yii;
@@ -66,8 +72,7 @@ class SiteController extends Controller
 
     /**
      * Displays homepage.
-     * 【重点修改区域】
-     * 首页不再是静态的，而是从数据库拉取数据
+     * 从数据库拉取数据
      *
      * @return mixed
      */
@@ -84,8 +89,7 @@ class SiteController extends Controller
             ->where(['not in', 'force_id', [8, 9]]) // 排除日军
             ->orderBy(new Expression('RAND()'))->one();
 
-        // --- 【新增数据】 ---
-        
+
         // 4. 抗战文艺 (取4个，排除轮播图用过的)
         $artWorks = MemWorks::find()->orderBy(['create_date' => SORT_DESC])->limit(4)->all();
 
@@ -110,13 +114,12 @@ class SiteController extends Controller
     }
 
 
-    // 新增：习近平总书记讲话详情页
+    // 习近平总书记讲话详情页
     public function actionSpeech()
     {
         return $this->render('speech');
     }
-    // 新增：公告详情页通用接口
-    // 访问地址：index.php?r=site/announcement&id=1
+    // 公告详情页通用接口
     public function actionAnnouncement($id = 1)
     {
         // 把 id 传给视图，视图负责根据 id 显示不同内容
@@ -135,7 +138,7 @@ class SiteController extends Controller
         // 1. 处理 ID 字符串
         $idArray = explode(',', $ids);
 
-        // 2. 查询数据 (复用之前的逻辑)
+        // 2. 查询数据
         if (empty($ids)) {
              $teams = \common\models\Teams::find()
                 ->where(['in', 'force_id', [5, 6, 7]])
@@ -145,12 +148,11 @@ class SiteController extends Controller
         } else {
             $teams = \common\models\Teams::find()
                 ->where(['id' => $idArray])
-                // 注意这里要引入 Expression，或者确保文件头部 use 了 yii\db\Expression
                 ->orderBy(new \yii\db\Expression('FIELD (id, ' . $ids . ')'))
                 ->all();
         }
 
-        // 3. 渲染你新建的那个文件 'index-teams'
+        
         return $this->render('index-teams', [
             'teams' => $teams,
         ]);
@@ -166,12 +168,10 @@ public function actionTeamInfo()
         $jsonContent = file_get_contents($jsonPath);
         $data = json_decode($jsonContent, true);
         
-        // 如果 JSON 解析失败，data 会是 null
         if (!$data) {
             die("JSON 文件内容格式不正确，请检查 backend/data/team_data.json");
         }
     } else {
-        // 如果找不到文件，直接报错提醒你路径对不对
         die("找不到 JSON 数据文件，请检查路径是否正确: " . $jsonPath);
     }
 

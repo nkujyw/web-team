@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 问题管理页面
+ * 隐藏了ID字段，显示了关联事件和关联人物的名称
+ * @author: 2311786 吉圆伟
+ * @date: 2025-12-11
+ */
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -40,7 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'related_event_id',
             'value' => function ($model) {
-                // 使用匿名函数更安全，防止关联数据为空时报错
                 return $model->relatedEvent ? $model->relatedEvent->name : '无';
             },
             'label' => '关联事件',

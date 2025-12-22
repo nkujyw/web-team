@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * AppAsset.php
+ * 后台资源包，管理 CSS 和 JS 文件的引入
+ */
 namespace backend\assets;
 
 use yii\web\AssetBundle;
@@ -22,7 +25,6 @@ class AppAsset extends AssetBundle
     ];
     
     public $depends = [
-        'yii\web\YiiAsset', // 保留这个，Yii的核心JS依赖
-        // 'yii\bootstrap\BootstrapAsset', // 注释掉这个！防止旧版Bootstrap与AdminKit冲突
+        'yii\web\YiiAsset', 
     ];
 }

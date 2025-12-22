@@ -1,12 +1,17 @@
 <?php
+/**
+ * interactive/index.php
+ * 互动中心主视图文件
+ * 包含抗战知识挑战和留言寄语墙两个主要功能模块。
+ * @author 吉圆伟
+ * @date 2025-12-16
+ */
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 
 $this->title = '互动中心';
 
-// --- 【修改1】获取URL参数，判断默认显示哪个标签 ---
-// 如果 URL 里有 ?tab=message，则 $activeTab 就是 'message'，否则默认为 'quiz'
 $activeTab = Yii::$app->request->get('tab', 'quiz'); 
 
 // 答题数据
@@ -97,7 +102,7 @@ $jsonNicknames = json_encode($randomNicknames);
                                             ])->textInput([
                                                 'id' => 'nickname-input',
                                                 'placeholder' => '请输入身份，或点击下方标签快速选择...',
-                                                'class' => 'form-control border-left-0', // 去掉左边框，让它和图标看起来像一体的
+                                                'class' => 'form-control border-left-0', 
                                                 'style' => 'height: 50px; box-shadow: none;',
                                                 'maxlength' => 15, // 【限制长度】前端限制只能输入15个字
                                                 'autocomplete' => 'off' // 关闭浏览器自动填充，避免挡住标签
@@ -201,13 +206,13 @@ var currentOffset = 10;
 var isLoading = false;
 var randomNicknames = <?= $jsonNicknames ?>; 
 
-// --- 【新增】点击标签填充输入框的函数 ---
+// --- 点击标签填充输入框的函数 ---
 function fillNickname(name) {
     // 找到输入框并赋值
     document.getElementById('nickname-input').value = name;
 }
 
-// --- 提交试卷逻辑 (保持不变) ---
+// --- 提交试卷逻辑 ---
 function submitPaper() {
     var total = Object.keys(correctAnswers).length;
     var correct = 0;
@@ -234,7 +239,7 @@ function submitPaper() {
     $('#scoreModal').modal('show');
 }
 
-// --- 加载更多留言逻辑 (保持不变) ---
+// 加载更多留言逻辑
 function loadMoreMessages() {
     if (isLoading) return;
     isLoading = true;

@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * ForcesController.php
+ * 自动生成的控制器文件
+ */
 namespace backend\controllers;
 
 use Yii;

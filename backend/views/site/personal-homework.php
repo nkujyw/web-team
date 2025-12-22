@@ -1,4 +1,11 @@
 <?php
+/**
+ * 个人作业下载页面
+ * 提供一键多文件下载功能
+ * @author: 2311786 吉圆伟
+ * @date: 2025-12-20
+ * // 参考自 site/index.php 的多文件下载实现
+ */
 use yii\helpers\Url;
 $this->title = '个人作业下载';
 
@@ -43,7 +50,7 @@ $downloadUrl = Url::to(['site/download', 'type' => 'personal']);
 
 $script = <<< JS
 function multiDownload(folderName) {
-    // 1. 先去后台问一下这个文件夹里到底有哪几个文件
+    // 1. 先查找文件夹里到底有哪几个文件
     fetch("$getListUrl" + "&folder=" + folderName)
         .then(response => response.json())
         .then(files => {
@@ -54,7 +61,7 @@ function multiDownload(folderName) {
             
             // 2. 循环触发下载
             files.forEach((fileName, index) => {
-                // 使用 setTimeout 错开请求，防止浏览器因为瞬时并发过高而拦截
+                // 使用 setTimeout 错开请求
                 setTimeout(() => {
                     const url = "$downloadUrl" + "&folder=" + folderName + "&file=" + fileName;
                     

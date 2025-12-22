@@ -1,6 +1,3 @@
-/* =========================================
-   1. 侧边栏 (Sidebar) 核心优化
-   ========================================= */
 /* 背景与基础文字：提升对比度 */
 .sidebar {
     background: #1e2936 !important;
@@ -29,7 +26,7 @@
     border-left: 4px solid #3b5de7;
 }
 
-/* 子菜单 (Dropdown)：解决之前看不清的重灾区 */
+/* 子菜单 (Dropdown)*/
 .sidebar-dropdown .sidebar-link {
     padding-left: 3rem !important;
     font-size: 0.875rem;
@@ -37,7 +34,7 @@
 }
 
 .sidebar-dropdown .sidebar-item.active .sidebar-link {
-    color: #5bb7ff !important; /* 激活的子模块用明亮的浅蓝色 */
+    color: #5bb7ff !important;
     font-weight: 600;
     background: transparent !important;
 }
@@ -50,9 +47,8 @@
     letter-spacing: 0.05em;
 }
 
-/* =========================================
-   2. 暗黑模式全局适配 (body[data-theme="dark"])
-   ========================================= */
+/* 2. 暗黑模式全局适配 
+*/
 body[data-theme="dark"] {
     background-color: #1a1d21;
     color: #adb5bd;
@@ -84,20 +80,13 @@ body[data-theme="dark"] h5, body[data-theme="dark"] h6 {
     color: #f8f9fa !important;
 }
 
-/* =========================================
-   3. 数据库表格 (GridView) 极简重塑
-   ========================================= */
-/* =========================================
-   3. 数据库表格 (GridView) 样式重塑 - 彻底去除斑马纹版
-   ========================================= */
-
-/* 1. 强制所有行背景透明，显示底层统一的表格颜色 */
+/* 3. 数据库表格  */
 body[data-theme="dark"] .table tbody tr,
 body[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd),
 body[data-theme="dark"] .table-striped tbody tr:nth-of-type(even) {
     background-color: transparent !important;
     color: #adb5bd !important;
-    /* 强制覆盖 Bootstrap 5 的背景变量 */
+    
     --bs-table-accent-bg: transparent !important;
     --bs-table-striped-bg: transparent !important;
     --bs-table-bg: transparent !important;
@@ -113,14 +102,14 @@ body[data-theme="dark"] .table {
     overflow: hidden;
 }
 
-/* 3. 使用极细的边框线做横向分割线 */
+
 body[data-theme="dark"] .table td {
     border-top: 1px solid rgba(255, 255, 255, 0.05) !important; 
     padding: 14px 15px !important;
     vertical-align: middle;
 }
 
-/* 4. 仅在鼠标悬停时显示背景色 (交互感) */
+
 body[data-theme="dark"] .table-hover tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.04) !important; 
     color: #ffffff !important;
@@ -128,7 +117,7 @@ body[data-theme="dark"] .table-hover tbody tr:hover {
 
 /* 5. 表头样式：纯色深背景 + 顶部和底部强调线 */
 body[data-theme="dark"] .table thead th {
-    background-color: #1a1d21 !important; /* 表头稍微比内容深一点点，显专业 */
+    background-color: #1a1d21 !important; 
     color: #ffffff !important;
     font-weight: 600;
     border-top: none !important;
@@ -136,7 +125,7 @@ body[data-theme="dark"] .table thead th {
     padding: 15px !important;
 }
 
-/* 6. 修正表格内搜索框 (Filter) 的视觉 */
+/* 6. 修正表格内搜索框的视觉 */
 body[data-theme="dark"] .grid-view .filters td {
     background-color: rgba(0, 0, 0, 0.1) !important;
 }
@@ -149,7 +138,7 @@ body[data-theme="dark"] .grid-view .filters input {
     font-size: 0.85rem;
 }
 
-/* 7. 图标操作颜色 */
+
 body[data-theme="dark"] .grid-view a {
     color: rgba(255, 255, 255, 0.5);
     margin: 0 5px;
@@ -157,9 +146,7 @@ body[data-theme="dark"] .grid-view a {
 body[data-theme="dark"] .grid-view a:hover {
     color: #3b5de7;
 }
-/* =========================================
-   4. 表单、分页与交互组件
-   ========================================= */
+
 /* 输入框：深色化处理 */
 body[data-theme="dark"] .form-control {
     background-color: #2a3042 !important;
@@ -202,9 +189,7 @@ body[data-theme="dark"] .dropdown-item:hover {
     color: #fff !important;
 }
 
-/* =========================================
-   5. 特色组件 (头像)
-   ========================================= */
+/* 头像 */
 .avatar-initial-wrapper {
     width: 40px; height: 40px; border-radius: 50%; padding: 2px;
     background: conic-gradient(#f5365c 0% 25%, #11cdef 25% 50%, #2dce89 50% 75%, #fb6340 75% 100%);

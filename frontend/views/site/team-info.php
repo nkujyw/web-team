@@ -1,4 +1,11 @@
 <?php
+/**
+ * frontend/views/site/team-info.php
+ * 团队介绍视图文件
+ * 包含：数字化抗战档案管理小组 / 开发者团队介绍
+ * @author 2311786 吉圆伟
+ * @date 2025-12-21
+ */
 use yii\helpers\Html;
 use yii\helpers\Url;
 

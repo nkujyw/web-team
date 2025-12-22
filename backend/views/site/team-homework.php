@@ -1,5 +1,11 @@
 <?php
-use yii\helpers\Url; // 必须引入
+/**
+ * 团队作业下载页面
+ * 提供各类交付物的直接下载链接
+ * @author: 2311786 吉圆伟
+ * @date: 2025-12-20
+ */
+use yii\helpers\Url; 
 $this->title = '团队作业下载';
 
 $items = [
@@ -18,7 +24,6 @@ $items = [
     <h1 class="h3 mb-3"><strong>团队作业</strong> 交付物清单</h1>
     <div class="row">
         <?php foreach ($items as $item): 
-            // 如果是数据库，直接去 data/ 下找；否则去 data/team/ 下找
             $downloadUrl = Url::to([
                 'site/download', 
                 'type' => isset($item['is_db']) ? 'db' : 'team', 

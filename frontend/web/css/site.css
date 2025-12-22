@@ -1,11 +1,16 @@
-/* --- 移植的自定义 CSS 样式 --- */
-
+/**
+ * site.css
+ * 主要用于首页的整体样式设计，
+ * 包括轮播图、特别关注、公告栏等模块的视觉与排版设计。
+ * @author 吉圆伟 2311786
+ * @date 2025-12-17
+ */
 /* 1. 轮播图修正 */
 /* 配合 Bootstrap 的 carousel 使用，确保图片宽度自适应 */
 .index-banner-img {
-    width: 100%;       /* 宽度占满屏幕 */
-    height: auto;      /* 【关键】高度自动，图片多高就显示多高，不会被裁剪 */
-    display: block;    /* 防止底部出现细微缝隙 */
+    width: 100%;       
+    height: auto;      
+    display: block;    
     max-height: 700px;
 }
 
@@ -63,7 +68,7 @@
 }
 
 .news .news-l {
-    background-color: #f9f9f9; /* 给个默认背景色，防止没图时太丑 */
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 30px 40px;
     flex: 1;

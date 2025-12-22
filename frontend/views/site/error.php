@@ -1,9 +1,12 @@
 <?php
+/**
+ * error.php
+ * 错误页面视图文件
+ * 用于显示错误信息，如 404 未找到页面等。
+ * @author 吉圆伟
+ * @date 2025-12-15
+ */
 
-/* @var $this yii\web\View */
-/* @var $name string */
-/* @var $message string */
-/* @var $exception Exception */
 
 use yii\helpers\Html;
 

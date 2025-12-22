@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * QuestionSearch.php
+ * 用于搜索问题模型的类
+ * @author 2311786 吉圆伟
+ * @date 2025-12-12
+ */
 namespace common\models\search;
 
 use yii\base\Model;

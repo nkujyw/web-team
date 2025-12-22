@@ -1,9 +1,15 @@
 <?php
+/**
+ * 数据控制台首页
+ * 显示关键统计数据和图表
+ * @author: 2311786 吉圆伟
+ * @date: 2025-12-20
+ */
 use yii\helpers\Url;
 
 $this->title = '数据控制台 - 抗战 80 周年纪念项目';
 
-/** * 1. 强制引入 Chart.js 库 (放在顶部，确保先加载库再执行绘图)
+/** * 1. 引入 Chart.js 库
  */
 $this->registerJsFile('https://lib.baomitu.com/Chart.js/2.9.4/Chart.min.js', ['position' => \yii\web\View::POS_HEAD]);
 
@@ -112,7 +118,7 @@ $pieValues = json_encode(array_column($typeData, 'count') ?: []);
 
 <?php
 /**
- * 3. 绘图脚本 (使用 window.onload 确保库已完全加载)
+ * 3. 绘图脚本
  */
 $script = <<< JS
 window.onload = function() {

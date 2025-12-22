@@ -1,4 +1,11 @@
 <?php
+/**
+ * important_battle.php
+ * 重大战役纪实视图文件
+ * 处理展示卢沟桥事变、淞沪会战等重要战役的详细信息，用于首页跳转。
+ * @author 吉圆伟
+ * @date 2025-12-16
+*/
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -7,7 +14,7 @@ use yii\helpers\Url;
 
 $this->title = $model->name . ' - 战役纪实';
 
-// 数据库里没有的“指挥官”和“兵力”信息，依然保留在数组里
+// 数据库里没有的“指挥官”和“兵力”信息，处理保留在数组里
 $battleStats = [
     // 1. 卢沟桥事变
     1 => [
@@ -29,7 +36,7 @@ $battleStats = [
     ],
 ];
 
-// 获取扩展数据，如果找不到 ID，给个默认值（防报错）
+// 获取扩展数据
 $stats = isset($battleStats[$model->id]) ? $battleStats[$model->id] : [
     'commander_cn' => '待补充', 'commander_jp' => '待补充', 
     'strength' => '统计中'

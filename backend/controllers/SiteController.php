@@ -1,6 +1,11 @@
 <?php
 namespace backend\controllers;
-
+/**
+ * SiteController.php
+ * 后台站点控制器，处理登录、登出及仪表盘等功能
+ * @author 2311786 吉圆伟
+ * @date 2025-12-10
+ */
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -124,12 +129,10 @@ class SiteController extends Controller
 
     /**
      * 团队管理逻辑：支持从 JSON 文件读取并修改内容
-     * 这样你在后台修改后，前端会自动更新
      */
     public function actionTeam()
     {
         $jsonPath = \Yii::getAlias('@backend/views/teams/team_data.json');
-        // 如果文件不存在，建议先检查一下路径
         if (!file_exists($jsonPath)) {
             $data = []; 
         } else {

@@ -1,4 +1,11 @@
 <?php
+/**
+ * site/index.php
+ * 首页视图文件
+ * 包含：首页轮播图、最新公告、特别关注、重大战役、抗战雄师、抗战文艺、每日英烈等模块
+ * @author 2311786 吉圆伟
+ * @date 2025-12-16
+ */
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -147,7 +154,7 @@ $this->title = '首页 - 中国抗战胜利纪念网';
                                                 $imgName = 'songHu.png';    // 对应淞沪会战
                                                 break;
                                             case 7: 
-                                                $imgName = 'taiYuan.png';   // 对应太原会战 (数据库里太原ID是7)
+                                                $imgName = 'taiYuan.png';   // 对应太原会战 
                                                 break;
                                         }
 
@@ -180,7 +187,7 @@ $this->title = '首页 - 中国抗战胜利纪念网';
                     foreach ($teams as $t) {
                         $teamIds[] = $t->id;
                     }
-                    // 2. 拼成字符串，例如 "5,12,3,8"
+                    // 2. 拼成字符串
                     $idsString = implode(',', $teamIds); 
                 ?>
 
@@ -333,15 +340,12 @@ $this->title = '首页 - 中国抗战胜利纪念网';
     box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
 }
 
-/* --- 无缝滚动专用样式 --- */
 
 /* 滚动容器：让链接横向排列，不换行 */
 .seamless-scroll-box {
     display: flex;
     align-items: center;
     white-space: nowrap; /* 强制不换行 */
-    
-    /* 动画配置：名字叫 scroll-left，时长 40秒(越小越快)，匀速，无限循环 */
     animation: scroll-left 40s linear infinite;
 }
 
@@ -364,9 +368,6 @@ $this->title = '首页 - 中国抗战胜利纪念网';
         transform: translateX(0);
     }
     100% {
-        /* 向左移动 50% 的距离 */
-        /* 因为我们内容复制了一倍，移动到 50% 时，刚好是第二组的开头 */
-        /* 此时瞬间跳回 0%，肉眼看不出变化，实现无限循环 */
         transform: translateX(-50%);
     }
 }

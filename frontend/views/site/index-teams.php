@@ -1,9 +1,14 @@
 <?php
+/**
+ * index-teams.php
+ * 抗战雄师详情聚合页视图文件
+ * 显示多个抗战雄师的详细信息。
+ * @author 吉圆伟
+ * @date 2025-12-15
+ */
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $teams common\models\Teams[] */
 
 $this->title = '抗战雄师';
 ?>
@@ -21,10 +26,7 @@ $this->title = '抗战雄师';
             <?php foreach ($teams as $team): ?>
                 
                 <?php 
-                    // 动态配色逻辑：
-                    // force_id=6 (共产党) -> 红色主题
-                    // force_id=5 (国民党) -> 蓝色主题
-                    // 其他 -> 灰色
+
                     $isRed = ($team->force_id == 6);
                     $themeColor = $isRed ? '#d9534f' : '#337ab7'; // Bootstrap Danger红 vs Primary蓝
                     $badgeClass = $isRed ? 'badge-danger' : 'badge-primary';

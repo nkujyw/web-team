@@ -1,4 +1,12 @@
 <?php
+/**
+ * 团队介绍页面
+ * 展示团队成员及其职责分工
+ * 提供管理模式以编辑团队信息
+ * @author: 2311786 吉圆伟
+ * @date: 2025-12-21
+ * 参考自 site/index.php 的页面结构和样式
+ */
 use yii\helpers\Html;
 use yii\helpers\Url;
 
