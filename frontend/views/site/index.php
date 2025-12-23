@@ -2,7 +2,7 @@
 /**
  * site/index.php
  * 首页视图文件
- * 包含：首页轮播图、最新公告、特别关注、重大战役、抗战雄师、抗战文艺、每日英烈等模块
+ * 包含：首页轮播图、最新公告、特别关注、重大战役、抗战雄师、抗战文艺、每日英雄等模块
  * @author 2311786 吉圆伟
  * @date 2025-12-16
  */
@@ -234,7 +234,7 @@ $this->title = '首页 - 中国抗战胜利纪念网';
                 <div class="card border-danger mb-3 shadow hero-card-hover" style="transition: all 0.3s;">
                     
                     <div class="card-header bg-danger text-white font-weight-bold d-flex justify-content-between align-items-center">
-                        <span><i class="fa fa-star"></i> 每日英烈</span>
+                        <span><i class="fa fa-star"></i> 每日英雄</span>
                         <span class="badge badge-light text-danger">今日缅怀</span>
                     </div>
 

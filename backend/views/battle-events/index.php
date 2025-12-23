@@ -1,7 +1,8 @@
 <?php
-
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\Forces; 
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\BattleEventsSearch */
@@ -35,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return $model->force1 ? $model->force1->name : '(未设置)';
                 },
+                'filter' => ArrayHelper::map(Forces::find()->asArray()->all(), 'id', 'name'),
             ],
             [
                 'attribute' => 'force2_id',
@@ -42,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return $model->force2 ? $model->force2->name : '(未设置)';
                 },
+                'filter' => ArrayHelper::map(Forces::find()->asArray()->all(), 'id', 'name'),
             ],
             'casualties',
 

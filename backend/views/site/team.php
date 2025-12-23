@@ -131,7 +131,7 @@ $this->title = '团队介绍 - ' . $info['team_name'];
         <div class="col-md-7 mb-4">
             <div class="card border-0 shadow-sm h-100 p-4 text-white custom-team-box" 
                  style="background: linear-gradient(135deg, #1e2936 0%, #222e3c 100%) !important;">
-                <h3 class="fw-bold mb-3"><i data-feather="users" class="me-2"></i>关于 <?= Html::encode($info['team_name']) ?></h3>
+                <h3 class="fw-bold mb-3 text-white"><i data-feather="users" class="me-2"></i>关于 <?= Html::encode($info['team_name']) ?></h3>
                 <p><?= Html::encode($info['intro']) ?></p>
             </div>
         </div>
