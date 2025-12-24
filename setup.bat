@@ -1,15 +1,15 @@
 @echo off
 setlocal enabledelayedexpansion
 chcp 65001 >nul
-title web-team é¡¹ç›®ä¸€é”®éƒ¨ç½²å·¥å…· v6.9
+title web-team ÏîÄ¿Ò»¼ü²¿Êð¹¤¾ß v6.9
 
 cd /d "%~dp0"
 
 echo ======================================================
-echo          web-team é¡¹ç›®ä¸€é”®éƒ¨ç½²è„šæœ¬ v6.9
+echo          web-team ÏîÄ¿Ò»¼ü²¿Êð½Å±¾ v6.9
 echo ======================================================
 
-:: --- 1. å¯»æ‰¾ XAMPP ---
+:: --- 1. Ñ°ÕÒ XAMPP ---
 set "XAMPP_PATH="
 for %%d in (C D E F G) do (
     if exist "%%d:\xampp\xampp-control.exe" (
@@ -19,81 +19,81 @@ for %%d in (C D E F G) do (
 )
 
 :NOT_FOUND
-echo [é”™è¯¯] æœªèƒ½æ‰¾åˆ° XAMPP å®‰è£…ç›®å½•ã€‚
-echo å»ºè®®ï¼šè¯·ç¡®ä¿ä½ å®‰è£…äº† XAMPPï¼Œæˆ–è€…æ‰‹åŠ¨ä¿®æ”¹è„šæœ¬ä¸­çš„ XAMPP_PATHã€‚
+echo [´íÎó] Î´ÄÜÕÒµ½ XAMPP °²×°Ä¿Â¼¡£
+echo ½¨Òé£ºÇëÈ·±£Äã°²×°ÁË XAMPP£¬»òÕßÊÖ¶¯ÐÞ¸Ä½Å±¾ÖÐµÄ XAMPP_PATH¡£
 pause & exit
 
 :FOUND_XAMPP
 set "PHP_EXE=%XAMPP_PATH%\php\php.exe"
 set "MYSQL_EXE=%XAMPP_PATH%\mysql\bin\mysql.exe"
 
-:: --- 2. æ ¸å¿ƒä¾èµ–å¤„ç† ---
+:: --- 2. ºËÐÄÒÀÀµ´¦Àí ---
 if not exist "vendor" (
-    echo [*] æ­£åœ¨ä¸‹è½½ä¾èµ–åˆ©ç”¨å†…ç½® composer.phar...    
+    echo [*] ÕýÔÚÏÂÔØÒÀÀµÀûÓÃÄÚÖÃ composer.phar...    
     "%PHP_EXE%" composer.phar update --no-interaction --ignore-platform-reqs --no-audit --no-security-blocking
     if %errorlevel% neq 0 (
-        echo [é”™è¯¯] ä¾èµ–ä¸‹è½½ä¸­æ–­ã€‚
-        echo å»ºè®®ï¼š1. æ£€æŸ¥ç½‘ç»œè¿žæŽ¥ï¼›2. å°è¯•å¼€å¯ VPNï¼›3. æ£€æŸ¥ PHP ç‰ˆæœ¬æ˜¯å¦å†²çªã€‚
+        echo [´íÎó] ÒÀÀµÏÂÔØÖÐ¶Ï¡£
+        echo ½¨Òé£º1. ¼ì²éÍøÂçÁ¬½Ó£»2. ³¢ÊÔ¿ªÆô VPN£»3. ¼ì²é PHP °æ±¾ÊÇ·ñ³åÍ»¡£
         pause & exit
     )
-    echo [æˆåŠŸ] ä¾èµ–åº“å·²å°±ç»ªã€‚
+    echo [³É¹¦] ÒÀÀµ¿âÒÑ¾ÍÐ÷¡£
 )
 
-:: --- 3. å¯åŠ¨æœåŠ¡ ---
-echo [*] å°è¯•å¯åŠ¨ Apache å’Œ MySQL...
+:: --- 3. Æô¶¯·þÎñ ---
+echo [*] ³¢ÊÔÆô¶¯ Apache ºÍ MySQL...
 start /b "" "%XAMPP_PATH%\apache_start.bat" >nul 2>&1
 start /b "" "%XAMPP_PATH%\mysql_start.bat" >nul 2>&1
 
-:: ç»™æ•°æ®åº“ä¸€ç‚¹å¯åŠ¨æ—¶é—´
+:: ¸øÊý¾Ý¿âÒ»µãÆô¶¯Ê±¼ä
 echo [*] Loading environment, please wait...
 timeout /t 8 /nobreak >nul
 
-:: --- 4. çŽ¯å¢ƒåˆå§‹åŒ– ---
+:: --- 4. »·¾³³õÊ¼»¯ ---
 if exist "init.bat" (
-    echo [*] æ­£åœ¨æ‰§è¡Œ Yii2 åˆå§‹åŒ–...
+    echo [*] ÕýÔÚÖ´ÐÐ Yii2 ³õÊ¼»¯...
     echo yes | call init.bat --env=Development --overwrite=All >nul 2>&1
     if %errorlevel% neq 0 (
-        echo [é”™è¯¯] init.bat æ‰§è¡Œå¤±è´¥ã€‚
-        echo å»ºè®®ï¼šè¯·æ£€æŸ¥é¡¹ç›®ç»“æž„æ˜¯å¦å®Œæ•´ï¼Œæˆ–æ‰‹åŠ¨è¿è¡Œ init.bat æŸ¥çœ‹æŠ¥é”™ã€‚
+        echo [´íÎó] init.bat Ö´ÐÐÊ§°Ü¡£
+        echo ½¨Òé£ºÇë¼ì²éÏîÄ¿½á¹¹ÊÇ·ñÍêÕû£¬»òÊÖ¶¯ÔËÐÐ init.bat ²é¿´±¨´í¡£
     )
 )
 
-:: --- 5. æ•°æ®åº“é…ç½® ---
+:: --- 5. Êý¾Ý¿âÅäÖÃ ---
 set DB_NAME=anti_war_db
-echo [*] æ­£åœ¨é…ç½®æ•°æ®åº“: %DB_NAME%
+echo [*] ÕýÔÚÅäÖÃÊý¾Ý¿â: %DB_NAME%
 
-:: æ£€æŸ¥ MySQL èƒ½å¦è¿žæŽ¥
+:: ¼ì²é MySQL ÄÜ·ñÁ¬½Ó
 "%MYSQL_EXE%" -u root -e "CREATE DATABASE IF NOT EXISTS %DB_NAME% DEFAULT CHARACTER SET utf8mb4;" >nul 2>&1
 if %errorlevel% neq 0 (
-    echo [ä¸¥é‡é”™è¯¯] æ— æ³•è¿žæŽ¥åˆ° MySQL æ•°æ®åº“ï¼
+    echo [ÑÏÖØ´íÎó] ÎÞ·¨Á¬½Óµ½ MySQL Êý¾Ý¿â£¡
     echo --------------------------------------------------
-    echo æŽ’æŸ¥å»ºè®®ï¼š
-    echo 1. ç«¯å£å ç”¨ï¼šè¯·æ£€æŸ¥æ˜¯å¦å·²æœ‰å…¶ä»– MySQL å ç”¨äº† 3306 ç«¯å£ã€‚
-    echo 2. æœåŠ¡å´©æºƒï¼šæŸ¥çœ‹ XAMPP é¢æ¿ä¸­ MySQL æ˜¯å¦ä¸ºçº¢è‰²ã€‚
-    echo 3. æƒé™é—®é¢˜ï¼šå°è¯•ä»¥ç®¡ç†å‘˜èº«ä»½è¿è¡Œæ­¤è„šæœ¬ã€‚
+    echo ÅÅ²é½¨Òé£º
+    echo 1. ¶Ë¿ÚÕ¼ÓÃ£ºÇë¼ì²éÊÇ·ñÒÑÓÐÆäËû MySQL Õ¼ÓÃÁË 3306 ¶Ë¿Ú¡£
+    echo 2. ·þÎñ±ÀÀ££º²é¿´ XAMPP Ãæ°åÖÐ MySQL ÊÇ·ñÎªºìÉ«¡£
+    echo 3. È¨ÏÞÎÊÌâ£º³¢ÊÔÒÔ¹ÜÀíÔ±Éí·ÝÔËÐÐ´Ë½Å±¾¡£
     echo --------------------------------------------------
     pause & exit
 )
 
 if exist "data\install.sql" (
-    echo [*] æ­£åœ¨å¯¼å…¥ SQL æ•°æ®...
+    echo [*] ÕýÔÚµ¼Èë SQL Êý¾Ý...
     "%MYSQL_EXE%" -u root %DB_NAME% < data\install.sql >nul 2>&1
     if %errorlevel% neq 0 (
-        echo [é”™è¯¯] SQL æ•°æ®å¯¼å…¥å¤±è´¥ã€‚è¯·æ£€æŸ¥ data\install.sql æ–‡ä»¶æ˜¯å¦æ­£ç¡®ã€‚
+        echo [´íÎó] SQL Êý¾Ýµ¼ÈëÊ§°Ü¡£Çë¼ì²é data\install.sql ÎÄ¼þÊÇ·ñÕýÈ·¡£
     ) else (
-        echo [æˆåŠŸ] æ•°æ®åº“é…ç½®å®Œæˆã€‚
+        echo [³É¹¦] Êý¾Ý¿âÅäÖÃÍê³É¡£
     )
 )
 
-:: --- 6. æœ€ç»ˆå®Œæˆæç¤º ---
+:: --- 6. ×îÖÕÍê³ÉÌáÊ¾ ---
 echo.
 echo ======================================================
-echo         DEPLOYS SUCCESS: éƒ¨ç½²ä»»åŠ¡å®Œæˆï¼
+echo         DEPLOYS SUCCESS: ²¿ÊðÈÎÎñÍê³É£¡
 echo ======================================================
 for %%I in ("%CD%") do set "PROJ_NAME=%%~nxI"
-echo å‰ç«¯è®¿é—®: http://localhost/%PROJ_NAME%/frontend/web/
-echo åŽç«¯ç®¡ç†: http://localhost/%PROJ_NAME%/backend/web/
+echo Ç°¶Ë·ÃÎÊ: http://localhost/%PROJ_NAME%/frontend/web/
+echo ºó¶Ë¹ÜÀí: http://localhost/%PROJ_NAME%/backend/web/
 echo.
-echo å¦‚æžœç‚¹å‡»é“¾æŽ¥åŽæŠ¥é”™ï¼Œè¯·æ£€æŸ¥ XAMPP é¢æ¿ä¸­ Apache/MySQL çŠ¶æ€ã€‚
+echo Èç¹ûµã»÷Á´½Óºó±¨´í£¬Çë¼ì²é XAMPP Ãæ°åÖÐ Apache/MySQL ×´Ì¬¡£
 echo ======================================================
 pause
