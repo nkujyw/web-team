@@ -20,10 +20,10 @@ $items = [
     ['name' => '设计文档',   'icon' => 'layers',     'file' => $prefix . '设计文档' . $suffix . '.pdf'],
     ['name' => '实现文档',   'icon' => 'code',       'file' => $prefix . '实现文档' . $suffix . '.pdf'],
     ['name' => '用户手册',   'icon' => 'book-open',  'file' => $prefix . '用户手册' . $suffix . '.pdf'],
-    ['name' => '项目展示PPT', 'icon' => 'tv',        'file' => $prefix . '项目展示PPT' . $suffix . '.pptx'],
+    ['name' => '项目展示PPT', 'icon' => 'tv',        'file' => $prefix . '项目展示' . $suffix . '.pptx'],
     ['name' => '部署文档',   'icon' => 'server',     'file' => $prefix . '部署文档' . $suffix . '.pdf'],
     ['name' => '录屏讲解',   'icon' => 'video',      'file' => $prefix . '录屏讲解' . $suffix . '.mp4'],
-    ['name' => '数据库文件', 'icon' => 'database',   'file' => 'anti_war_db.sql', 'is_db' => true],
+    ['name' => '数据库文件', 'icon' => 'database',   'file' => 'install.sql', 'is_db' => true],
 ];
 ?>
 
