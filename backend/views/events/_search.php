@@ -27,7 +27,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'description') ?>
 
-    <?php // echo $form->field($model, 'outcome') ?>
+    <?php // echo $form->field($model, 'significance') ?>
 
     <?php // echo $form->field($model, 'event_type') ?>
 

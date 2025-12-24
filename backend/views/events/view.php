@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'end_date',
             'location_id',
             'description:ntext',
-            'outcome:ntext',
+            'significance:ntext',
             'event_type',
         ],
     ]) ?>

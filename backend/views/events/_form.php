@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'outcome')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'significance')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'event_type')->dropDownList([ 'battle' => 'Battle', 'diplomatic' => 'Diplomatic', 'meeting' => 'Meeting', ], ['prompt' => '']) ?>
 
